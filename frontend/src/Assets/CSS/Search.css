@@ -1,7 +1,3 @@
-*{
-    background-color: rgb(240, 250, 255);
-}
-
 /* Estilos para el campo de búsqueda */
 .containerSearch input[type="text"] {
     width: 500px;
