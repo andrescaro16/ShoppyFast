@@ -1,7 +1,8 @@
 /* Estilos para el campo de búsqueda */
-.containerSearch input[type="text"] {
+.containerSearch input[type="number"] {
     width: 500px;
     padding: 10px;
+    margin: 8px;
     border: 2.5px solid #ddd;
     border-radius: 15px;
     font-size: 16px;
