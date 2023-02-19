@@ -1,27 +1,27 @@
-const productsList = [
+const productsList =[
   {
-    "id": 3,
+    "id": 1,
     "name": "Leche deslactosada bolsa ALPINA 1100 ml",
-    "marca": "ALPINA ",
+    "marca": "ALPINA",
     "description": "Leche deslactosada y descremada. Especial para personas que requieren reducir el consumo de lactosa. ",
     "price": 6500,
-    "imgURL": "https://exitocol.vtexassets.com/arquivos/ids/1782795/Leche-Deslactosada-Descremada-En-Bolsa-X-11-Litros-Cu-691476_a.png?v=637236951992500000",
+    "imgURL": "https://i.ibb.co/RYL7HkR/Leche-Deslactosada-Descremada-En-Bolsa-X-11-Litros-Cu-691476-a.webp",
     "cantidad": 25
 
   },
   {
-    "id": 4,
-    "name": "Leche Semidescremada Uat Four ALPINA 4000 ml",
-    "marca": "ALPINA ",
-    "description": "Leche semidescremada.Este tipo de leches son muy recomendables para personas que sufren alteraciones de colesterol elevado,  sobrepeso u obesidad.",
-    "price": 5500,
-    "imgURL": "https://exitocol.vtexassets.com/arquivos/ids/1782795/Leche-Deslactosada-Descremada-En-Bolsa-X-11-Litros-Cu-691476_a.png?v=637236951992500000",
+    "id": 2,
+    "name": "Pasta Clásica Spaghetti X 1000 gr",
+    "marca": "Doria",
+    "description": "Los nutrientes aportados por Nutrivit como parte de una alimentación balanceada contienen Zinc, Acido Folico, Hierro y vitamina A",
+    "price": 6300,
+    "imgURL": "https://exitocol.vtexassets.com/arquivos/ids/1976732-1200-auto?v=637259153311000000&width=1200&height=auto&aspect=true",
     "cantidad": 80,
 
   }
   ,
   {
-    "id": 5,
+    "id": 3,
     "name": "Leche de coco x 250 ml",
     "marca": "Antillana ",
     "description": "Leche de coco ideal para preparacion, baja en sodio",
@@ -41,7 +41,7 @@ const productsList = [
 
   },
   {
-    "id": 6,
+    "id": 5,
     "name": "CAFE MOLIDO BALANCEADO COLINA JUAN VALDEZ 340 gr",
     "marca": "Juan Valdez ",
     "description": "Cada cosecha de café de Colombia produce, entre sus frutos, un pequeño porcentaje de granos 'Caracolito'. Estos granos se reconocen por su pequeño tamaño y forma redonda, atributos que resultan de la formación de una sola semilla en la cereza. partiendo de este exótico grano, Juan Valdez ha desarrollado 'Colina', un cafe de suave textura, acidez media y cuerpo equilibrado.",
@@ -51,7 +51,7 @@ const productsList = [
 
   },
   {
-    "id": 7,
+    "id": 6,
     "name": "Cafe Todo En Uno Light COLCAFE 280 gr",
     "marca": "ColCafe ",
     "description": "Café instántaneo con crema no lactea y endulzado con Splenda. Sin Colesterol y Sin Lactosa Con tapa dosificadora para fácil adición",
@@ -61,17 +61,17 @@ const productsList = [
 
   },
   {
-    "id": 8,
-    "name": "Mantequilla Esparsible Line Vaso X 250 gr",
+    "id": 7,
+    "name": "Mantequilla Esparsible Light Vaso X 250 gr",
     "marca": "Rama ",
     "description": " 0% colesterol, 25% menos de grasa con relación a una mantequilla normal.",
     "price": 9700,
-    "imgURL": "https://exitocol.vtexassets.com/arquivos/ids/1271045-800-auto?width=800&height=auto&aspect=true",
+    "imgURL": "https://i.ibb.co/hZB89kB/16257148-1200-auto.webp",
     "cantidad": 10,
 
   },
   {
-    "id": 9,
+    "id": 8,
     "name": "Azucar Organica PROVIDENCIA 850 gr",
     "marca": "Providencia ",
     "description": "Azúcar Morena 100% Orgánica sin Pesticidas ni Colorantes.Los productos orgánicos son mínimamente procesados y no contienen ingredientes artificiales o preservativos. Estos son alimentos de alta calidad ya que se cultivan en tierra sana.",
@@ -81,7 +81,7 @@ const productsList = [
 
   },
   {
-    "id": 10,
+    "id": 9,
     "name": "PANELA PULVERIZADA ORGANICA D ORIGENN 500 Gramos",
     "marca": "D'ORIGENN ",
     "description": "Disfruta de un producto orgánico y nutritivo proveniente de la caña, para preparaciones de bebidas frías y calientes, también es ideal para repostería y culinaria.   ",

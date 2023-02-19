@@ -4,6 +4,7 @@ import { FormGroup, Label } from "reactstrap"
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import Product from "./ProductInfo";
 
 
 
@@ -19,7 +20,7 @@ const Search = () => {
         });
 
     //useForm para manejar el formulario y recibe el validador Yup
-    const {register,handleSubmit,formState: { errors },} = useForm({
+    const {register,handleSubmit,formState: { errors }, watch} = useForm({
         resolver:yupResolver(userSchema)
     });
 
@@ -27,6 +28,8 @@ const Search = () => {
     const getInput = (code) => {
         console.log(code);
     };
+
+    let codeNumber = watch("code");
 
     return(
         <React.Fragment>
@@ -37,8 +40,9 @@ const Search = () => {
                         <button type="submit">Buscar</button>
                         <Label style={{ color: "red", display: "block", margin: "10px" }}> {errors["code"] ? errors["code"].message : ""}</Label>
                     </FormGroup>
-                </form>  
+                </form>
             </div>
+            <Product codeNumber={codeNumber}/>
         </React.Fragment>
     );
 
