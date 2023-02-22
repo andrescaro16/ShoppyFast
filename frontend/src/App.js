@@ -1,25 +1,26 @@
 import React from 'react';
-import logo from './Assets/Images/logo.svg';
 import './Assets/CSS/App.css';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 //Import components
 import Search from './Components/Search';
 import Header from './Components/Header';
+import AllProducts from './Components/AllProducts';
 
 
 
 function App() {
 
   return (
-    <React.Fragment>
-        <div>
-          <Header />
-        </div>
-
-        <div>
-          <Search />
-        </div>
-    </React.Fragment>
+    <div>
+      <BrowserRouter>
+        <Header />
+        <Routes>
+          <Route path='/' element={<div> <Search /> <br/> <AllProducts /> </div>}/>
+          <Route path='producto/:id' element={<Search />} />
+        </Routes>
+      </BrowserRouter>
+    </div>
   );
 
 }

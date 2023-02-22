@@ -1,14 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 import '../Assets/CSS/Search.css';
 import { FormGroup, Label } from "reactstrap"
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import {Link, useNavigate} from "react-router-dom";
 import Product from "./ProductInfo";
 
 
 
 const Search = () => {
+
+    const redireccion = useNavigate();
 
     // Yup con valores predefinidos para los errores de validación en el input
     const userSchema = yup.object().shape({
@@ -25,8 +28,9 @@ const Search = () => {
     });
 
     //Verificamos recibir el número de código bien
-    const getInput = (code) => {
+    const getInput = ({code}) => {
         console.log(code);
+        redireccion('/producto/' + code)
     };
 
     let codeNumber = watch("code");
