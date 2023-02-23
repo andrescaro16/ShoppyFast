@@ -1,7 +1,6 @@
 import '../Assets/CSS/Header.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { TabContent, TabPane, Nav, NavItem, NavLink, Navbar } from "reactstrap";
-import { useState } from 'react';
+
 
 function Header() {
 
@@ -31,10 +30,6 @@ function Header() {
 
           </ul>
 
-          <form class="d-flex">
-            <button class="btn btn-dark" type='submit'>Carrito</button>
-          </form>
-
         </div>
 
       </div>
@@ -42,7 +37,6 @@ function Header() {
     </nav>
   );
 }
-
 
 
 export default Header;

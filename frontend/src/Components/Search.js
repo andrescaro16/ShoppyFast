@@ -1,6 +1,7 @@
 import React from "react";
 import '../Assets/CSS/Search.css';
-import { FormGroup, Label } from "reactstrap"
+import { FormGroup, Label, Button, Badge } from "reactstrap"
+import { BsFillCartFill } from "react-icons/bs";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -9,7 +10,7 @@ import {Link, useNavigate} from "react-router-dom";
 
 
 
-const Search = () => {
+const Search = ({cantidad}) => {
 
     const redireccion = useNavigate();
 
@@ -36,6 +37,13 @@ const Search = () => {
 
     return(
         <React.Fragment>
+            <div className="car">
+                <Link to="/carrito">
+                    <Button ><Label>Carrito</Label> <BsFillCartFill />
+                        <Badge>{cantidad}</Badge>
+                    </Button>
+                </Link>
+            </div>
             <div className="containerSearch">
                 <form onSubmit={handleSubmit(getInput)}>
                     <FormGroup>

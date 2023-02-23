@@ -1,0 +1,44 @@
+.container_table {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container_table_form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top:70px;
+}
+
+.encabezado_carrito{
+    font-size:19px; 
+    margin:30px;
+    margin-top:40px;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    color:black;
+    text-align: center;
+    text-align: center;
+    width: 80% !important;
+}
+
+.encabezado_inventario{
+    font-size: 19px; 
+    margin: 30px;
+    display: flex;
+    justify-content: space-between;
+    color:black
+}
+
+b{
+    margin:10px;
+}
+
+.tabla_carro{
+    text-align: center;
+    width: 75% !important;
+}
+
+

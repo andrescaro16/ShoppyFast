@@ -1,33 +1,38 @@
 .products{
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    align-items: center;
-  }
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+}
   
-  .product{
-    width: 500px;
-    display: flex;
-    background-color: lightblue;
-    border: 5px solid #00a1c6;
-    border-radius: 10px;
-    margin: 10px;
-  }
+.product{
+  width: 400px;
+  display: block;
+  background-color: lightblue;
+  border: 5px solid #00a1c6;
+  border-radius: 20px;
+  margin: 40px;
+}
   
-  .product .left{
-    width: 80%;
-    background-size: cover;
-    background-position: center center;
-    padding: 50px;
-    border-radius: 10px 0 0 10px;
-  }
+.imag img{
+  background-size: cover;
+  background-position: center center;
+  padding: 0px;
+  border-radius: 20px 20px 0px 0px;
+  transform: scale(1);
+}
+
+.product .body{
+  padding: 10px 20px;
+  margin: 10px;
+}
+
+.imag{
+  overflow: hidden;
+}
+
+.agregarCar{
+  padding: 20px;
+}
+
   
-  .product .right{
-    width: 70%;
-    text-align: left;
-    padding: 0 20px;
-  }
-  
-  .product img{
-    width: 100%;
-  }

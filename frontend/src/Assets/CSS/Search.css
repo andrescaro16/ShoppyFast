@@ -1,3 +1,23 @@
+.car{
+    padding: 10px;
+    margin: 10px;
+    position: fixed;
+    top: 70px;
+    right: 10px;
+    z-index: 9999;
+}
+
+.car button{
+    background-color: #cd4631;
+}
+
+
+.car button:hover {
+    background-color: #cd4631;
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
 /* Estilos para el campo de búsqueda */
 .containerSearch input[type="number"] {
     width: 500px;
