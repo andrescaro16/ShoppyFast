@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { getProduct } from '../Services/productInfoServices';
+import { Spinner, UncontrolledAlert } from 'reactstrap';
+import { FaCat } from "react-icons/fa";
+import { TbError404 } from "react-icons/tb";
 import { useParams } from 'react-router-dom';
 import '../dbTemp/products'
 import productsList from "../dbTemp/products";
@@ -35,26 +38,29 @@ const ProductInfo = () => {
             //Indicamos que ya hay datos disponibles
             hayDatos(true);
           }
+          console.log(data);
         }
     };
     conseguirDatos();
+
   }, [id]);
 
 
-  const product = productsList.find(product => product.id === parseInt(id));
+  //const product = productsList.find(product => product.id === parseInt(id));
 
   return(
-    <React.Fragment>
-      {product ? (
-        <div className="products">
-          <ProductCard product={product} key={product.id} />
-        </div>
-      ) : (
-        <label style={{ color: "red", display: "block", margin: "10px", textAlign:"center"}}>  </label> //No se encontró el producto
-      )}
-    </React.Fragment>
-  );
+    <div>
+      {load === false ? (<>
+        {
+          dato && id ? (
+            <>
+               <Spinner color="primary" type="grow">Loading...</Spinner><br /><Spinner color="primary" type="grow">Loading...</Spinner>
+            </>) : <UncontrolledAlert color="info">El código no corresponde a ningún producto, por favor ingrese otro. <FaCat/> <TbError404/></UncontrolledAlert>
+        }
+      </>) : (<><div className="products"><ProductCard product={productInfo} /></div></>)
+      }
+    </div>
+  )
 }
-
 
 export default ProductInfo;

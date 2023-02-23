@@ -1,7 +1,9 @@
 //Formato de tarjeta de productos
-const ProductCard = ({product}) => {
+const ProductCard = (product) => {
+    console.log({product});
+
     return (
-    <div className="product">
+    <div className="product" key={product.id}>
         <div className="left" style={{ backgroundImage: `url(${product.imgURL})` }}></div>
         <div className="right">
             <h5>{product.name}</h5>
