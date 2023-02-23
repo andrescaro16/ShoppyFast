@@ -37,13 +37,16 @@ func GetProductById(c *fiber.Ctx, db *mongo.Database) error {
 
 	// Decodificar el resultado en un Product
 	var product models.Product
+	var products []models.Product
 	err = result.Decode(&product)
 	if err != nil {
 		return err
 	}
 
+	products = append(products, product)
+
 	// Retornar el Product como respuesta
-	return c.JSON(product)
+	return c.JSON(products)
 }
 
 func GetProductAll(c *fiber.Ctx, db *mongo.Database) error {

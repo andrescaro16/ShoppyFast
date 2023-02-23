@@ -5,7 +5,7 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {Link, useNavigate} from "react-router-dom";
-import Product from "./ProductInfo";
+
 
 
 
@@ -23,7 +23,7 @@ const Search = () => {
         });
 
     //useForm para manejar el formulario y recibe el validador Yup
-    const {register,handleSubmit,formState: { errors }, watch} = useForm({
+    const {register,handleSubmit,formState: { errors }} = useForm({
         resolver:yupResolver(userSchema)
     });
 
@@ -33,7 +33,6 @@ const Search = () => {
         redireccion('/producto/' + code)
     };
 
-    let codeNumber = watch("code");
 
     return(
         <React.Fragment>
@@ -46,7 +45,6 @@ const Search = () => {
                     </FormGroup>
                 </form>
             </div>
-            <Product codeNumber={codeNumber}/>
         </React.Fragment>
     );
 

@@ -13,6 +13,7 @@ import ProductCard from "./ProductCard";
 const ProductInfo = () => {
 
   // Hook para obtener el id de la URL
+ 
   const { id } = useParams();
   // Hook para el estado de buscando producto o no
   const [load, setLoad] = useState(false);
@@ -26,38 +27,46 @@ const ProductInfo = () => {
     //Indicamos que no hay datos por el momento
     hayDatos(false);
     const conseguirDatos = async () => {
-        //Indicamos que ya se está cargando información
-        setLoad(true);
-        const data = await getProduct(id);
-        if (data) {
+      //Indicamos que ya se está cargando información
+      setLoad(true);
+
+      const data = await getProduct(id);
+        if (data !== 404) {
           //Guardamos datos del producto en el estado de productInfo
           setProductInfo(data[0]);
           //Ya no se está cargando información
           setLoad(false);
+
           if (data.length === 1) {
             //Indicamos que ya hay datos disponibles
             hayDatos(true);
           }
-          console.log(data);
+        }else{
+          setLoad(false);
         }
     };
     conseguirDatos();
 
+
   }, [id]);
 
-
   //const product = productsList.find(product => product.id === parseInt(id));
-
+  console.log("dasfdfasdfasdfasdf")
+  console.log(dato)
+  console.log(id)
+  
   return(
     <div>
+    
       {load === false ? (<>
-        {
+        { 
+        
           dato && id ? (
             <>
-               <Spinner color="primary" type="grow">Loading...</Spinner><br /><Spinner color="primary" type="grow">Loading...</Spinner>
+            <div className="products"><ProductCard {...productInfo} /></div>
             </>) : <UncontrolledAlert color="info">El código no corresponde a ningún producto, por favor ingrese otro. <FaCat/> <TbError404/></UncontrolledAlert>
         }
-      </>) : (<><div className="products"><ProductCard product={productInfo} /></div></>)
+      </>) :  (<><Spinner color="primary" type="grow">Loading...</Spinner><br /><Spinner color="primary" type="grow">Loading...</Spinner></>)
       }
     </div>
   )
