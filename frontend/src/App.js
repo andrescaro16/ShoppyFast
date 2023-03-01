@@ -8,7 +8,7 @@ import Header from './Components/Header';
 import AllProducts from './Components/AllProducts';
 import ProductInfo from './Components/ProductInfo';
 import Trolley from './Components/Trolley';
-import { agregarProducto } from './Components/TrolleyActions';
+import { agregarProducto, vaciarCarrito } from './Components/TrolleyActions';
 
 
 
@@ -31,7 +31,7 @@ function App() {
         <Routes>
           <Route path='/' element={<div> <Search cantidad={itemCantidad}/> <br/> <AllProducts agregarProducto={agregarProducto} setCarrito={setCarrito} carrito={carrito} /> </div>}/>
           <Route path='producto/:id' element={<div> <Search cantidad={itemCantidad} /> <ProductInfo agregarProducto={agregarProducto} setCarrito={setCarrito} carrito={carrito} /></div>} />
-          <Route path='/carrito' element={<Trolley agregarProducto={agregarProducto} carrito={carrito} setCarrito={setCarrito} />} />
+          <Route path='/carrito' element={<Trolley agregarProducto={agregarProducto} carrito={carrito} setCarrito={setCarrito} vaciarCarrito={vaciarCarrito}/>} />
         </Routes>
       </BrowserRouter>
     </div>

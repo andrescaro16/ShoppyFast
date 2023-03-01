@@ -2,30 +2,37 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import { Container, Table, Button, Row, Col, Badge, Alert } from 'reactstrap';
 import '../Assets/CSS/Trolley.css';
-import { BsFillCartFill } from "react-icons/bs";
+import { BsFillCartFill, BsFillCartXFill } from "react-icons/bs";
+import { vaciarCarrito } from './TrolleyActions';
 
 const Trolley = ({ agregarProducto, carrito, setCarrito }) => {
 
     return (
         <>
-            < Container className='encabezado_carrito'></Container>
-            <Container className='encabezado_inventario' >
+            <div className='encabezado_inventario' >
 
-
-                <Col xs="9" sm="4">
-                    <BsFillCartFill />
-                    <span><b>Precio Total  </b></span>
-                </Col>
-
-                <Button color="primary">Crear Factura</Button>
-
-                <Button color="primary" >Cupón de descuento</Button>
-
-                <Link to="/">
-                    <Button color="danger" >Volver</Button>
+                <Link to="/" style={{'paddingRight': "150px", float: "left"}}>
+                    <Button color="danger">Volver</Button>
                 </Link>
 
-            </Container>
+                <div style={{'padding-right': "860px", float: "left"}}>
+                    <BsFillCartFill />
+                    <span><b>Precio Total</b></span>
+                </div>
+
+                <div style={{'padding-right': "100px", float: "left" }}>
+                    <Button color="primary" >Cupón de descuento</Button>
+                </div>
+
+                <div>
+                    <Button color="primary">Crear Factura</Button>
+                </div>
+            </div>
+
+            <div className='encabezado_inventario' style={{'padding-left': "220px", 'paddingBottom': "0px"}}>
+                <Button color="danger" size="sm" onClick={() => setCarrito(vaciarCarrito(carrito))}> <BsFillCartXFill /> Vaciar Carrito</Button>
+            </div>
+
 
 
             <React.Fragment>

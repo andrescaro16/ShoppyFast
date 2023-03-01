@@ -19,3 +19,13 @@ export function agregarProducto(item, quantity, carrito) {
       return [...carrito, { item, quantity }];
     }
 };
+
+export function vaciarCarrito(carrito) {
+  const size = carrito.length;
+  if (window.confirm("¿Seguro quieres vaciar el carrito?")) {
+    return carrito=[];
+  }
+  else{
+    return carrito
+  }
+};
