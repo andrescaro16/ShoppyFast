@@ -3,7 +3,7 @@ import axios from 'axios';
 export async function getProduct(id) {
     try {
         const response = await axios.get(
-            `http://localhost:3001/api/products/${id}`
+            `http://localhost:3002/api/products/${id}`
         );
         return response.data;
         
@@ -16,7 +16,7 @@ export async function getProduct(id) {
 
 export async function getAllProduct() {
     const response = await axios.get(
-        `http://localhost:3001/api/products/`
+        `http://localhost:3002/api/products/`
     );
     return response.data;
 }
