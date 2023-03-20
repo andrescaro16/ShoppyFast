@@ -1,4 +1,28 @@
 .form-wrapper {
+<<<<<<< HEAD
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    padding-top: 50px;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.1); /* color de fondo gris translúcido */
+  }
+  
+  .form-container {
+    background-color: #fff; /* color de fondo blanco para el formulario */
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* sombra para el formulario */
+  }
+  
+  h4{
+      justify-content: center;
+  }
+  
+  button{
+      justify-content: center;
+  }
+=======
   display: flex;
   justify-content: center;
   align-items: start;
@@ -21,3 +45,4 @@ h4{
 button{
     justify-content: center;
 }
+>>>>>>> 77bbecabaf4bb5e7dcd3d70a6f91b229d1c0c8e7
