@@ -24,9 +24,9 @@ const Trolley = ({ agregarProducto, carrito, setCarrito }) => {
                     <Button color="primary" >Cupón de descuento</Button>
                 </div>
 
-                <div>
-                    <Button color="primary">Crear Factura</Button>
-                </div>
+                <Link to="/pago" style={{'paddingRight': "150px", float: "left"}}>
+                    <Button color="primary">Realizar pago</Button>
+                </Link>
             </div>
 
             <div className='encabezado_inventario' style={{'padding-left': "220px", 'paddingBottom': "0px"}}>
