@@ -1,6 +1,6 @@
+package main
 // El main contendra el resto de paquetes
 
-package main
 
 import (
 	"context"
@@ -13,6 +13,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/joho/godotenv"
+
 )
 
 func main() {
