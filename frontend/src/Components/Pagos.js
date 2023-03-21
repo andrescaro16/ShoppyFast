@@ -113,8 +113,4 @@ const Pagos = ({ carrito, total }) => {
   );
 };
 
-<<<<<<< HEAD
 export default Pagos;
-=======
-export default Pagos;
->>>>>>> 77bbecabaf4bb5e7dcd3d70a6f91b229d1c0c8e7
