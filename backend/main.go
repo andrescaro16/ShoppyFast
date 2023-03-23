@@ -1,6 +1,6 @@
 package main
-// El main contendra el resto de paquetes
 
+// El main contendra el resto de paquetes
 
 import (
 	"context"
@@ -13,7 +13,6 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/joho/godotenv"
-
 )
 
 func main() {
@@ -53,7 +52,14 @@ func main() {
 	products := api.Group("/products")
 	routes.LoadProductsRoutes(products, db)
 
+	bankAccounts := api.Group("/bankAccounts")
+	routes.LoadBankAccountRoutes(bankAccounts, db)
+
+	functionalities := api.Group("/f")
+	routes.LoadFunctionalities(functionalities)
+
+	log.Println("Server on port 3001")
 	app.Listen(":" + port)
-	fmt.Println("Server on port 3001")
+	log.Println("Server on port 3001")
 
 }
