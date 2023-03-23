@@ -1,11 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from "react-router-dom";
 import { Container, Table, Button, Row, Col, Badge, Alert } from 'reactstrap';
 import '../Assets/CSS/Trolley.css';
-import { BsFillCartFill, BsFillCartXFill } from "react-icons/bs";
-import { vaciarCarrito } from './TrolleyActions';
+import { BsFillCartFill, BsFillCartXFill, BsTrash } from "react-icons/bs";
+import { vaciarCarrito, removerProducto } from './TrolleyActions';
 
-const Trolley = ({ agregarProducto, carrito, setCarrito }) => {
+const Trolley = ({ agregarProducto, carrito, setCarrito, subTotal, setSubTotal }) => {
+    //console.log(carrito);
+    useEffect(() => { ///calcular total
+        const calculo = () => {
+            setSubTotal(carrito.reduce((obj, cur) => (obj + (cur.item.price) * cur.quantity), 0))
+        }
+        calculo();
+        //setMensaje("No hay productos");
+    }, [carrito]);
 
     return (
         <>
@@ -17,7 +25,7 @@ const Trolley = ({ agregarProducto, carrito, setCarrito }) => {
 
                 <div style={{'padding-right': "860px", float: "left"}}>
                     <BsFillCartFill />
-                    <span><b>Precio Total</b></span>
+                    <span><b>Precio Total</b>{subTotal}</span>
                 </div>
 
                 <div style={{'padding-right': "100px", float: "left" }}>
@@ -96,6 +104,11 @@ const Trolley = ({ agregarProducto, carrito, setCarrito }) => {
                                     </td>
                                     <td>
                                         <span>{(elemento.item.price * elemento.quantity)}</span>
+                                    </td>
+                                    <td>
+                                    <Button color="danger" size="sm" onClick={() => setCarrito(removerProducto(elemento.item.id, carrito))}>
+                                        <BsTrash />
+                                    </Button>
                                     </td>
                                 </tr>
 
