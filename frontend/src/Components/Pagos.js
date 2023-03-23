@@ -1,22 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import "../Assets/CSS/Pagos.css";
 import { ListGroup, ListGroupItem, Col, Row, CardHeader, Card } from 'reactstrap'
+import { calculateTotal } from '../Services/productInfoServices';
+import { Link } from 'react-router-dom';
 
-const Pagos = ({ carrito, total }) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  console.log(carrito[0]);
-
-  const handleLoginFormSubmit = (event) => {
-    event.preventDefault(); // previene que se refresque la página
-
-    // añadir validar el usuario y contraseña
-
-    setIsLoggedIn(true); // marca al usuario como conectado
-  };
+const Pagos = ({ carrito, subTotal }) => {
+  
+  let total = useEffect(() => {
+    const getTotalIva = async () => {
+      return await calculateTotal(subTotal);
+    };
+    getTotalIva();
+  }, [subTotal]);
 
   return (
     <React.Fragment>
-      {isLoggedIn ? (
         <div>
             <div style={{ paddingTop: "50px", justifyContent: "center", justifyItems: "center", display: "flex" }}>
                 <Card style={{width: '50rem'}}>
@@ -44,13 +42,13 @@ const Pagos = ({ carrito, total }) => {
                     <ListGroupItem>
                         <Row>
                             <Col xs="6" style={{textAlign: "left"}}><b>SUBTOTAL</b></Col>
-                            <Col xs="6" style={{textAlign: "right"}}>NumTotal</Col>
+                            <Col xs="6" style={{textAlign: "right"}}>{subTotal}</Col>
                         </Row>
                     </ListGroupItem>
                     <ListGroupItem>
                         <Row>
                             <Col xs="6" style={{textAlign: "left"}}><b>TOTAL</b></Col>
-                            <Col xs="6" style={{textAlign: "right"}}>NumTotal*1.19</Col>
+                            <Col xs="6" style={{textAlign: "right"}}>{total}</Col>
                         </Row>
                     </ListGroupItem>
 
@@ -58,57 +56,18 @@ const Pagos = ({ carrito, total }) => {
 
                 </Card>
             </div>
-            <div style={{ paddingTop: "50px", justifyContent: "center", justifyItems: "center", display: "flex" }}>
-                <Card style={{width: '50rem'}}>
-                    <CardHeader><h4><strong>Mi billetera</strong></h4></CardHeader>
-                    <CardHeader>
-                        <Row>
-                            <Col xs="6" style={{textAlign: "left"}}><b>Sección</b></Col>
-                            <Col xs="6" style={{textAlign: "right"}}><b>Valor</b></Col>
-                        </Row>
-                    </CardHeader>
-                    <ListGroupItem>
-                        <Row>
-                            <Col xs="6" style={{textAlign: "left", padding:"20px"}}>Saldo Disponible</Col>
-                            <Col xs="6" style={{textAlign: "right", padding:"20px"}}>NumDisponible</Col>
-                        </Row>
-                    </ListGroupItem>
-                </Card>
-            </div>
             <div style={{margin: "50px"}}>
                 <ListGroupItem>
                     <Row>
                         <Col xs="12" style={{textAlign: "center"}}>
-                        <button style={{ backgroundColor: "#00a1c6", color: "white", padding: "10px 20px", borderRadius: "5px" }}>Confirmar pago</button>
+                          <Link to="/pago/transaccion">
+                            <button style={{ backgroundColor: "#00a1c6", color: "white", padding: "10px 20px", borderRadius: "5px" }}>Confirmar pago</button>
+                          </Link>
                         </Col>
                     </Row>
                 </ListGroupItem>
             </div>
         </div>
-      ) : (
-        <div class="form-wrapper">
-          <div class="form-container">
-            <h4>Banco</h4>
-            <form onSubmit={handleLoginFormSubmit}>
-              <div class="mb-3">
-                <label for="inputUsername" class="form-label">
-                  Nombre de usuario
-                </label>
-                <input type="text" class="form-control" id="inputUsername" />
-              </div>
-              <div class="mb-3">
-                <label for="inputPassword" class="form-label">
-                  Contraseña
-                </label>
-                <input type="password" class="form-control" id="inputPassword" />
-              </div>
-              <button type="submit" class="btn btn-primary">
-                Ingresar
-              </button>
-            </form>
-          </div>
-        </div>
-      )}
     </React.Fragment>
   );
 };

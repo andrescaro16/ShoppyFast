@@ -9,12 +9,14 @@ import AllProducts from './Components/AllProducts';
 import ProductInfo from './Components/ProductInfo';
 import Trolley from './Components/Trolley';
 import Pagos from './Components/Pagos';
-import { agregarProducto, vaciarCarrito } from './Components/TrolleyActions';
+import Transaccion from './Components/Transaccion';
+import { agregarProducto, vaciarCarrito, removerProducto } from './Components/TrolleyActions';
 
 
 
 function App() {
 
+  const [subTotal, setSubTotal] = useState(0);
   const [carrito, setCarrito] = useState([]);
   const [itemCantidad, setItemCantidad] = useState(0);
 
@@ -32,8 +34,9 @@ function App() {
         <Routes>
           <Route path='/' element={<div> <Search cantidad={itemCantidad}/> <br/> <AllProducts agregarProducto={agregarProducto} setCarrito={setCarrito} carrito={carrito} /> </div>}/>
           <Route path='producto/:id' element={<div> <Search cantidad={itemCantidad} /> <ProductInfo agregarProducto={agregarProducto} setCarrito={setCarrito} carrito={carrito} /></div>} />
-          <Route path='/carrito' element={<Trolley agregarProducto={agregarProducto} carrito={carrito} setCarrito={setCarrito} vaciarCarrito={vaciarCarrito}/>} />
-          { <Route path='/pago' element={<Pagos carrito={carrito} /*total={total}*//>} /> }
+          <Route path='/carrito' element={<Trolley agregarProducto={agregarProducto} carrito={carrito} setCarrito={setCarrito} vaciarCarrito={vaciarCarrito} removerProducto={removerProducto} subTotal={subTotal} setSubTotal={setSubTotal}/>} />
+          <Route path='/pago' element={<Pagos carrito={carrito} subTotal={subTotal} />} />
+          <Route path='/pago/transaccion' element={<Transaccion /*carrito={carrito} subTotal={subTotal}*/ />} />
         </Routes>
       </BrowserRouter>
     </div>
