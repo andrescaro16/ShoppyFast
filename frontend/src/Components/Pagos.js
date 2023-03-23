@@ -4,13 +4,14 @@ import { ListGroup, ListGroupItem, Col, Row, CardHeader, Card } from 'reactstrap
 import { calculateTotal } from '../Services/productInfoServices';
 import { Link } from 'react-router-dom';
 
-const Pagos = ({ carrito, subTotal }) => {
+const Pagos = ({ carrito, subTotal, total, setTotal }) => {
   
-  let total = useEffect(() => {
-    const getTotalIva = async () => {
-      return await calculateTotal(subTotal);
-    };
-    getTotalIva();
+    useEffect(() => {
+        const getTotalIva = async () => {
+            setTotal(await calculateTotal(subTotal));
+            //return total;//await calculateTotal(subTotal);
+        };
+        getTotalIva();
   }, [subTotal]);
 
   return (
