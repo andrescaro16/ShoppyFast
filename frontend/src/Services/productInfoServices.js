@@ -25,9 +25,9 @@ export async function getAllProduct() {
 //Calcular total (con IVA)
 export async function calculateTotal(subTotal) {
     try {
-      const response = await axios.get(
+      const response = await axios.post(
         `http://localhost:3001/api/f/calculateTax`,
-        { subtotal: subTotal }
+        { 'subTotal': subTotal }
       );
       return response.data.total;
     } catch (error) {

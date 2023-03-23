@@ -1,6 +1,8 @@
 package controllers
 
-import "github.com/gofiber/fiber/v2"
+import (
+	"github.com/gofiber/fiber/v2"
+)
 
 func AddTaxes(c *fiber.Ctx) error {
 
@@ -13,8 +15,7 @@ func AddTaxes(c *fiber.Ctx) error {
 	}
 
 	var subTotal float64 = float64(order.SubTotal)
-
-	total := subTotal * 0.19
+	total := subTotal * 1.19
 
 	return c.Status(fiber.StatusAccepted).JSON(fiber.Map{"total": total})
 }

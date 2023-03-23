@@ -7,7 +7,7 @@ import (
 
 func LoadFunctionalities(app fiber.Router) {
 
-	app.Get("/calculateTax", func(c *fiber.Ctx) error {
+	app.Post("/calculateTax", func(c *fiber.Ctx) error {
 		return controllers.AddTaxes(c)
 	})
 
