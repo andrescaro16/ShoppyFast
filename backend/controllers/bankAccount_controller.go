@@ -40,6 +40,7 @@ func BankAccountSignIn(c *fiber.Ctx, db *mongo.Database) error {
 	}{}
 
 	if err := c.BodyParser(&bodyRequestData); err != nil {
+
 		return c.JSON(fiber.Map{"Error": err, "validation": false})
 	}
 
@@ -53,8 +54,8 @@ func BankAccountSignIn(c *fiber.Ctx, db *mongo.Database) error {
 	// Verificar si se encontró el producto
 	if result.Err() != nil {
 		if errors.Is(result.Err(), mongo.ErrNoDocuments) {
-			// Si el producto no fue encontrado, retornar un error 404
-			return c.Status(fiber.StatusNotFound).JSON(fiber.Map{"message": "User not found", "validation": false})
+			// Si el usuario no fue encontrado, retornar un error 404
+			return c.Status(200).JSON(fiber.Map{"message": "User not found", "validation": false})
 		}
 		// Si hubo algún otro error, retornarlo
 
@@ -68,11 +69,11 @@ func BankAccountSignIn(c *fiber.Ctx, db *mongo.Database) error {
 	}
 
 	if bodyRequestData.Password != bankAccountDataResult.Password {
-		return c.Status(401).JSON(fiber.Map{"message": "Incorrect Password", "validation": false})
+		return c.Status(200).JSON(fiber.Map{"message": "Incorrect Password", "validation": false})
 	}
 
 	if bankAccountDataResult.Balance < bodyRequestData.TotalPrice {
-		return c.Status(401).JSON(fiber.Map{
+		return c.Status(200).JSON(fiber.Map{
 			"message":       "You don't have the enought money to pay",
 			"validation":    true,
 			"validPurchase": false,

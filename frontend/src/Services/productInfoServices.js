@@ -40,7 +40,7 @@ export async function calculateTotal(subTotal) {
 export async function bankLogin(user) {
     try {
       const response = await axios.post(
-        `http://localhost:3001/api/bankAccounts`,
+        `http://localhost:3001/api/bankAccounts/bankAccountSignIn`,
         user,
       );
       //TESTING
@@ -51,6 +51,7 @@ export async function bankLogin(user) {
         availableBalance: response.data.balance,
       }
     } catch (error) {
+      console.log(error)
       return error.response.status;
     }
 }
