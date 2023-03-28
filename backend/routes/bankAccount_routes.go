@@ -13,7 +13,7 @@ func LoadBankAccountRoutes(app fiber.Router, db *mongo.Database) {
 		return controllers.CreateBankAccount(c, db)
 	})
 
-	// app.Post("/createBankAccount", func(c *fiber.Ctx) error {
-	// 	return controllers.CreateBankAccount(c, db)
-	// })
+	app.Post("/bankAccountSignIn", func(c *fiber.Ctx) error {
+		return controllers.BankAccountSignIn(c, db)
+	})
 }
