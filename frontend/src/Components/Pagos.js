@@ -9,7 +9,6 @@ const Pagos = ({ carrito, subTotal, total, setTotal }) => {
     useEffect(() => {
         const getTotalIva = async () => {
             setTotal(await calculateTotal(subTotal));
-            //return total;//await calculateTotal(subTotal);
         };
         getTotalIva();
   }, [subTotal]);

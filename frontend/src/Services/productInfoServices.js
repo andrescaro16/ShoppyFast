@@ -36,5 +36,21 @@ export async function calculateTotal(subTotal) {
 }
 
 
-//Enviar datos login (get) y él me retorna si se puede hacer el pago o no
-
+//Enviar datos login banco y él me retorna si se puede hacer el pago o no
+export async function bankLogin(user) {
+    try {
+      const response = await axios.post(
+        `http://localhost:3001/api/bankAccounts`,
+        user,
+      );
+      //TESTING
+      console.log(response.data.validation, response.data.validPurchase, response.data.balance)
+      return {
+        validUser: response.data.validation,
+        validPurchase: response.data.validPurchase,
+        availableBalance: response.data.balance,
+      }
+    } catch (error) {
+      return error.response.status;
+    }
+}

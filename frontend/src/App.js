@@ -37,7 +37,7 @@ function App() {
           <Route path='producto/:id' element={<div> <Search cantidad={itemCantidad} /> <ProductInfo agregarProducto={agregarProducto} setCarrito={setCarrito} carrito={carrito} /></div>} />
           <Route path='/carrito' element={<Trolley agregarProducto={agregarProducto} carrito={carrito} setCarrito={setCarrito} vaciarCarrito={vaciarCarrito} removerProducto={removerProducto} subTotal={subTotal} setSubTotal={setSubTotal}/>} />
           <Route path='/pago' element={<Pagos carrito={carrito} subTotal={subTotal} total={total} setTotal={setTotal} />} />
-          <Route path='/pago/transaccion' element={<Transaccion /*carrito={carrito} subTotal={subTotal}*/ />} />
+          <Route path='/pago/transaccion' element={<Transaccion total={total} />} />
         </Routes>
       </BrowserRouter>
     </div>
