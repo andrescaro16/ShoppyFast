@@ -8,6 +8,7 @@ import (
 	"github.com/andrescaro16/ShoppyFast/backend/models"
 	"github.com/gofiber/fiber/v2"
 	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
@@ -47,6 +48,52 @@ func GetProductById(c *fiber.Ctx, db *mongo.Database) error {
 
 	// Retornar el Product como respuesta
 	return c.JSON(products)
+}
+
+func UpdateProductById(c *fiber.Ctx, db *mongo.Database, filter primitive.M, update primitive.M) error {
+	// Obtener una referencia a la colección de productos
+	collection := db.Collection("products")
+
+	_, err := collection.UpdateOne(context.Background(), filter, update)
+	if err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": err.Error(), "concluded": false})
+	}
+
+	return c.Status(200).JSON(fiber.Map{"message": "Product updated complete", "concluded": true})
+}
+
+func ReduceQuantityStockById(c *fiber.Ctx, db *mongo.Database, id int, quantity int) error {
+	// Obtener una referencia a la colección de productos
+	collection := db.Collection("products")
+	// Buscar el producto por su ID
+	filter := bson.M{"id": id}
+	result_find_product := collection.FindOne(context.Background(), filter)
+	// Verificar si se encontró el producto
+	if result_find_product.Err() != nil {
+		if errors.Is(result_find_product.Err(), mongo.ErrNoDocuments) {
+			// Si el producto no fue encontrado, retornar un error 404
+			return c.Status(fiber.StatusNotFound).JSON(fiber.Map{"message": "Product not found", "concluded": false})
+		}
+		// Si hubo algún otro error, retornarlo
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"Error": result_find_product.Err(), "concluded": false})
+	}
+
+	// Decodificar el resultado en un Product
+	var product models.Product
+
+	if err_bodyParser := result_find_product.Decode(&product); err_bodyParser != nil {
+		return c.JSON(fiber.Map{"Error": err_bodyParser, "concluded": false})
+	}
+
+	newProductQuantity := product.Cantidad - quantity
+	update := bson.M{"$set": bson.M{"cantidad": newProductQuantity}}
+	err_updating_product := UpdateProductById(c, db, filter, update)
+	if err_updating_product != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": err_updating_product, "concluded": false})
+	}
+
+	return c.Status(200).JSON(fiber.Map{"message": "Product reduced stock complete", "concluded": true})
+
 }
 
 func GetProductAll(c *fiber.Ctx, db *mongo.Database) error {

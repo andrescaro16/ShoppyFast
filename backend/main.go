@@ -56,7 +56,7 @@ func main() {
 	routes.LoadBankAccountRoutes(bankAccounts, db)
 
 	functionalities := api.Group("/f")
-	routes.LoadFunctionalities(functionalities)
+	routes.LoadFunctionalities(functionalities, db)
 
 	log.Println("Server on port 3001")
 	app.Listen(":" + port)

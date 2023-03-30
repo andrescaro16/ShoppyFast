@@ -31,6 +31,41 @@ func CreateBankAccount(c *fiber.Ctx, db *mongo.Database) error {
 
 }
 
+func ReduceAccountBalance(c *fiber.Ctx, db *mongo.Database, totalPrice int, username string) error {
+	// Obtener una referencia a la coleccion de bankAccounts
+	var collection *mongo.Collection = db.Collection("bankAccounts")
+
+	// Buscar la cuenta de banco por su username
+	filter := bson.M{"username": username}
+	result_find_account := collection.FindOne(context.Background(), filter)
+
+	// Verificar si se encontró el producto
+	if result_find_account.Err() != nil {
+		if errors.Is(result_find_account.Err(), mongo.ErrNoDocuments) {
+			// Si el usuario no fue encontrado, retornar un error 404
+			return c.Status(404).JSON(fiber.Map{"message": "User not found", "concluded": false})
+		}
+		// Si hubo algún otro error, retornarlo
+
+		return c.JSON(fiber.Map{"Error": result_find_account.Err(), "concluded": false})
+	}
+
+	var bankAccountDataResult models.BankAccount
+	err_decode := result_find_account.Decode(&bankAccountDataResult)
+	if err_decode != nil {
+		return c.JSON(fiber.Map{"Error": err_decode, "concluded": false})
+	}
+
+	var newBalance = bankAccountDataResult.Balance - totalPrice
+
+	update := bson.M{"$set": bson.M{"balance": newBalance}}
+	_, err_updating_account := collection.UpdateOne(context.Background(), filter, update)
+	if err_updating_account != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": err_updating_account.Error(), "concluded": false})
+	}
+	return c.Status(200).JSON(fiber.Map{"message": "Balance updated successfully.", "concluded": true})
+}
+
 func BankAccountSignIn(c *fiber.Ctx, db *mongo.Database) error {
 	// Obtener los datos necesario del body request
 	var bodyRequestData = struct {
@@ -47,7 +82,7 @@ func BankAccountSignIn(c *fiber.Ctx, db *mongo.Database) error {
 	// Obtener una referencia a la coleccion de bankAccounts
 	var collection *mongo.Collection = db.Collection("bankAccounts")
 
-	// Buscar el producto por su ID
+	// Buscar la cuenta de banco por su username
 	filter := bson.M{"username": bodyRequestData.Username}
 	result := collection.FindOne(context.Background(), filter)
 
