@@ -1,40 +1,29 @@
 import React, {useState} from "react";
 import "../Assets/CSS/Transaccion.css";
-import { bankLogin } from '../Services/productInfoServices';
+import { useNavigate } from 'react-router';
 
 
-
-const Transaccion = ({total}) => {
+const Transaccion = ({total, setUserAccount }) => {
 
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
+    let navigate = useNavigate();
+
     const handleLoginFormSubmit = (event) => {
-      event.preventDefault(); // previene que se refresque la página
+        event.preventDefault(); // previene que se refresque la página
 
-      //Objeto para envíar al backend
-      const user = {
-        username: username,
-        password: password,
-        totalPrice: total,
-      };
+        //Objeto para envíar al backend
+        setUserAccount({
+            username: username,
+            password: password,
+            totalPrice: total,
+        });
+    
+        setIsLoggedIn(true); // marca al usuario como conectado
 
-      console.log(user); //test en consola
-
-      bankLogin(user);
-  
-      // añadir validar el usuario y contraseña
-  
-      setIsLoggedIn(true); // marca al usuario como conectado
-    };
-
-    const handleUsernameChange = (event) => {
-        setUsername(event.target.value);
-    };
-
-    const handlePasswordChange = (event) => {
-        setPassword(event.target.value);
+        navigate("/pago/transaccion/confirmacion");
     };
 
     const isLoginFormValid = username.trim() !== "" && password.trim() !== "";

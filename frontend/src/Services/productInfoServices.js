@@ -44,7 +44,7 @@ export async function bankLogin(user) {
         user,
       );
       //TESTING
-      console.log(response.data.validation, response.data.validPurchase, response.data.balance)
+      //console.log(response.data.validation, response.data.validPurchase, response.data.balance)
       return {
         validUser: response.data.validation,
         validPurchase: response.data.validPurchase,
@@ -54,4 +54,21 @@ export async function bankLogin(user) {
       console.log(error)
       return error.response.status;
     }
+}
+
+
+//Enviar username, totalPrice y products comprados (id y cantidad)
+export async function confirmPurchase(userPurchase) {
+  try {
+    const response = await axios.post(
+      `http://localhost:3001/api/f/confirmPurchase`,
+      userPurchase,
+    );
+    //TESTING
+    console.log(response);
+    return response.data;
+  } catch (error) {
+    console.log(error)
+    return error.response.status;
+  }
 }
