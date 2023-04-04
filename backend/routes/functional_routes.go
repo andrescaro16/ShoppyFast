@@ -16,4 +16,8 @@ func LoadFunctionalities(app fiber.Router, db *mongo.Database) {
 		return controllers.ConfirmPurchase(c, db)
 	})
 
+	app.Post("/sendInvoice", func(c *fiber.Ctx) error {
+		return controllers.SendInvoice(c)
+	})
+
 }
