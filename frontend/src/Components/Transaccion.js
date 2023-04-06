@@ -1,15 +1,23 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import "../Assets/CSS/Transaccion.css";
 import { useNavigate } from 'react-router';
+import { calculateTotal } from '../Services/productInfoServices';
 
 
-const Transaccion = ({total, setUserAccount }) => {
+const Transaccion = ({ subTotal, setTotal, total, setUserAccount }) => {
 
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
     let navigate = useNavigate();
+
+    useEffect(() => {
+        const getTotalIva = async () => {
+            setTotal(await calculateTotal(subTotal));
+        };
+        getTotalIva();
+    }, [subTotal]);
+
 
     const handleLoginFormSubmit = (event) => {
         event.preventDefault(); // previene que se refresque la página
@@ -20,8 +28,6 @@ const Transaccion = ({total, setUserAccount }) => {
             password: password,
             totalPrice: total,
         });
-    
-        setIsLoggedIn(true); // marca al usuario como conectado
 
         navigate("/pago/transaccion/confirmacion");
     };
@@ -32,7 +38,7 @@ const Transaccion = ({total, setUserAccount }) => {
         <React.Fragment>
             <div class="form-wrapper">
                 <div class="form-container">
-                    <h4>Banco</h4>
+                    <h3>Banco</h3>
                     <form onSubmit={handleLoginFormSubmit}>
                         <div class="mb-3">
 

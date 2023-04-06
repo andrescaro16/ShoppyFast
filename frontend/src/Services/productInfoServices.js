@@ -65,7 +65,7 @@ export async function confirmPurchase(userPurchase) {
       userPurchase,
     );
     //TESTING
-    console.log(response);
+    console.log(response.data);
     return response.data;
   } catch (error) {
     console.log(error)
