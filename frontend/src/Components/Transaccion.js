@@ -1,13 +1,16 @@
 import React, {useState, useEffect} from "react";
 import "../Assets/CSS/Transaccion.css";
 import { useNavigate } from 'react-router';
-import { calculateTotal } from '../Services/productInfoServices';
+import { calculateTotal, bankLogin } from '../Services/productInfoServices';
 
 
-const Transaccion = ({ subTotal, setTotal, total, setUserAccount }) => {
+const Transaccion = ({ subTotal, setTotal, total, setUserAccount, userValidation, setUserValidation, userAccount }) => {
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+
+    const [userAccountTemp, setUserAccountTemp] = useState({});
+    const [userValidationTemp, setUserValidationTemp] = useState({});
 
     let navigate = useNavigate();
 
@@ -18,18 +21,37 @@ const Transaccion = ({ subTotal, setTotal, total, setUserAccount }) => {
         getTotalIva();
     }, [subTotal]);
 
+    //Actualizamos validación si el usuario es válido, la compra es válida y el disponible en la cuenta del usuario
+    useEffect(() => {
+        const changeUserValidation = async () => {
+            setUserValidationTemp(await bankLogin(userAccountTemp));
+            setUserValidation(await bankLogin(userAccountTemp));
+            console.log(userAccountTemp)
+        };
+        changeUserValidation();
+    }, [userAccountTemp]);
 
-    const handleLoginFormSubmit = (event) => {
+
+    const handleLoginFormSubmit = async (event) => {
         event.preventDefault(); // previene que se refresque la página
 
-        //Objeto para envíar al backend
-        setUserAccount({
+        //Objeto para enviar al backend
+        setUserAccountTemp({
             username: username,
             password: password,
             totalPrice: total,
         });
 
-        navigate("/pago/transaccion/confirmacion");
+        const response = await setUserAccount(userAccountTemp);
+
+
+        if(userValidationTemp.validUser){
+            navigate("/pago/transaccion/confirmacion");
+        }else{
+            console.log(userValidation)
+            const messageInvalid = document.getElementById('message-invalid');
+            messageInvalid.style.display = 'block';
+        }
     };
 
     const isLoginFormValid = username.trim() !== "" && password.trim() !== "";
@@ -58,6 +80,8 @@ const Transaccion = ({ subTotal, setTotal, total, setUserAccount }) => {
                             <input type="password" class="form-control" id="inputPassword" value={password} onChange={(event) => setPassword(event.target.value)}/>
 
                         </div>
+
+                        <p id="message-invalid" style={{textAlign:"center", color:"red", marginTop: "40px", display: "none"}}>Nombre de usuario y/o<br/>contraseña incorrectos</p>
 
                         <button type="submit" class="btn btn-primary" disabled={!isLoginFormValid}>
                             Ingresar

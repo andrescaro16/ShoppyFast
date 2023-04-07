@@ -53,14 +53,6 @@ function App() {
     cantidades()
   },[carrito]);
 
-  //Actualizamos validación si el usuario es válido, la compra es válida y el disponible en la cuenta del usuario
-  useEffect(() => {
-    const changeUserValidation = async () => {
-        setUserValidation(await bankLogin(userAccount));
-    };
-    changeUserValidation();
-  }, [userAccount]);
-
   return (
     <div>
       <BrowserRouter>
@@ -69,7 +61,7 @@ function App() {
           <Route path='/' element={<div> <Search cantidad={itemCantidad}/> <br/> <AllProducts agregarProducto={agregarProducto} setCarrito={setCarrito} carrito={carrito} /> </div>}/>
           <Route path='producto/:id' element={<div> <Search cantidad={itemCantidad} /> <ProductInfo agregarProducto={agregarProducto} setCarrito={setCarrito} carrito={carrito} /></div>} />
           <Route path='/carrito' element={<Trolley agregarProducto={agregarProducto} carrito={carrito} setCarrito={setCarrito} vaciarCarrito={vaciarCarrito} removerProducto={removerProducto} subTotal={subTotal} setSubTotal={setSubTotal}/>} />
-          <Route path='/pago/transaccion' element={<Transaccion subTotal={subTotal} setTotal={setTotal} total={total} setUserAccount={setUserAccount} />} />
+          <Route path='/pago/transaccion' element={<Transaccion subTotal={subTotal} setTotal={setTotal} total={total} setUserAccount={setUserAccount} userValidation={userValidation} setUserValidation={setUserValidation} userAccount={userAccount} />} />
           <Route path='/pago/transaccion/confirmacion' element={<Pagos carrito={carrito} subTotal={subTotal} total={total} userValidation={userValidation} userPurchase={userPurchase}/>} />
         </Routes>
       </BrowserRouter>

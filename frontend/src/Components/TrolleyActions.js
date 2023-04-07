@@ -34,7 +34,6 @@ export function removerProducto(id, carrito){
   const index  = carrito.findIndex(product => product.item.id === id);
   if (index !== -1){
     const nameProduct = carrito.find(product => product.item.id === id).item.name;
-    console.log("HOLA.",nameProduct);
     if(window.confirm(`Seguro que deseas eliminar ${nameProduct} del carrito`)){
       return carrito.filter(products => products.item.id !== id);
     }else{

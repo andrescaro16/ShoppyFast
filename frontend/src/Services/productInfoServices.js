@@ -29,7 +29,7 @@ export async function calculateTotal(subTotal) {
         `http://localhost:3001/api/f/calculateTax`,
         { 'subTotal': subTotal }
       );
-      return response.data.total;
+      return Number(response.data.total.toFixed());
     } catch (error) {
       return error.response.status;
     }
