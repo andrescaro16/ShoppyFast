@@ -9,49 +9,35 @@ const Transaccion = ({ subTotal, setTotal, total, setUserAccount, userValidation
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
-    const [userAccountTemp, setUserAccountTemp] = useState({});
-    const [userValidationTemp, setUserValidationTemp] = useState({});
+    // const [userAccountTemp, setUserAccountTemp] = useState({});
+    // const [userValidationTemp, setUserValidationTemp] = useState({});
 
     let navigate = useNavigate();
-
-    useEffect(() => {
-        const getTotalIva = async () => {
-            setTotal(await calculateTotal(subTotal));
-        };
-        getTotalIva();
-    }, [subTotal]);
-
-    //Actualizamos validación si el usuario es válido, la compra es válida y el disponible en la cuenta del usuario
-    useEffect(() => {
-        const changeUserValidation = async () => {
-            setUserValidationTemp(await bankLogin(userAccountTemp));
-            setUserValidation(await bankLogin(userAccountTemp));
-            console.log(userAccountTemp)
-        };
-        changeUserValidation();
-    }, [userAccountTemp]);
 
 
     const handleLoginFormSubmit = async (event) => {
         event.preventDefault(); // previene que se refresque la página
 
         //Objeto para enviar al backend
-        setUserAccountTemp({
+        let requestUserAccount = {
             username: username,
             password: password,
             totalPrice: total,
-        });
+        }
+        setUserAccount(requestUserAccount);
+        
+        let bankLoginResponse = await bankLogin(requestUserAccount) 
+        setUserValidation(bankLoginResponse);
 
-        const response = await setUserAccount(userAccountTemp);
-
-
-        if(userValidationTemp.validUser){
+        if(bankLoginResponse.validUser){
             navigate("/pago/transaccion/confirmacion");
         }else{
-            console.log(userValidation)
+            // console.log(userValidation)
             const messageInvalid = document.getElementById('message-invalid');
             messageInvalid.style.display = 'block';
         }
+
+        
     };
 
     const isLoginFormValid = username.trim() !== "" && password.trim() !== "";

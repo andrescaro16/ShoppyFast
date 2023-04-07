@@ -62,7 +62,7 @@ function App() {
           <Route path='producto/:id' element={<div> <Search cantidad={itemCantidad} /> <ProductInfo agregarProducto={agregarProducto} setCarrito={setCarrito} carrito={carrito} /></div>} />
           <Route path='/carrito' element={<Trolley agregarProducto={agregarProducto} carrito={carrito} setCarrito={setCarrito} vaciarCarrito={vaciarCarrito} removerProducto={removerProducto} subTotal={subTotal} setSubTotal={setSubTotal}/>} />
           <Route path='/pago/transaccion' element={<Transaccion subTotal={subTotal} setTotal={setTotal} total={total} setUserAccount={setUserAccount} userValidation={userValidation} setUserValidation={setUserValidation} userAccount={userAccount} />} />
-          <Route path='/pago/transaccion/confirmacion' element={<Pagos carrito={carrito} subTotal={subTotal} total={total} userValidation={userValidation} userPurchase={userPurchase}/>} />
+          <Route path='/pago/transaccion/confirmacion' element={<Pagos carrito={carrito} subTotal={subTotal} setTotal={setTotal} total={total} userValidation={userValidation} userPurchase={userPurchase}/>} />
         </Routes>
       </BrowserRouter>
     </div>

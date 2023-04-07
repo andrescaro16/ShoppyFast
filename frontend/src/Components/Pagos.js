@@ -1,14 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../Assets/CSS/Pagos.css";
 import { ListGroup, ListGroupItem, Col, Row, CardHeader, Card } from 'reactstrap'
-import {  confirmPurchase } from '../Services/productInfoServices';
+import {  confirmPurchase, calculateTotal } from '../Services/productInfoServices';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router';
 
 
-const Pagos = ({ carrito, subTotal, total, userValidation, userPurchase }) => {
+const Pagos = ({ carrito, subTotal, setTotal, total, userValidation, userPurchase }) => {
 
     let navigate = useNavigate();
+    useEffect(() => {
+        const getTotalIva = async () => {
+            setTotal(await calculateTotal(subTotal));
+        };
+        getTotalIva();
+    }, []);
+
+
 
     const confirmation = async (event) => {
         event.preventDefault(); // previene que se refresque la página
