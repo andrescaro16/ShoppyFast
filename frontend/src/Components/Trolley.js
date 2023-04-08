@@ -1,18 +1,21 @@
 import React, { useEffect } from 'react';
 import { Link } from "react-router-dom";
-import { Container, Table, Button, Row, Col, Badge, Alert } from 'reactstrap';
+import { Table, Button, Row, Col, Badge, Alert } from 'reactstrap';
 import '../Assets/CSS/Trolley.css';
 import { BsFillCartFill, BsFillCartXFill, BsTrash } from "react-icons/bs";
-import { vaciarCarrito, removerProducto } from './TrolleyActions';
 
-const Trolley = ({ agregarProducto, carrito, setCarrito, subTotal, setSubTotal }) => {
-    //console.log(carrito);
+import { useStateContext } from '../Context/StateContext';
+
+
+const Trolley = () => {
+
+    const { agregarProducto, carrito, setCarrito, subTotal, setSubTotal, vaciarCarrito, removerProducto } = useStateContext();
+
     useEffect(() => { ///calcular total
         const calculo = () => {
             setSubTotal(carrito.reduce((obj, cur) => (obj + (cur.item.price) * cur.quantity), 0))
         }
         calculo();
-        //setMensaje("No hay productos");
     }, [carrito]);
 
     return (

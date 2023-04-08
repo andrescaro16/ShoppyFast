@@ -1,16 +1,19 @@
 import React, {useState, useEffect} from "react";
 import "../Assets/CSS/Transaccion.css";
 import { useNavigate } from 'react-router';
-import { calculateTotal, bankLogin } from '../Services/productInfoServices';
+import { bankLogin } from '../Services/productInfoServices';
+
+import { useStateContext } from "../Context/StateContext";
 
 
-const Transaccion = ({ subTotal, setTotal, total, setUserAccount, userValidation, setUserValidation, userAccount }) => {
+const Transaccion = () => {
+
+    const { total, setUserAccount, setUserValidation } = useStateContext();
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
-    // const [userAccountTemp, setUserAccountTemp] = useState({});
-    // const [userValidationTemp, setUserValidationTemp] = useState({});
+    const isLoginFormValid = username.trim() !== "" && password.trim() !== "";
 
     let navigate = useNavigate();
 
@@ -32,15 +35,11 @@ const Transaccion = ({ subTotal, setTotal, total, setUserAccount, userValidation
         if(bankLoginResponse.validUser){
             navigate("/pago/transaccion/confirmacion");
         }else{
-            // console.log(userValidation)
             const messageInvalid = document.getElementById('message-invalid');
             messageInvalid.style.display = 'block';
-        }
-
-        
+        } 
     };
 
-    const isLoginFormValid = username.trim() !== "" && password.trim() !== "";
 
     return(
         <React.Fragment>
