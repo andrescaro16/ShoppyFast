@@ -1,0 +1,68 @@
+/* ---------------------------[main]------------------------------ */
+.main-container{
+  max-width: 1500px; 
+  margin: auto;
+  width: 100%;
+}
+
+/* ---------------------------[Layout]------------------------------ */
+
+.navbar-layout{
+  background-color: #00a1c6;
+}
+
+.footer-container{
+  color: #005669;
+  text-align: center;
+  margin-top: 500px;
+  padding: 30px 10px;
+  font-weight: 700;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+}
+
+.footer-container .icons{
+  font-size: 30px;
+  display: flex;
+  gap: 10px;
+}
+
+
+/* -------------------------[productCard]------------------------- */
+.products-container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 20px;
+  margin-bottom: 80px;
+  width: 100%;
+}
+
+.product-card{
+  cursor: pointer;
+  transform: scale(1, 1);
+  transition: transform 0.5s ease;
+}
+
+.product-card:hover{
+  transform: scale(1.03,1.03);
+}
+
+.product-name{
+  font-weight: 500;
+}
+
+.product-price{
+  font-weight: 800;
+  margin-top: 6px;
+  color: black;
+}
+
+.card-content-container {
+  height: 170px;
+  overflow: hidden;
+}

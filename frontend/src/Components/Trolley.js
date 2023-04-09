@@ -26,12 +26,12 @@ const Trolley = () => {
                     <Button color="danger">Volver</Button>
                 </Link>
 
-                <div style={{'padding-right': "860px", float: "left"}}>
+                <div style={{'padding-right': "1000px", float: "left"}}>
                     <BsFillCartFill />
                     <span><b>Precio Total</b>{subTotal}</span>
                 </div>
 
-                <div style={{'padding-right': "100px", float: "left" }}>
+                <div style={{'padding-left': "600px", 'padding-right': "100px", float: "left" }}>
                     <Button color="primary" >Cupón de descuento</Button>
                 </div>
 

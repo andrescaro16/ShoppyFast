@@ -4,7 +4,6 @@
     align-items: start;
     padding-top: 50px;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.1); /* color de fondo gris translúcido */
 }
 
 .form-container {

@@ -5,7 +5,7 @@ import { FaCat } from "react-icons/fa";
 import { TbError404 } from "react-icons/tb";
 import { useParams } from 'react-router-dom';
 import '../dbTemp/products'
-import '../Assets/CSS/Product.css'
+import '../Assets/CSS/Global.css'
 
 import { useStateContext } from "../Context/StateContext";
 
