@@ -20,4 +20,8 @@ func LoadFunctionalities(app fiber.Router, db *mongo.Database) {
 		return controllers.SendInvoice(c)
 	})
 
+	app.Post("/saveInvoice", func(c *fiber.Ctx) error {
+		return controllers.SaveInvoice(c, db)
+	})
+
 }

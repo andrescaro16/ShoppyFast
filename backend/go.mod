@@ -4,6 +4,7 @@ go 1.20
 
 require (
 	github.com/andybalholm/brotli v1.0.4 // indirect
+	github.com/go-echarts/go-echarts/v2 v2.2.6 // indirect
 	github.com/gofiber/fiber/v2 v2.42.0 // indirect
 	github.com/golang/snappy v0.0.1 // indirect
 	github.com/google/uuid v1.3.0 // indirect

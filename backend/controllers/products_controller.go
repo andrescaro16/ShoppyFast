@@ -12,15 +12,9 @@ import (
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
-func GetProductById(c *fiber.Ctx, db *mongo.Database) error {
+func GetProductByIdHelper(id int, db *mongo.Database) ([]models.Product, error) {
 	// Obtener una referencia a la colección de productos
 	collection := db.Collection("products")
-
-	// Obtener el ID del producto desde los parámetros de la solicitud
-	id, err := strconv.Atoi(c.Params("productId"))
-	if err != nil {
-		return err
-	}
 
 	// Buscar el producto por su ID
 	filter := bson.M{"id": id}
@@ -30,22 +24,35 @@ func GetProductById(c *fiber.Ctx, db *mongo.Database) error {
 	if result.Err() != nil {
 		if errors.Is(result.Err(), mongo.ErrNoDocuments) {
 			// Si el producto no fue encontrado, retornar un error 404
-			return c.Status(fiber.StatusNotFound).JSON(fiber.Map{"message": "Product not found"})
+			return nil, result.Err()
 		}
 		// Si hubo algún otro error, retornarlo
-		return result.Err()
+		return nil, result.Err()
 	}
 
 	// Decodificar el resultado en un Product
 	var product models.Product
 	var products []models.Product
-	err = result.Decode(&product)
+	err := result.Decode(&product)
+	if err != nil {
+		return nil, err
+	}
+
+	products = append(products, product)
+	return products, nil
+}
+
+func GetProductById(c *fiber.Ctx, db *mongo.Database) error {
+	// Obtener el ID del producto desde los parámetros de la solicitud
+	id, err := strconv.Atoi(c.Params("productId"))
 	if err != nil {
 		return err
 	}
 
-	products = append(products, product)
-
+	products, err := GetProductByIdHelper(id, db)
+	if err != nil {
+		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{"error": err, "message": "Product not found"})
+	}
 	// Retornar el Product como respuesta
 	return c.JSON(products)
 }

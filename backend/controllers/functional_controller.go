@@ -1,8 +1,10 @@
 package controllers
 
 import (
+	"context"
 	"fmt"
 	"os"
+	"time"
 
 	"github.com/andrescaro16/ShoppyFast/backend/models"
 	"github.com/gofiber/fiber/v2"
@@ -92,4 +94,29 @@ func SendInvoice(c *fiber.Ctx) error {
 
 	return c.Status(200).JSON(fiber.Map{"message": "Email was send successfully"})
 
+}
+
+func SaveInvoice(c *fiber.Ctx, db *mongo.Database) error {
+
+	//Se extrae el body request con el modelo de factura
+	var bodyRequestData models.Invoice
+	if err_bodyParser := c.BodyParser(&bodyRequestData); err_bodyParser != nil {
+		return err_bodyParser
+	}
+	// se guarda el tiempo en el que se hace el guardado de la factura como tal
+	loc, err_loading_time_location := time.LoadLocation("America/Bogota")
+	if err_loading_time_location != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": err_loading_time_location.Error(), "concluded": false})
+	}
+	bodyRequestData.Timestamp = time.Now().In(loc)
+
+	//obtenemos la coleccion de MongoDB
+	colection := db.Collection("invoices")
+	// Inserta el documento en la colección
+	_, err_inserting_document := colection.InsertOne(context.Background(), bodyRequestData)
+	if err_inserting_document != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": err_inserting_document.Error(), "concluded": false})
+	}
+
+	return c.Status(200).JSON(fiber.Map{"message": "Invoice was save succesfully", "concluded": true})
 }
