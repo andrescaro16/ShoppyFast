@@ -10,6 +10,7 @@ import ProductInfo from './Components/ProductInfo';
 import Trolley from './Components/Trolley';
 import Pagos from './Components/Pagos';
 import Transaccion from './Components/Transaccion';
+import Invoice from './Components/Invoice';
 
 //Import context
 import { useStateContext } from './Context/StateContext';
@@ -20,8 +21,8 @@ function App() {
   const { carrito, setItemCantidad, userAccount, setUserPurchase } = useStateContext()
 
 
-  //Actualizamos userPurchase para mandar a backend confirmación de compra con datos de cual usuario, costo de compra 
-  //y productos adquiridos (para reducir saldo en billetera y stock de productos).
+  // We update userPurchase to send to backend confirmation of purchase with data of which user, cost of purchase
+  // and products purchased (to reduce wallet balance and product stock).
   useEffect(() => {
     setUserPurchase({
       "username": userAccount.username,
@@ -40,7 +41,7 @@ function App() {
     });
   }, [userAccount, carrito]);
 
-  //Actualizamos cantidad de productos en el carrito
+  // Update the quantity of products in the cart
   useEffect(() => {
     const cantidades = () => {
       setItemCantidad(carrito.reduce((obj, cur) => (obj + cur.quantity), 0))
@@ -58,6 +59,7 @@ function App() {
           <Route path='/carrito' element={ <Trolley /> } />
           <Route path='/pago/transaccion' element={ <Transaccion  /> } />
           <Route path='/pago/transaccion/confirmacion' element={ <Pagos /> } />
+          <Route path='/factura' element={ <Invoice /> } />
         </Routes>
       </BrowserRouter>
     </div>

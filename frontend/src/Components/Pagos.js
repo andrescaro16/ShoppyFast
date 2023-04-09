@@ -4,6 +4,7 @@ import { ListGroup, ListGroupItem, Col, Row, CardHeader, Card } from 'reactstrap
 import {  confirmPurchase, calculateTotal } from '../Services/productInfoServices';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router';
+import { toast } from 'react-hot-toast';
 
 import { useStateContext } from "../Context/StateContext";
 
@@ -19,6 +20,9 @@ const Pagos = () => {
             setTotal(await calculateTotal(subTotal));
         };
         getTotalIva();
+        if(!userValidation.validPurchase){
+            toast.error("No tienes saldo suficiente para esta compra");
+        }
     }, []);
 
 
@@ -27,28 +31,29 @@ const Pagos = () => {
         event.preventDefault(); // previene que se refresque la página
 
         try {
+
             const resultadoTransaccion = await confirmPurchase(userPurchase);
 
-            setTimeout(() => {
-                if (resultadoTransaccion.result === 'correct') {
-                    const messageSuccess = document.getElementById('message-success');
-                    messageSuccess.style.display = 'block';
+
+            if (resultadoTransaccion.result === 'correct') {
+                toast.success(`Transacción Exitosa`);
+                const messageSuccess = document.getElementById('message-success');
+                messageSuccess.style.display = 'block';
+                
+                navigate('/factura');    //'/factura/formulario'
+
+            }else{
+                throw new Error("Transacción Fallida");
+            }
             
-                    setTimeout(() => {
-                        navigate('/factura/formulario');
-                    }, 3500);
-                }else{
-                    throw new Error("Transacción Fallida");
-                }
-            }, 1500);
+
 
         } catch (error) {
+            toast.error("Transacción Fallida");
             const messageFailed = document.getElementById('message-failed');
             messageFailed.style.display = 'block';
             
-            setTimeout(() => {
-              navigate('/carrito');
-            }, 3500);
+            navigate('/carrito');
         }
     };
 

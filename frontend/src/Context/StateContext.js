@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState } from "react";
+import { toast } from 'react-hot-toast';
 
 const Context = createContext();
 
@@ -9,9 +10,15 @@ export const StateContext = ({ children }) => {
     const [subTotal, setSubTotal] = useState(0);
     const [carrito, setCarrito] = useState([]);
     const [itemCantidad, setItemCantidad] = useState(0);
-    const [userValidation, setUserValidation] = useState({});   //user valido, compra valida, saldo disponible
-    const [userAccount, setUserAccount] = useState({});   //username, password, totalPrice
-    const [userPurchase, setUserPurchase] = useState({});   //username, totalPrice, carrito (id, quantity)
+    const [userValidation, setUserValidation] = useState({});   // validUser, validPurchase, availableBalance
+    const [userAccount, setUserAccount] = useState({});         // username, password, totalPrice
+    const [userPurchase, setUserPurchase] = useState({});       // username, totalPrice, carrito (id, quantity)
+    const [userDataTemp, setUserDataTemp] = useState({          // temporal state for invoice simulation
+        name: "Andrés Julian",
+        lastname: "Caro Restrepo",
+        document_id: "1043563866",
+        number: "3184632549",
+    })
 
 
     const agregarProducto = (item, quantity, carrito) => {
@@ -19,12 +26,15 @@ export const StateContext = ({ children }) => {
         if (existingItem) {
           const nuevoCarrito = carrito.map((el) => {
             if (el.item.id === item.id && el.quantity + quantity > 0 && el.quantity + quantity <=item.cantidad) {
-              return {
-                item: {
-                  ...el.item
-                },
-                quantity: el.quantity + quantity,
-              };
+                toast.success(`${quantity} ${el.item.name} añadido al carrito`, {
+                    id: 'productAdded',
+                });
+                return {
+                    item: {
+                    ...el.item
+                    },
+                    quantity: el.quantity + quantity,
+                };
             }
       
             return el;
@@ -32,7 +42,10 @@ export const StateContext = ({ children }) => {
           return nuevoCarrito;
         }
         else {
-          return [...carrito, { item, quantity }];
+            toast.success(`${quantity} ${item.name} añadido al carrito`, {
+                id: 'productAdded',
+            });
+            return [...carrito, { item, quantity }];
         }
     };
     
@@ -78,6 +91,7 @@ export const StateContext = ({ children }) => {
         setUserAccount,
         userPurchase,
         setUserPurchase,
+        userDataTemp,
         agregarProducto,
         vaciarCarrito,
         removerProducto,

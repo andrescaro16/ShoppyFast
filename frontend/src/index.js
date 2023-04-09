@@ -4,12 +4,14 @@ import './Assets/CSS/index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Toaster } from "react-hot-toast"
 
 import { StateContext } from './Context/StateContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <StateContext>
+    <Toaster />
     <App />
   </StateContext>
 );
