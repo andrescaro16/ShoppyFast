@@ -7,27 +7,28 @@ import { useStateContext } from "../Context/StateContext";
 
 function Invoice() {
 
-    const { userDataTemp, subTotal, total, carrito } = useStateContext();
+
+    const { subTotal, total, dataInvoice } = useStateContext();
 
 
     return (
         <div>
             <section style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: 'auto' }}>
                 <Container style={{ marginTop: '60px', width: 'auto', marginTop: '60px' }}>
-                    <Card style={{ width: '28rem' }} >
+                    <Card style={{ width: '40rem' }} >
                         <CardHeader><h3  style={{textAlign: "center"}}><strong> Shoppy Fast Factura </strong></h3></CardHeader>
                         <CardHeader><h6  style={{textAlign: "center"}}><strong> Cliente </strong></h6></CardHeader>
                         <ListGroup>
                             <ListGroupItem>
                                 <Row>
                                     <Col xs="6" style={{textAlign: "left"}}>Nombre</Col>
-                                    <Col xs="6" style={{textAlign: "right"}}>{userDataTemp.name}<span> </span>{userDataTemp.lastname}</Col>
+                                    <Col xs="6" style={{textAlign: "right"}}>{dataInvoice.user_name}</Col>
                                 </Row>
                             </ListGroupItem>
                             <ListGroupItem>
                                 <Row>
                                     <Col xs="6" style={{textAlign: "left"}}>Cedula</Col>
-                                    <Col xs="6" style={{textAlign: "right"}}>{userDataTemp.document_id}</Col>
+                                    <Col xs="6" style={{textAlign: "right"}}>{dataInvoice.document_id}</Col>
                                 </Row>
                             </ListGroupItem>
 
@@ -36,16 +37,18 @@ function Invoice() {
                         <CardHeader>
                             <Row>
                                 <Col xs="6" style={{textAlign: "left"}}><b>Nombre</b></Col>
-                                <Col xs="6" style={{textAlign: "right"}}><b>Precio</b></Col>
+                                <Col xs="4" style={{textAlign: "right"}}><b>Cantidad</b></Col>
+                                <Col xs="2" style={{textAlign: "right"}}><b>Precio</b></Col>
                             </Row>
                         </CardHeader>
 
                         <ListGroup >
-                            {carrito.map(producto => (
-                                <ListGroupItem key={producto.item.id}>
+                            {dataInvoice.products.map(producto => (
+                                <ListGroupItem key={producto.id}>
                                     <Row>
-                                        <Col xs="6" style={{textAlign: "left"}}>{producto.item.name}</Col>
-                                        <Col xs="6" style={{textAlign: "right"}}>{producto.item.price}</Col>
+                                        <Col xs="8" style={{textAlign: "left"}}>{producto.name}</Col>
+                                        <Col xs="1" style={{textAlign: "right"}}>{producto.cantidad}</Col>
+                                        <Col xs="3" style={{textAlign: "right"}}>{producto.price}</Col>
                                     </Row>
 
                                 </ListGroupItem>))

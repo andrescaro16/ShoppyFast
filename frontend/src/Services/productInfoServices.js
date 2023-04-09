@@ -11,7 +11,6 @@ export async function getProduct(id) {
     } catch (error) {
         return error.response.status
     }
-    
 }
 
 export async function getAllProduct() {
@@ -22,7 +21,6 @@ export async function getAllProduct() {
 }
 
 
-//Calcular total (con IVA)
 export async function calculateTotal(subTotal) {
     try {
       const response = await axios.post(
@@ -36,36 +34,42 @@ export async function calculateTotal(subTotal) {
 }
 
 
-//Enviar datos login banco y él me retorna si se puede hacer el pago o no
 export async function bankLogin(user) {
     try {
       const response = await axios.post(
         `http://localhost:3001/api/bankAccounts/bankAccountSignIn`,
         user,
       );
-      //TESTING
-      //console.log(response.data.validation, response.data.validPurchase, response.data.balance)
       return {
         validUser: response.data.validation,
         validPurchase: response.data.validPurchase,
         availableBalance: response.data.balance,
       }
     } catch (error) {
-      console.log(error)
       return error.response.status;
     }
 }
 
 
-//Enviar username, totalPrice y products comprados (id y cantidad)
 export async function confirmPurchase(userPurchase) {
   try {
     const response = await axios.post(
       `http://localhost:3001/api/f/confirmPurchase`,
       userPurchase,
     );
-    //TESTING
-    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    return error.response.status;
+  }
+}
+
+
+export async function sendInvoice(dataInvoice) {
+  try {
+    const response = await axios.post(
+      `http://localhost:3001/api/f/sendInvoice`,
+      dataInvoice,
+    );
     return response.data;
   } catch (error) {
     console.log(error)

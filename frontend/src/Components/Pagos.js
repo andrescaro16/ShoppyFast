@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import "../Assets/CSS/Pagos.css";
 import { ListGroup, ListGroupItem, Col, Row, CardHeader, Card } from 'reactstrap'
-import {  confirmPurchase, calculateTotal } from '../Services/productInfoServices';
+import {  confirmPurchase, calculateTotal, sendInvoice } from '../Services/productInfoServices';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router';
 import { toast } from 'react-hot-toast';
@@ -11,7 +11,7 @@ import { useStateContext } from "../Context/StateContext";
 
 const Pagos = () => {
 
-    const { carrito, subTotal, setTotal, total, userValidation, userPurchase } = useStateContext();
+    const { carrito, setCarrito, subTotal, setTotal, total, userValidation, userPurchase, generateInvoice } = useStateContext();
 
     
     let navigate = useNavigate();
@@ -31,27 +31,28 @@ const Pagos = () => {
         event.preventDefault(); // previene que se refresque la página
 
         try {
-
             const resultadoTransaccion = await confirmPurchase(userPurchase);
 
+            if (resultadoTransaccion.result === "correct") {
 
-            if (resultadoTransaccion.result === 'correct') {
                 toast.success(`Transacción Exitosa`);
-                const messageSuccess = document.getElementById('message-success');
-                messageSuccess.style.display = 'block';
-                
-                navigate('/factura');    //'/factura/formulario'
+                const invoice = generateInvoice();
+                const resultadoEmail = await sendInvoice(invoice);
+
+                if(resultadoEmail.message === "Email was send successfully"){
+                    toast.success(`Factura enviada a ${invoice.user_email}`);
+                }
+
+                setCarrito([]);
+
+                navigate('/factura');
 
             }else{
                 throw new Error("Transacción Fallida");
             }
-            
-
 
         } catch (error) {
             toast.error("Transacción Fallida");
-            const messageFailed = document.getElementById('message-failed');
-            messageFailed.style.display = 'block';
             
             navigate('/carrito');
         }
@@ -172,8 +173,6 @@ const Pagos = () => {
 
                             {(userValidation.validPurchase) ? 
                                 (<>
-                                <p id="message-success" style={{textAlign:"center", color:"green", marginTop: "40px", display: "none"}}>Transaccion Realizada Éxitosamente</p>
-                                <p id="message-failed" style={{textAlign:"center", color:"red", marginTop: "40px", display: "none"}}>Transaccion Fallida</p>
                                 <button id="confirmar-pago" type="submit" class="btn btn-primary" style={{ backgroundColor: "#00a1c6", border: 0, margin: "30px"}} onClick={confirmation}>
                                     Confirmar pago
                                 </button>

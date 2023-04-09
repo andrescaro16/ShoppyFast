@@ -13,12 +13,14 @@ export const StateContext = ({ children }) => {
     const [userValidation, setUserValidation] = useState({});   // validUser, validPurchase, availableBalance
     const [userAccount, setUserAccount] = useState({});         // username, password, totalPrice
     const [userPurchase, setUserPurchase] = useState({});       // username, totalPrice, carrito (id, quantity)
-    const [userDataTemp, setUserDataTemp] = useState({          // temporal state for invoice simulation
+    const [userData, setUserData] = useState({                  // temporal state for invoice simulation
         name: "Andrés Julian",
         lastname: "Caro Restrepo",
         document_id: "1043563866",
         number: "3184632549",
-    })
+        email: "julicaro2003@gmail.com",
+    });
+    const [dataInvoice, setDataInvoice] = useState({});
 
 
     const agregarProducto = (item, quantity, carrito) => {
@@ -74,6 +76,34 @@ export const StateContext = ({ children }) => {
     };
 
 
+    const generateInvoice = () => {
+
+        let products = [];
+        carrito.map(product => {
+            products.push({
+                "id": product.item.id,
+                "cantidad": product.quantity,
+                "name": product.item.name,
+                "price": product.item.price,
+            })
+        });
+
+        const invoice = {
+            "user_email": userData.email,
+            "user_name": userData.name + " " + userData.lastname,
+            "document_id": userData.document_id,
+            "subTotal": subTotal,
+            "total": total,
+            "products": products,
+        };
+
+        setDataInvoice(invoice);
+
+        return invoice;
+
+    };
+
+
   return (
     <Context.Provider
     value={{
@@ -91,10 +121,13 @@ export const StateContext = ({ children }) => {
         setUserAccount,
         userPurchase,
         setUserPurchase,
-        userDataTemp,
+        userData,
+        dataInvoice,
+        setDataInvoice,
         agregarProducto,
         vaciarCarrito,
         removerProducto,
+        generateInvoice,
     }}
     >
     {children}
