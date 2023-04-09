@@ -7,10 +7,12 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {Link, useNavigate} from "react-router-dom";
 
+import { useStateContext } from "../Context/StateContext";
 
 
+const Search = () => {
 
-const Search = ({cantidad}) => {
+    const { itemCantidad } = useStateContext();
 
     const redireccion = useNavigate();
 
@@ -40,7 +42,7 @@ const Search = ({cantidad}) => {
             <div className="car">
                 <Link to="/carrito">
                     <Button ><Label>Carrito</Label> <BsFillCartFill />
-                        <Badge>{cantidad}</Badge>
+                        <Badge>{itemCantidad}</Badge>
                     </Button>
                 </Link>
             </div>

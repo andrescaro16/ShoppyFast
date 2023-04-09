@@ -1,13 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import "../Assets/CSS/Pagos.css";
 import { ListGroup, ListGroupItem, Col, Row, CardHeader, Card } from 'reactstrap'
 import {  confirmPurchase, calculateTotal } from '../Services/productInfoServices';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router';
 
+import { useStateContext } from "../Context/StateContext";
 
-const Pagos = ({ carrito, subTotal, setTotal, total, userValidation, userPurchase }) => {
 
+const Pagos = () => {
+
+    const { carrito, subTotal, setTotal, total, userValidation, userPurchase } = useStateContext();
+
+    
     let navigate = useNavigate();
     useEffect(() => {
         const getTotalIva = async () => {

@@ -7,37 +7,30 @@ import { useParams } from 'react-router-dom';
 import '../dbTemp/products'
 import '../Assets/CSS/Product.css'
 
+import { useStateContext } from "../Context/StateContext";
 
 
-const ProductInfo = ({carrito, setCarrito, agregarProducto}) => {
+const ProductInfo = () => {
 
-  // Hook para obtener el id de la URL
- 
+  const { carrito, setCarrito, agregarProducto } = useStateContext();
+
   const { id } = useParams();
-  // Hook para el estado de buscando producto o no
   const [load, setLoad] = useState(false);
-  // Guardamos la información del producto con el id ingresado en caso de encontrarse en la llamada API
   const [productInfo, setProductInfo] = useState({});
-  // Determinamos si se encontró un producto con dicho id
   const [dato, hayDatos] = useState(false);
 
-  //Solicitud a la API. Se ejecuta con cada cambio de id (Segundo argumento).
+
   useEffect(() => {
-    //Indicamos que no hay datos por el momento
     hayDatos(false);
     const conseguirDatos = async () => {
-      //Indicamos que ya se está cargando información
       setLoad(true);
 
       const data = await getProduct(id);
         if (data !== 404) {
-          //Guardamos datos del producto en el estado de productInfo
           setProductInfo(data[0]);
-          //Ya no se está cargando información
           setLoad(false);
 
           if (data.length === 1) {
-            //Indicamos que ya hay datos disponibles
             hayDatos(true);
           }
         }else{
@@ -45,11 +38,8 @@ const ProductInfo = ({carrito, setCarrito, agregarProducto}) => {
         }
     };
     conseguirDatos();
-
-
   }, [id]);
 
-  //const product = productsList.find(product => product.id === parseInt(id));
   
   return(
     <div>
@@ -59,7 +49,6 @@ const ProductInfo = ({carrito, setCarrito, agregarProducto}) => {
         
           dato && id ? (
             <>
-            {/* <div className="products"><ProductCard {...productInfo} /></div> */}
             <div className="product" key={productInfo.id}>
                 <div className="imag">
                     <img src={productInfo.imgURL} alt="img" width="100%" />

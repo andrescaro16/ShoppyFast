@@ -2,10 +2,16 @@ import React, { Component, useEffect, useState } from "react";
 import { Button } from "reactstrap";
 import { getAllProduct } from "../Services/productInfoServices";
 
+import { useStateContext } from "../Context/StateContext";
+
 
 //Retorna todos los productos
-function AllProducts({carrito, setCarrito, agregarProducto}){
+function AllProducts(){
+
+  const { carrito, setCarrito, agregarProducto } = useStateContext();
+
   const [productsList, setProductsList] = useState([]);
+  
   //Solicitud a la API. Se ejecuta con cada cambio de id (Segundo argumento).
   useEffect(() => {
     const conseguirDatos = async () => {
