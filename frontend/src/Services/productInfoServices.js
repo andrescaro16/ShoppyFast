@@ -64,6 +64,21 @@ export async function confirmPurchase(userPurchase) {
 }
 
 
+export async function saveInvoice(invoice) {
+  try {
+    const response = await axios.post(
+      `http://localhost:3001/api/f/saveInvoice`,
+      invoice,
+    );
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    console.log(error)
+    return error.response.status;
+  }
+}
+
+
 export async function sendInvoice(dataInvoice) {
   try {
     const response = await axios.post(

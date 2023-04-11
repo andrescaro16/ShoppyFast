@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import "../Assets/CSS/Pagos.css";
 import { ListGroup, ListGroupItem, Col, Row, CardHeader, Card } from 'reactstrap'
-import {  confirmPurchase, calculateTotal, sendInvoice } from '../Services/productInfoServices';
+import {  confirmPurchase, calculateTotal, sendInvoice, saveInvoice } from '../Services/productInfoServices';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router';
 import { toast } from 'react-hot-toast';
@@ -34,13 +34,30 @@ const Pagos = () => {
             const resultadoTransaccion = await confirmPurchase(userPurchase);
 
             if (resultadoTransaccion.result === "correct") {
-
                 toast.success(`Transacción Exitosa`);
                 const invoice = generateInvoice();
-                const resultadoEmail = await sendInvoice(invoice);
 
-                if(resultadoEmail.message === "Email was send successfully"){
-                    toast.success(`Factura enviada a ${invoice.user_email}`);
+                const { total, subTotal, products } = invoice;
+                const filter = products.map(product => {
+                    return {
+                        id: product.id,
+                        cantidad: product.cantidad,
+                    }
+                })
+
+                const saved = await saveInvoice({
+                    total,
+                    subTotal,
+                    filter,
+                });
+
+                if(invoice.user_email){ 
+                    const resultadoEmail = await sendInvoice(invoice);
+
+                    console.log(resultadoEmail.message);
+                    if(resultadoEmail.message === "Email was send successfully"){
+                        toast.success(`Factura enviada a ${invoice.user_email}`);
+                    }
                 }
 
                 setCarrito([]);
