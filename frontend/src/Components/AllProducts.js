@@ -18,7 +18,6 @@ function AllProducts(){
 
     return(
         <React.Fragment>
-
           <div className='products-container'>
             {productsList.map(product =>(
               <RecipeReviewCard product={product} />
