@@ -10,6 +10,7 @@ import Trolley from './Components/Trolley';
 import Pagos from './Components/Pagos';
 import Transaccion from './Components/Transaccion';
 import Invoice from './Components/Invoice';
+import Admin from './Components/AdminLogin';
 
 //Import context
 import { useStateContext } from './Context/StateContext';
@@ -58,6 +59,7 @@ function App() {
           <Route path='/pago/transaccion' element={ <Transaccion  /> } />
           <Route path='/pago/transaccion/confirmacion' element={ <Pagos /> } />
           <Route path='/factura' element={ <Invoice /> } />
+          <Route path='/administrador' element={<Admin />} /> codigo de app.js
         </Routes>
       </BrowserRouter>
     </div>
