@@ -31,18 +31,17 @@
 }
 
 /* Estilos para el botón de búsqueda */
-.containerSearch button[type="submit"] {
+.containerSearch button {
     background-color: #00a1c6;
     color: white;
     padding: 10px 15px;
     border: none;
-    border-radius: 15px;
     cursor: pointer;
     font-size: 16px;
 }
 
 /* Estilos para el botón de búsqueda al pasar el cursor sobre él */
-.containerSearch button[type="submit"]:hover {
+.containerSearch button:hover {
     background-color: #007792;
 }
 

@@ -1,7 +1,7 @@
 import React from "react";
 import '../Assets/CSS/Search.css';
-import { FormGroup, Label, Button, Badge } from "reactstrap"
-import { BsFillCartFill } from "react-icons/bs";
+import { FormGroup, Label, Button, Badge, ButtonGroup } from "reactstrap"
+import { BsFillCartFill, BsQrCodeScan, BsSearch } from "react-icons/bs";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -50,7 +50,12 @@ const Search = () => {
                 <form onSubmit={handleSubmit(getInput)}>
                     <FormGroup>
                         <input type="number" id="search" name="search" placeholder="Escribe el código del producto..." required {...register("code")}/>
-                        <button type="submit">Buscar</button>
+                        <ButtonGroup>
+                            <button type="submit" style={{borderTopLeftRadius: '15px', borderBottomLeftRadius: '15px'}}> <BsSearch />  Buscar </button>
+                            <Link to="/qr-section">
+                                <button style={{borderTopRightRadius: '15px', borderBottomRightRadius: '15px'}}> <BsQrCodeScan />  Escanear</button>
+                            </Link>
+                        </ButtonGroup>
                         <Label style={{ color: "red", display: "block", margin: "10px" }}> {errors["code"] ? errors["code"].message : ""}</Label>
                     </FormGroup>
                 </form>

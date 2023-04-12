@@ -13,6 +13,8 @@ import UserForm from './Components/UserForm';
 import Invoice from './Components/Invoice';
 import AdminLogin from './Components/AdminLogin';
 import Analytics from './Components/Analytics';
+import Qr from './Components/Qr';
+
 
 //Import context
 import { useStateContext } from './Context/StateContext';
@@ -56,6 +58,7 @@ function App() {
     <div>
       <BrowserRouter>
         <Routes>
+
           <Route path='/' element={ <div> <Search /> <br/> <AllProducts /> </div> }/>
           <Route path='producto/:id' element={ <div> <Search /> <ProductInfo /></div> } />
           <Route path='/carrito' element={ <Trolley /> } />
@@ -65,6 +68,8 @@ function App() {
           <Route path='/factura' element={ <Invoice /> } />
           <Route path='/administrador' element={<AdminLogin />} />
           <Route path='/administrador/analitica' element={<Analytics />} /> 
+          <Route path='/qr-section' element={< Qr />} />
+
         </Routes>
       </BrowserRouter>
     </div>
