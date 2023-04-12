@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import "../Assets/CSS/Transaccion.css";
 import { useNavigate } from 'react-router';
 import { bankLogin } from '../Services/productInfoServices';
+import { NavLink } from 'react-router-dom';
 
 import { useStateContext } from "../Context/StateContext";
 
@@ -67,10 +68,11 @@ const Transaccion = () => {
                         </div>
 
                         <p id="message-invalid" style={{textAlign:"center", color:"red", marginTop: "40px", display: "none"}}>Nombre de usuario y/o<br/>contraseña incorrectos</p>
-
+                        <NavLink to="/UserForm" exact>
                         <button type="submit" class="btn btn-primary" disabled={!isLoginFormValid}>
                             Ingresar
                         </button>
+                        </NavLink>
 
                     </form>
                 </div>
