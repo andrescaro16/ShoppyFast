@@ -70,7 +70,6 @@ export async function saveInvoice(invoice) {
       `http://localhost:3001/api/f/saveInvoice`,
       invoice,
     );
-    console.log(response.data);
     return response.data;
   } catch (error) {
     console.log(error)
@@ -84,6 +83,20 @@ export async function sendInvoice(dataInvoice) {
     const response = await axios.post(
       `http://localhost:3001/api/f/sendInvoice`,
       dataInvoice,
+    );
+    return response.data;
+  } catch (error) {
+    console.log(error)
+    return error.response.status;
+  }
+}
+
+
+export async function getBestSellingProducts(date) {
+  try {
+    const response = await axios.post(
+      `http://localhost:3001/api/analytics/getBestSellingProducts`,
+      date,
     );
     return response.data;
   } catch (error) {

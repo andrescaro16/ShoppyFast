@@ -17,7 +17,6 @@ export const StateContext = ({ children }) => {
         name: "Andrés Julian",
         lastname: "Caro Restrepo",
         document_id: "1043563866",
-        number: "3184632549",
         email: "julicaro2003@gmail.com",
     });
     const [dataInvoice, setDataInvoice] = useState({});
@@ -122,6 +121,7 @@ export const StateContext = ({ children }) => {
         userPurchase,
         setUserPurchase,
         userData,
+        setUserData,
         dataInvoice,
         setDataInvoice,
         agregarProducto,
