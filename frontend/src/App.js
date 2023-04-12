@@ -61,9 +61,10 @@ function App() {
           <Route path='/carrito' element={ <Trolley /> } />
           <Route path='/pago/transaccion' element={ <Transaccion  /> } />
           <Route path='/pago/transaccion/confirmacion' element={ <Pagos /> } />
-          <Route path='/UserForm' element={<UserForm/>} /> codigo de app.js
+          <Route path='/UserForm' element={<UserForm/>} />
           <Route path='/factura' element={ <Invoice /> } />
-          <Route path='/administrador' element={<Admin />} /> codigo de app.js
+          <Route path='/administrador' element={<AdminLogin />} />
+          <Route path='/administrador/analitica' element={<Analytics />} /> 
         </Routes>
       </BrowserRouter>
     </div>
