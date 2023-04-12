@@ -4,7 +4,7 @@ import logo from "../Assets/Images/ShoppyfastLogo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
 
-const Admin = () => {
+const AdminLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -60,4 +60,4 @@ const Admin = () => {
   );
 };
 
-export default Admin;
+export default AdminLogin;

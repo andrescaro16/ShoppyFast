@@ -9,8 +9,9 @@ import ProductInfo from './Components/ProductInfo';
 import Trolley from './Components/Trolley';
 import Pagos from './Components/Pagos';
 import Transaccion from './Components/Transaccion';
+import UserForm from './Components/UserForm';
 import Invoice from './Components/Invoice';
-import Admin from './Components/AdminLogin';
+import AdminLogin from './Components/AdminLogin';
 import Analytics from './Components/Analytics';
 
 //Import context
@@ -60,9 +61,9 @@ function App() {
           <Route path='/carrito' element={ <Trolley /> } />
           <Route path='/pago/transaccion' element={ <Transaccion  /> } />
           <Route path='/pago/transaccion/confirmacion' element={ <Pagos /> } />
+          <Route path='/UserForm' element={<UserForm/>} /> codigo de app.js
           <Route path='/factura' element={ <Invoice /> } />
-          <Route path='/administrador' element={<Admin />} />
-          <Route path='/administrador/analitica' element={<Analytics />} />
+          <Route path='/administrador' element={<Admin />} /> codigo de app.js
         </Routes>
       </BrowserRouter>
     </div>
