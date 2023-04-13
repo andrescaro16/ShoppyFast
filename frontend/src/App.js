@@ -63,8 +63,8 @@ function App() {
           <Route path='producto/:id' element={ <div> <Search /> <ProductInfo /></div> } />
           <Route path='/carrito' element={ <Trolley /> } />
           <Route path='/pago/transaccion' element={ <Transaccion  /> } />
-          <Route path='/pago/transaccion/confirmacion' element={ <Pagos /> } />
           <Route path='/UserForm' element={<UserForm/>} />
+          <Route path='/pago/transaccion/confirmacion' element={ <Pagos /> } />
           <Route path='/factura' element={ <Invoice /> } />
           <Route path='/administrador' element={<AdminLogin />} />
           <Route path='/administrador/analitica' element={<Analytics />} /> 

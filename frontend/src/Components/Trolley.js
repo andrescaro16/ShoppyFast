@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link } from "react-router-dom";
-import { Table, Button, Row, Col, Badge, Alert } from 'reactstrap';
+import { Table, Button, Row, Col, Badge, Alert, ButtonGroup } from 'reactstrap';
 import '../Assets/CSS/Trolley.css';
 import { BsFillCartFill, BsFillCartXFill, BsTrash } from "react-icons/bs";
 
@@ -11,7 +11,7 @@ const Trolley = () => {
 
     const { agregarProducto, carrito, setCarrito, subTotal, setSubTotal, vaciarCarrito, removerProducto } = useStateContext();
 
-    useEffect(() => { ///calcular total
+    useEffect(() => {
         const calculo = () => {
             setSubTotal(carrito.reduce((obj, cur) => (obj + (cur.item.price) * cur.quantity), 0))
         }
@@ -86,16 +86,17 @@ const Trolley = () => {
                                     </td>
                                     <td>
                                         <Row key={elemento.item.id}>
-                                            <Col>
-                                                <Button color="danger" size="sm" onClick={() => setCarrito(agregarProducto(elemento.item, -1, carrito))}>-</Button>
-                                            </Col>
-
-                                            <Col>
-                                                <Badge>{elemento.quantity}</Badge>
-                                            </Col>
-                                            <Col>
-                                                <Button color="success" size="sm" onClick={() => setCarrito(agregarProducto(elemento.item, 1, carrito))}>+</Button>
-                                            </Col>
+                                            <ButtonGroup>
+                                                <Col>
+                                                    <Button color="danger" size="sm" onClick={() => setCarrito(agregarProducto(elemento.item, -1, carrito))}>-</Button>
+                                                </Col>
+                                                <Col>
+                                                    <Badge>{elemento.quantity}</Badge>
+                                                </Col>
+                                                <Col>
+                                                    <Button color="success" size="sm" onClick={() => setCarrito(agregarProducto(elemento.item, 1, carrito))}>+</Button>
+                                                </Col>
+                                            </ButtonGroup>
                                         </Row>
 
                                     </td>

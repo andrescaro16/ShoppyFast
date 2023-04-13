@@ -20,6 +20,8 @@ export const StateContext = ({ children }) => {
         email: "julicaro2003@gmail.com",
     });
     const [dataInvoice, setDataInvoice] = useState({});
+    const [openQuantity, setOpenQuantity] = useState(false);
+    const [cantidadConfirmDialog, setCantidadConfirmDialog] = useState();
 
 
     const agregarProducto = (item, quantity, carrito) => {
@@ -124,6 +126,10 @@ export const StateContext = ({ children }) => {
         setUserData,
         dataInvoice,
         setDataInvoice,
+        openQuantity,
+        setOpenQuantity,
+        cantidadConfirmDialog,
+        setCantidadConfirmDialog,
         agregarProducto,
         vaciarCarrito,
         removerProducto,

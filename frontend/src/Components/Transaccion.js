@@ -68,11 +68,11 @@ const Transaccion = () => {
                         </div>
 
                         <p id="message-invalid" style={{textAlign:"center", color:"red", marginTop: "40px", display: "none"}}>Nombre de usuario y/o<br/>contraseña incorrectos</p>
-                        <NavLink to="/UserForm" exact>
+                        
                         <button type="submit" class="btn btn-primary" disabled={!isLoginFormValid}>
                             Ingresar
                         </button>
-                        </NavLink>
+                       
 
                     </form>
                 </div>
