@@ -3,17 +3,17 @@
 }
 
 .Qr-section {
-
-    min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
 }
 
 .Qr-section-title {
     font-size: calc(10px + 2vmin);
+    margin: 10px;
+    text-align: center;
+    font-weight: bold;
 }
 
 #html5qr-code-full-region {

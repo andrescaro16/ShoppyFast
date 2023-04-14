@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link } from "react-router-dom";
 import { Table, Button, Row, Col, Badge, Alert, ButtonGroup } from 'reactstrap';
-import '../Assets/CSS/Trolley.css';
 import { BsFillCartFill, BsFillCartXFill, BsTrash } from "react-icons/bs";
 
 import { useStateContext } from '../Context/StateContext';
@@ -9,7 +8,7 @@ import { useStateContext } from '../Context/StateContext';
 
 const Trolley = () => {
 
-    const { agregarProducto, carrito, setCarrito, subTotal, setSubTotal, vaciarCarrito, removerProducto } = useStateContext();
+    const { agregarProducto, carrito, setCarrito, setSubTotal, removerProducto } = useStateContext();
 
     useEffect(() => {
         const calculo = () => {
@@ -20,32 +19,6 @@ const Trolley = () => {
 
     return (
         <>
-            <div className='encabezado_inventario' >
-
-                <Link to="/" style={{'paddingRight': "150px", float: "left"}}>
-                    <Button color="danger">Volver</Button>
-                </Link>
-
-                <div style={{'padding-right': "1000px", float: "left"}}>
-                    <BsFillCartFill />
-                    <span><b>Precio Total</b>{subTotal}</span>
-                </div>
-
-                <div style={{'padding-left': "600px", 'padding-right': "100px", float: "left" }}>
-                    <Button color="primary" >Cupón de descuento</Button>
-                </div>
-
-                <Link to="/pago/transaccion" style={{'paddingRight': "150px", float: "left"}}>
-                    <Button color="primary">Realizar pago</Button>
-                </Link>
-            </div>
-
-            <div className='encabezado_inventario' style={{'padding-left': "220px", 'paddingBottom': "0px"}}>
-                <Button color="danger" size="sm" onClick={() => setCarrito(vaciarCarrito(carrito))}> <BsFillCartXFill /> Vaciar Carrito</Button>
-            </div>
-
-
-
             <React.Fragment>
                 <div className='container_table'>
                     <Table className='tabla_carro'>

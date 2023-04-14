@@ -20,6 +20,7 @@ import Qr from './Components/Qr';
 //Import context
 import { useStateContext } from './Context/StateContext';
 import { TbFileAnalytics } from 'react-icons/tb';
+import CartHeader from './Components/CartHeader';
 
 
 function App() {
@@ -62,7 +63,7 @@ function App() {
 
           <Route path='/' element={ <div> <Search /> <br/> <AllProducts /> </div> }/>
           <Route path='producto/:id' element={ <div> <Search /> <ProductInfo /></div> } />
-          <Route path='/carrito' element={ <Trolley /> } />
+          <Route path='/carrito' element={ <section>  <CartHeader />  <Trolley /> </section> } />
           <Route path='/pago/transaccion' element={ <Transaccion  /> } />
           <Route path='/formulario' element={<UserForm/>} />
           <Route path='/pago/transaccion/confirmacion' element={ <Pagos /> } />
