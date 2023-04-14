@@ -34,7 +34,7 @@ const Transaccion = () => {
         setUserValidation(bankLoginResponse);
 
         if(bankLoginResponse.validUser){
-            navigate("/pago/transaccion/confirmacion");     //'/factura/formulario'
+            navigate("/formulario");     //'/factura/formulario'
         }else{
             const messageInvalid = document.getElementById('message-invalid');
             messageInvalid.style.display = 'block';

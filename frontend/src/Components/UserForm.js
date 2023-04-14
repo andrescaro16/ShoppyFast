@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
+
 
 const FormContainer = styled.form`
   display: flex;
@@ -97,8 +99,9 @@ const UserForm = () => {
           required={emailChecked}
         />
       </CheckboxContainer>
-
+      <NavLink to="/pago/transaccion/confirmacion" exact>
       <Button type="submit">Sacar factura</Button>
+      </NavLink>
     </FormContainer>
   );
 };

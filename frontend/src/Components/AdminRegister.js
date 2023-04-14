@@ -1,25 +1,23 @@
 import React, { useState } from "react";
-import "../Assets/CSS/AdminLogin.css";
-import logo from "../Assets/Images/ShoppyfastLogo.png";
+import "../Assets/CSS/AdminRegister.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
+import { faEnvelope, faUser, faLock } from "@fortawesome/free-solid-svg-icons";
 import { NavLink } from "react-router-dom";
 
-const AdminLogin = () => {
+const AdminRegister = () => {
   const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(`Email: ${email} | Password: ${password}`);
+    console.log(`Email: ${email} | Username: ${username} | Password: ${password}`);
   };
 
   return (
-    <div className="admin-container">
-      <div className="login-container">
-        <div className="logo-container">
-          <img src={logo} alt="Logo de Shoppyfast" width="500" />
-        </div>
+    <div className="register-container">
+      <div className="register-form-container">
+        <h2>Registro</h2>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label htmlFor="email">
@@ -31,6 +29,19 @@ const AdminLogin = () => {
               placeholder="Ingresa tu correo electrónico"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="username">
+              <FontAwesomeIcon icon={faUser} /> Nombre de usuario
+            </label>
+            <input
+              type="text"
+              id="username"
+              placeholder="Ingresa tu nombre de usuario"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
               required
             />
           </div>
@@ -48,19 +59,15 @@ const AdminLogin = () => {
             />
           </div>
           <button type="submit" className="btn btn-primary btn-block">
-            Iniciar sesión
+            Registrarse
           </button>
         </form>
-       
-         <div className="register-link">
-        ¿No tienes una cuenta?  
-        <NavLink to="/administrador/registro" exact><a href="#">Regístrate ahora</a></NavLink>
-         </div>
+        <div className="login-link">
+          ¿Ya tienes una cuenta? <NavLink to="/administrador" exact><a href="#">Iniciar sesión</a></NavLink>
+        </div>
       </div>
-      
     </div>
-    
   );
 };
 
-export default AdminLogin;
+export default AdminRegister;

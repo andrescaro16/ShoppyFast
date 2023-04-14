@@ -12,6 +12,7 @@ import Transaccion from './Components/Transaccion';
 import UserForm from './Components/UserForm';
 import Invoice from './Components/Invoice';
 import AdminLogin from './Components/AdminLogin';
+import AdminRegister from './Components/AdminRegister';
 import Analytics from './Components/Analytics';
 import Qr from './Components/Qr';
 
@@ -63,10 +64,11 @@ function App() {
           <Route path='producto/:id' element={ <div> <Search /> <ProductInfo /></div> } />
           <Route path='/carrito' element={ <Trolley /> } />
           <Route path='/pago/transaccion' element={ <Transaccion  /> } />
-          <Route path='/UserForm' element={<UserForm/>} />
+          <Route path='/formulario' element={<UserForm/>} />
           <Route path='/pago/transaccion/confirmacion' element={ <Pagos /> } />
           <Route path='/factura' element={ <Invoice /> } />
           <Route path='/administrador' element={<AdminLogin />} />
+          <Route path='/administrador/registro' element={<AdminRegister />} /> 
           <Route path='/administrador/analitica' element={<Analytics />} /> 
           <Route path='/qr-section' element={< Qr />} />
 
