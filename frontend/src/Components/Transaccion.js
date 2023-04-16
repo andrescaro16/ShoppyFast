@@ -2,8 +2,6 @@ import React, {useState, useEffect} from "react";
 import "../Assets/CSS/Transaccion.css";
 import { useNavigate } from 'react-router';
 import { bankLogin } from '../Services/productInfoServices';
-import { NavLink } from 'react-router-dom';
-
 import { useStateContext } from "../Context/StateContext";
 
 

@@ -14,10 +14,9 @@ export const StateContext = ({ children }) => {
     const [userAccount, setUserAccount] = useState({});         // username, password, totalPrice
     const [userPurchase, setUserPurchase] = useState({});       // username, totalPrice, carrito (id, quantity)
     const [userData, setUserData] = useState({                  // temporal state for invoice simulation
-        name: "Andrés Julian",
-        lastname: "Caro Restrepo",
-        document_id: "1043563866",
-        email: "julicaro2003@gmail.com",
+        name: "",
+        document_id: "",
+        email: "",
     });
     const [dataInvoice, setDataInvoice] = useState({});
     const [openQuantity, setOpenQuantity] = useState(false);
@@ -91,7 +90,7 @@ export const StateContext = ({ children }) => {
 
         const invoice = {
             "user_email": userData.email,
-            "user_name": userData.name + " " + userData.lastname,
+            "user_name": userData.name,
             "document_id": userData.document_id,
             "subTotal": subTotal,
             "total": total,

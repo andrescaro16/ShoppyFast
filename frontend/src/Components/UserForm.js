@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useStateContext } from "../Context/StateContext";
 
 
 const FormContainer = styled.form`
@@ -56,30 +57,49 @@ const Button = styled.button`
   }
 `;
 
+
 const UserForm = () => {
   const [emailChecked, setEmailChecked] = useState(false);
   const [emailDisabled, setEmailDisabled] = useState(true);
+  const [formIncomplete, setFormIncomplete] = useState(true); 
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const navigate = useNavigate();
+  const { setUserData } = useStateContext();
 
   const handleEmailOptionChange = (event) => {
     setEmailChecked(event.target.checked);
     setEmailDisabled(!event.target.checked);
   };
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    if (form.checkValidity()) {
+      setUserData({
+        name: form.name.value,
+        document_id: form.document_id.value,
+        email: emailChecked ? form.email.value : "",
+      });
+      navigate("/pago/transaccion/confirmacion");
+      setFormIncomplete(false);
+      console.log('Navigating to /pago/transaccion/confirmacion');
+    } else {
+      setFormIncomplete(true);
+      setErrorMessage("Debe llenar todos los campos.");
+    }
+  };
+
   return (
-    <FormContainer>
+    <FormContainer onSubmit={handleSubmit}>
       <FormGroup>
-        <Label htmlFor="name">Nombre:</Label>
+        <Label htmlFor="name">Nombre y apellido:</Label>
         <Input type="text" id="name" name="name" required />
       </FormGroup>
 
       <FormGroup>
-        <Label htmlFor="doc">Documento:</Label>
-        <Input type="text" id="doc" name="doc" required />
-      </FormGroup>
-
-      <FormGroup>
-        <Label htmlFor="phone">Celular:</Label>
-        <Input type="text" id="phone" name="phone" required />
+        <Label htmlFor="document_id">Documento:</Label>
+        <Input type="text" id="document_id" name="document_id" required />
       </FormGroup>
 
       <CheckboxContainer>
@@ -99,9 +119,9 @@ const UserForm = () => {
           required={emailChecked}
         />
       </CheckboxContainer>
-      <NavLink to="/pago/transaccion/confirmacion" exact>
-      <Button type="submit">Sacar factura</Button>
-      </NavLink>
+      <Button type="submit" disabled={!formIncomplete}>
+  Sacar factura
+</Button>
     </FormContainer>
   );
 };

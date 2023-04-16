@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import './Assets/CSS/App.css';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { useHistory } from 'react-router-dom';
 
 //Import components
 import Search from './Components/Search';
