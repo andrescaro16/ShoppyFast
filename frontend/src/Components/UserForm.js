@@ -1,61 +1,7 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { useStateContext } from "../Context/StateContext";
-
-
-const FormContainer = styled.form`
-  display: flex;
-  flex-direction: column;
-  max-width: 500px;
-  margin: 0 auto;
-  padding: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-`;
-
-const FormGroup = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 1rem;
-`;
-
-const Label = styled.label`
-  font-size: 1rem;
-  margin-bottom: 0.25rem;
-`;
-
-const Input = styled.input`
-  padding: 0.5rem;
-  font-size: 1rem;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-`;
-
-const CheckboxContainer = styled.div`
-  display: flex;
-  align-items: center;
-  margin-bottom: 1rem;
-`;
-
-const Checkbox = styled.input`
-  margin-right: 0.5rem;
-`;
-
-const Button = styled.button`
-  padding: 0.5rem 1rem;
-  font-size: 1rem;
-  background-color: #0077cc;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.2s;
-
-  &:hover {
-    background-color: #005ea6;
-  }
-`;
+import "../Assets/CSS/UserForm.css";
 
 
 const UserForm = () => {
@@ -91,38 +37,38 @@ const UserForm = () => {
   };
 
   return (
-    <FormContainer onSubmit={handleSubmit}>
-      <FormGroup>
-        <Label htmlFor="name">Nombre y apellido:</Label>
-        <Input type="text" id="name" name="name" required />
-      </FormGroup>
+    <form onSubmit={handleSubmit} className="form-containerUserForm">
+      <div className="form-group">
+        <label htmlFor="name">Nombre y apellido:</label>
+        <input type="text" id="name" name="name" required />
+      </div>
 
-      <FormGroup>
-        <Label htmlFor="document_id">Documento:</Label>
-        <Input type="text" id="document_id" name="document_id" required />
-      </FormGroup>
+      <div className="form-group">
+        <label htmlFor="document_id">Documento:</label>
+        <input type="text" id="document_id" name="document_id" required />
+      </div>
 
-      <CheckboxContainer>
-        <Checkbox
+      <div className="checkbox-container">
+        <input
           type="checkbox"
           id="email-option"
           name="email-option"
           checked={emailChecked}
           onChange={handleEmailOptionChange}
         />
-        <Label htmlFor="email-option">¿Desea factura por correo electrónico?</Label>
-        <Input
+        <label htmlFor="email-option">¿Desea factura por correo electrónico?</label>
+        <input
           type="email"
           id="email"
           name="email"
           disabled={emailDisabled}
           required={emailChecked}
         />
-      </CheckboxContainer>
-      <Button type="submit" disabled={!formIncomplete}>
-  Sacar factura
-</Button>
-    </FormContainer>
+      </div>
+      <button type="submit" class="sacarFactura" disabled={!formIncomplete}>
+         Sacar factura
+      </button>
+    </form>
   );
 };
 

@@ -1,58 +1,82 @@
-.form-container {
-    display: flex;
-    flex-direction: column;
-    max-width: 500px;
-    margin: 0 auto;
-    padding: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
+.form-containerUserForm{
+  width: 350px;
+  height: 450px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 4px;
   
-  /* FormGroup */
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 1rem;
-  }
-  
-  /* Label */
-  .label {
-    font-size: 1rem;
-    margin-bottom: 0.25rem;
-  }
-  
-  /* Input */
-  .input {
-    padding: 0.5rem;
-    font-size: 1rem;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-  }
-  
-  /* CheckboxContainer */
-  .checkbox-container {
-    display: flex;
-    align-items: center;
-    margin-bottom: 1rem;
-  }
-  
-  /* Checkbox */
-  .checkbox {
-    margin-right: 0.5rem;
-  }
-  
-  /* Button */
-  .button {
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    background-color: #0077cc;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-  }
-  
-  .button:hover {
-    background-color: #005ea6;
-  }
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #333;
+}
+
+input[type="text"],
+input[type="email"] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+  color: #333;
+
+}
+
+input[type="email"]:disabled {
+  background-color: #f8f8f8;
+  color: #999;
+  border: none; /* Elimina el borde */
+  font-style: italic; /* Cambia el estilo de fuente a cursiva */
+  padding: 8px; /* Agrega un espacio interno de 8px */
+}
+
+/* Estilo para el input de correo electrónico cuando está activado */
+input[type="email"]:enabled {
+  background-color: #fff;
+  color: #333;
+  border: 1px solid #ccc;
+  font-style: normal; /* Cambia el estilo de fuente a normal */
+  padding: 10px; /* Aumenta el espacio interno a 10px */
+}
+
+/* Transición suave para el fondo del input de correo electrónico */
+input[type="email"] {
+  transition: background-color 0.3s ease;
+}
+
+/* Estilo para el label del input de correo electrónico */
+label[for="email"] {
+  display: block; /* Hace que el label sea de bloque para que ocupe el ancho completo del contenedor */
+  margin-bottom: 5px; /* Agrega un margen inferior de 5px para separarlo del input */
+  font-weight: bold; /* Cambia el peso de la fuente a negrita */
+  color: #161010; /* Cambia el color del texto a #333 */
+}
+
+.checkbox-container {
+  margin-bottom: 15px;
+}
+
+input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+.sacarFactura {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.3s ease;
+}
