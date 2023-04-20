@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import './Assets/CSS/App.css';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { useHistory } from 'react-router-dom';
 
 //Import components
 import Search from './Components/Search';
@@ -12,6 +13,7 @@ import Transaccion from './Components/Transaccion';
 import UserForm from './Components/UserForm';
 import Invoice from './Components/Invoice';
 import AdminLogin from './Components/AdminLogin';
+import AdminRegister from './Components/AdminRegister';
 import Analytics from './Components/Analytics';
 import Qr from './Components/Qr';
 
@@ -19,6 +21,7 @@ import Qr from './Components/Qr';
 //Import context
 import { useStateContext } from './Context/StateContext';
 import { TbFileAnalytics } from 'react-icons/tb';
+import CartHeader from './Components/CartHeader';
 
 
 function App() {
@@ -61,12 +64,13 @@ function App() {
 
           <Route path='/' element={ <div> <Search /> <br/> <AllProducts /> </div> }/>
           <Route path='producto/:id' element={ <div> <Search /> <ProductInfo /></div> } />
-          <Route path='/carrito' element={ <Trolley /> } />
+          <Route path='/carrito' element={ <section>  <CartHeader />  <Trolley /> </section> } />
           <Route path='/pago/transaccion' element={ <Transaccion  /> } />
-          <Route path='/UserForm' element={<UserForm/>} />
+          <Route path='/formulario' element={<UserForm/>} />
           <Route path='/pago/transaccion/confirmacion' element={ <Pagos /> } />
           <Route path='/factura' element={ <Invoice /> } />
           <Route path='/administrador' element={<AdminLogin />} />
+          <Route path='/administrador/registro' element={<AdminRegister />} /> 
           <Route path='/administrador/analitica' element={<Analytics />} /> 
           <Route path='/qr-section' element={< Qr />} />
 

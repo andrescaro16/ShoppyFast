@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
 import { Button } from 'reactstrap';
 import '../Assets/CSS/QR.css';
-import Html5QrcodePlugin from '../Html5QrcodeScannerPlugin';
-import ResultContainerPlugin from '../ResultCointainerPlugin';
+import Html5QrcodePlugin from './Html5QrcodeScannerPlugin';
 import Quantity from './Quantity';
 import { getProduct } from '../Services/productInfoServices';
+import Trolley from './Trolley';
+import CartHeader from './CartHeader';
+import { toast } from 'react-hot-toast';
 
 import { useStateContext } from '../Context/StateContext';
 
@@ -19,7 +21,7 @@ const Qr = () => {
 
     const onNewScanResult = (decodedText, decodedResult) => {
         setOpenQuantity(true);
-        console.log("App [result]", decodedText);
+        console.log("App [result]", decodedResult);
         setDecodedResults(prev => [...prev, decodedResult]);
         setDecodedText(decodedText);
     };
@@ -28,39 +30,55 @@ const Qr = () => {
     const handleAddToCart = async () => {
         const data = await getProduct(decodedText);
         if (data !== 404) {
-            setCarrito(agregarProducto(data[0], cantidadConfirmDialog, carrito));
+            const existingItem = carrito.find(productCart => productCart.item.id === data[0].id);
+            if(existingItem){
+                const validation = carrito.map(productCart => {
+                    if(productCart.quantity + cantidadConfirmDialog <= data[0].cantidad){
+                        setCarrito(agregarProducto(data[0], cantidadConfirmDialog, carrito));
+                    }else{
+                        toast.error(`No hay ${cantidadConfirmDialog} en stock`);
+                    }
+                    return carrito;
+                })
+            }else{
+                if(cantidadConfirmDialog <= data[0].cantidad){
+                    setCarrito(agregarProducto(data[0], cantidadConfirmDialog, carrito));
+                }else if(data[0].cantidad > 0){
+                    toast.error(`Solo hay ${data[0].cantidad} en stock`);
+                }
+                 else{
+                    toast.error(`No hay ${cantidadConfirmDialog} en stock`);
+                }
+            }
         }
         setOpenQuantity(false);
-        console.log("Cantidad: ", cantidadConfirmDialog)
-        console.log("Carrito: ", carrito)
     };
 
 
     return (
-        <div style={{display: "flex"}}>
-            <div>
-                <Link to="/" style={{'paddingRight': "150px", float: "left"}}>
-                    <Button color="danger">Volver</Button>
-                </Link>
-            </div>
+        <div >
+
+            <div className="Qr-section-title"> Escanea el QR del producto :) </div>
+
+            <CartHeader />
+
             <div>
                 <Quantity handleAddToCart={handleAddToCart} />
             </div>
+            <br />
+            <br />
             <div className="Qr">
                 <section className="Qr-section">
-                    <div className="Qr-section-title"> Escanea el QR del producto :) </div>
-                    <br />
-                    <br />
-                    <br />
                     <Html5QrcodePlugin
                         fps={10}
                         qrbox={250}
                         disableFlip={false}
                         qrCodeSuccessCallback={onNewScanResult}
                     />
-                    <ResultContainerPlugin results={decodedResults} />
+                    <Trolley />
                 </section>
             </div>
+
         </div>
     );
 };

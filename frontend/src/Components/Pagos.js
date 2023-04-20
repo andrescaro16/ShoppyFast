@@ -48,7 +48,7 @@ const Pagos = () => {
                 const saved = await saveInvoice({
                     total,
                     subTotal,
-                    filter,
+                    products: filter,
                 });
 
                 if(invoice.user_email){ 

@@ -31,7 +31,7 @@
 }
 
 
-/* -------------------------[productCard]------------------------- */
+/* -------------------------[User - productCard]------------------------- */
 .products-container{
   display: flex;
   flex-wrap: wrap;
@@ -65,4 +65,85 @@
 .card-content-container {
   height: 170px;
   overflow: hidden;
+}
+
+
+/* -------------------------[Admin - Analytics]------------------------- */
+.analytics-container {
+  max-width: 1000px;
+  min-width: 370px;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 25px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.300);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: calc(70vh - 10px);
+  overflow: hidden;
+  background-color: #ffffff;
+}
+
+
+/* -------------------------[User - Cart]------------------------- */
+.container_table {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.container_table_form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top:70px;
+}
+
+.encabezado_inventario{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.encabezado_inventario button {
+  margin: 10px 40px;
+}
+
+.encabezado_inventario div:nth-child(2) {
+  margin: 10px 80px;
+}
+
+
+@media (min-width: 768px) {
+  .encabezado_inventario div:nth-child(2) {
+      margin-left: 266px;
+  }
+}
+
+@media (max-width: 768px) {
+  .encabezado_inventario button {
+      padding: 8px 16px;
+      font-size: 14px;
+      margin-left: 40px;
+  }
+
+  .encabezado_inventario div:nth-child(2) {
+      margin-left: 40px;
+  }
+}
+
+.encabezado-precio {
+  margin: 10px 40px;
+}
+
+b{
+  margin:10px;
+}
+
+.tabla_carro{
+  text-align: center;
+  width: 85% !important;
 }
