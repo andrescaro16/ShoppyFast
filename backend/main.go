@@ -61,6 +61,9 @@ func main() {
 	analytics := api.Group("/analytics")
 	routes.LoadAnalyticsRoutes(analytics, db)
 
+	admin := api.Group("/admin")
+	routes.LoadAdminRoutes(admin, db)
+
 	log.Println("Server on port 3001")
 	app.Listen(":" + port)
 	log.Println("Server on port 3001")
