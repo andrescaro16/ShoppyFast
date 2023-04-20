@@ -7,6 +7,7 @@ import Quantity from './Quantity';
 import { getProduct } from '../Services/productInfoServices';
 import Trolley from './Trolley';
 import CartHeader from './CartHeader';
+import { toast } from 'react-hot-toast';
 
 import { useStateContext } from '../Context/StateContext';
 
@@ -29,11 +30,28 @@ const Qr = () => {
     const handleAddToCart = async () => {
         const data = await getProduct(decodedText);
         if (data !== 404) {
-            setCarrito(agregarProducto(data[0], cantidadConfirmDialog, carrito));
+            const existingItem = carrito.find(productCart => productCart.item.id === data[0].id);
+            if(existingItem){
+                const validation = carrito.map(productCart => {
+                    if(productCart.quantity + cantidadConfirmDialog <= data[0].cantidad){
+                        setCarrito(agregarProducto(data[0], cantidadConfirmDialog, carrito));
+                    }else{
+                        toast.error(`No hay ${cantidadConfirmDialog} en stock`);
+                    }
+                    return carrito;
+                })
+            }else{
+                if(cantidadConfirmDialog <= data[0].cantidad){
+                    setCarrito(agregarProducto(data[0], cantidadConfirmDialog, carrito));
+                }else if(data[0].cantidad > 0){
+                    toast.error(`Solo hay ${data[0].cantidad} en stock`);
+                }
+                 else{
+                    toast.error(`No hay ${cantidadConfirmDialog} en stock`);
+                }
+            }
         }
         setOpenQuantity(false);
-        console.log("Cantidad: ", cantidadConfirmDialog)
-        console.log("Carrito: ", carrito)
     };
 
 
