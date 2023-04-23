@@ -6,6 +6,7 @@ const Context = createContext();
 
 export const StateContext = ({ children }) => {
 
+    //----------------------------------------------------[User]---------------------------------------------------
     const [total, setTotal] = useState(0);
     const [subTotal, setSubTotal] = useState(0);
     const [carrito, setCarrito] = useState([]);
@@ -21,6 +22,8 @@ export const StateContext = ({ children }) => {
     const [dataInvoice, setDataInvoice] = useState({});
     const [openQuantity, setOpenQuantity] = useState(false);
     const [cantidadConfirmDialog, setCantidadConfirmDialog] = useState();
+    //---------------------------------------------------[Admin]---------------------------------------------------
+    const [tokenId, setTokenId] = useState("");
 
 
     const agregarProducto = (item, quantity, carrito) => {
@@ -127,6 +130,8 @@ export const StateContext = ({ children }) => {
         setDataInvoice,
         openQuantity,
         setOpenQuantity,
+        tokenId,
+        setTokenId,
         cantidadConfirmDialog,
         setCantidadConfirmDialog,
         agregarProducto,

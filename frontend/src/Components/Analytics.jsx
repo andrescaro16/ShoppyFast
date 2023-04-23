@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { getBestSellingProducts } from "../Services/productInfoServices";
-import * as echarts from 'echarts';
+
+import { useStateContext } from "../Context/StateContext";
 
 
 function Analytics() {
 
+    const { tokenId } = useStateContext();
     const [date, setDate] = useState(new Date("2022-04-07T13:30:00Z").toISOString());
     const [getBestSelling, setGetBestSelling] = useState("");
     const [responseData, setResponseData] = useState("");
@@ -14,7 +16,7 @@ function Analytics() {
         async function updateGraphic() {
             const responseData = await getBestSellingProducts({
                 date_to_analize: date,
-            });
+            }, tokenId);
             const tempContainer = document.createElement('div');
             tempContainer.innerHTML = responseData
             const containerElement = (tempContainer.querySelector('.container')).innerHTML;            

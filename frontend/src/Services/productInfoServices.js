@@ -92,11 +92,16 @@ export async function sendInvoice(dataInvoice) {
 }
 
 
-export async function getBestSellingProducts(date) {
+export async function getBestSellingProducts(date, tokenId) {
   try {
     const response = await axios.post(
       `http://localhost:3001/api/analytics/getBestSellingProducts`,
       date,
+      {
+        headers: {
+          "x-access-token": tokenId
+        }
+      }
     );
     return response.data;
   } catch (error) {
