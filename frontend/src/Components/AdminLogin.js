@@ -3,17 +3,24 @@ import "../Assets/CSS/AdminLogin.css";
 import logo from "../Assets/Images/ShoppyfastLogo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
-import { NavLink } from "react-router-dom";
+import { useStateContext } from "../Context/StateContext";
+import { sendAdminInfo } from '../Services/productInfoServices';
+
 
 const AdminLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(`Email: ${email} | Password: ${password}`);
-  };
+  const { setAdminData } = useStateContext();
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const formData = {
+      email: email,
+      password: password
+    };
+    await sendAdminInfo(formData, setAdminData);
+  };
   return (
     <div className="admin-container">
       <div className="login-container">
@@ -51,14 +58,11 @@ const AdminLogin = () => {
             Iniciar sesión
           </button>
         </form>
-       
-         <div className="register-link">
-        ¿No tienes una cuenta?  
-        <NavLink to="/administrador/registro" exact><a href="#">Regístrate ahora</a></NavLink>
-         </div>
+  
       </div>
       
     </div>
+    
     
   );
 };

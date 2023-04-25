@@ -109,3 +109,17 @@ export async function getBestSellingProducts(date, tokenId) {
     return error.response.status;
   }
 }
+
+export async function sendAdminInfo(formData, setAdminData) {
+  try {
+    // Envia la información al backend y espera la respuesta
+    const response = await axios.post('http://localhost:3001/api/admin/signin', formData);
+    // Maneja la respuesta del backend (opcional)
+    console.log(response.data);
+    // Llama a una función para manejar los datos del administrador en tu estado global
+    setAdminData(response.data); // Reemplaza esta línea con tu lógica para manejar los datos del administrador
+  } catch (error) {
+    // Maneja el error (opcional)
+    console.error(error);
+  }
+}

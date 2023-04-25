@@ -23,6 +23,10 @@ export const StateContext = ({ children }) => {
     const [openQuantity, setOpenQuantity] = useState(false);
     const [cantidadConfirmDialog, setCantidadConfirmDialog] = useState();
     //---------------------------------------------------[Admin]---------------------------------------------------
+    const [adminData, setAdminData] = useState({
+      email: "",
+      password: "",
+    });
     const [tokenId, setTokenId] = useState("");
 
 
