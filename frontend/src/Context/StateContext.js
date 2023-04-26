@@ -134,6 +134,8 @@ export const StateContext = ({ children }) => {
         setDataInvoice,
         openQuantity,
         setOpenQuantity,
+        adminData,
+        setAdminData,
         tokenId,
         setTokenId,
         cantidadConfirmDialog,

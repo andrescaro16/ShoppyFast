@@ -110,16 +110,17 @@ export async function getBestSellingProducts(date, tokenId) {
   }
 }
 
-export async function sendAdminInfo(formData, setAdminData) {
+export async function sendAdminInfo(formData, setAdminData,setTokenId) {
   try {
-    // Envia la información al backend y espera la respuesta
+    console.log('Datos enviados al backend vuamoss:', formData); 
     const response = await axios.post('http://localhost:3001/api/admin/signin', formData);
-    // Maneja la respuesta del backend (opcional)
-    console.log(response.data);
-    // Llama a una función para manejar los datos del administrador en tu estado global
-    setAdminData(response.data); // Reemplaza esta línea con tu lógica para manejar los datos del administrador
+    const adminData = response.data;
+    console.log(adminData);
+    const token = adminData.token;
+    setTokenId(token);
+    setAdminData(response.data);
   } catch (error) {
-    // Maneja el error (opcional)
-    console.error(error);
+    console.log(error)
+    return error.response.status;
   }
 }

@@ -12,6 +12,7 @@ const AdminLogin = () => {
   const [password, setPassword] = useState("");
 
   const { setAdminData } = useStateContext();
+  const { setTokenId} = useStateContext("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,7 +20,7 @@ const AdminLogin = () => {
       email: email,
       password: password
     };
-    await sendAdminInfo(formData, setAdminData);
+    await sendAdminInfo(formData, setAdminData, setTokenId);
   };
   return (
     <div className="admin-container">
