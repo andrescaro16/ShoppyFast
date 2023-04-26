@@ -112,10 +112,9 @@ export async function getBestSellingProducts(date, tokenId) {
 
 export async function sendAdminInfo(formData, setTokenId, setAdminConfirmDialog) {
   try {
-    console.log('Datos enviados al backend:', formData); 
+    
     const response = await axios.post('http://localhost:3001/api/admin/signin', formData);
     const adminConfirmDialog = response.data;
-    console.log('Respuesta del backend:', adminConfirmDialog);
     const token = adminConfirmDialog.token;
     setTokenId(token);
     setAdminConfirmDialog(adminConfirmDialog);
@@ -127,10 +126,6 @@ export async function sendAdminInfo(formData, setTokenId, setAdminConfirmDialog)
 
   } catch (error) {
     console.log(error)
-    if (error.response) {
-      console.log('Respuesta del backend:', error.response.data);
-      console.log('Código de estado:', error.response.status);
-    }
     return error.response.status;
   }
 }

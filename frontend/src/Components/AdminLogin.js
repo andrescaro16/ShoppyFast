@@ -7,14 +7,13 @@ import { useStateContext } from "../Context/StateContext";
 import { sendAdminInfo } from "../Services/productInfoServices";
 import { useNavigate } from "react-router-dom";
 
-
 const AdminLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const { setAdminData, setConcluded, setTokenId, setAdminConfirmDialog } = useStateContext();
-  
-  const navigate = useNavigate(); 
+
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -24,15 +23,16 @@ const AdminLogin = () => {
     };
 
     let adminValidation = await sendAdminInfo(formData, setAdminData, setTokenId, setConcluded, setAdminConfirmDialog);
-    console.log("esto deberia ser el objeto", adminValidation);
 
     if (adminValidation.concluded === true) {
       navigate('/administrador/home');
     } else {
-      console.error("La cuenta del administrador no ha sido concluida");
+      const errorMessage = document.getElementById('error-message');
+      errorMessage.innerText = 'La cuenta del administrador no existe'; // Asignar contenido del mensaje de error
+      errorMessage.style.display = 'block'; // Mostrar el mensaje de error en pantalla
     }
-
   };
+
   return (
     <div className="admin-container">
       <div className="login-container">
@@ -70,12 +70,11 @@ const AdminLogin = () => {
             Iniciar sesión
           </button>
         </form>
-  
+        <div id="error-message" style={{ display: 'none', color: 'red', marginTop: '10px' }}>
+          La cuenta del administrador no ha sido concluida
+        </div>
       </div>
-      
     </div>
-    
-    
   );
 };
 
