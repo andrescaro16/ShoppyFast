@@ -4,15 +4,17 @@ import logo from "../Assets/Images/ShoppyfastLogo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
 import { useStateContext } from "../Context/StateContext";
-import { sendAdminInfo } from '../Services/productInfoServices';
+import { sendAdminInfo } from "../Services/productInfoServices";
+import { useNavigate } from "react-router-dom";
 
 
 const AdminLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const { setAdminData } = useStateContext();
-  const { setTokenId} = useStateContext("");
+  const { setAdminData, setConcluded, setTokenId, setAdminConfirmDialog } = useStateContext();
+  
+  const navigate = useNavigate(); 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -20,7 +22,16 @@ const AdminLogin = () => {
       email: email,
       password: password
     };
-    await sendAdminInfo(formData, setAdminData, setTokenId);
+
+    let adminValidation = await sendAdminInfo(formData, setAdminData, setTokenId, setConcluded, setAdminConfirmDialog);
+    console.log("esto deberia ser el objeto", adminValidation);
+
+    if (adminValidation.concluded === true) {
+      navigate('/administrador/home');
+    } else {
+      console.error("La cuenta del administrador no ha sido concluida");
+    }
+
   };
   return (
     <div className="admin-container">

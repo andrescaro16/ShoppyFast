@@ -15,12 +15,13 @@ import Invoice from './Components/Invoice';
 import AdminLogin from './Components/AdminLogin';
 import Analytics from './Components/Analytics';
 import Qr from './Components/Qr';
-
+import AdminHome from './Components/AdminHome';
 
 //Import context
 import { useStateContext } from './Context/StateContext';
 import { TbFileAnalytics } from 'react-icons/tb';
 import CartHeader from './Components/CartHeader';
+
 
 
 function App() {
@@ -69,7 +70,8 @@ function App() {
           <Route path='/pago/transaccion/confirmacion' element={ <Pagos /> } />
           <Route path='/factura' element={ <Invoice /> } />
           <Route path='/administrador' element={<AdminLogin />} />
-          <Route path='/administrador/analitica' element={<Analytics />} /> 
+          <Route path='/administrador/home' element={<AdminHome />} />
+          <Route path='/administrador/home/analitica' element={<Analytics/>} /> 
           <Route path='/qr-section' element={< Qr />} />
 
         </Routes>

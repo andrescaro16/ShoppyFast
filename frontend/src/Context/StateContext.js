@@ -27,7 +27,13 @@ export const StateContext = ({ children }) => {
       email: "",
       password: "",
     });
+    const [adminConfirmDialog, setAdminConfirmDialog] = useState({
+      concluded: false,
+      message: "",
+      token: ""
+    });
     const [tokenId, setTokenId] = useState("");
+    
 
 
     const agregarProducto = (item, quantity, carrito) => {
@@ -144,6 +150,8 @@ export const StateContext = ({ children }) => {
         vaciarCarrito,
         removerProducto,
         generateInvoice,
+        adminConfirmDialog,
+        setAdminConfirmDialog
     }}
     >
     {children}
