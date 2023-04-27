@@ -11,7 +11,7 @@ const AdminLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const { setAdminData, setConcluded, setTokenId, setAdminConfirmDialog } = useStateContext();
+  const { setTokenId } = useStateContext();
 
   const navigate = useNavigate();
 
@@ -22,7 +22,8 @@ const AdminLogin = () => {
       password: password
     };
 
-    let adminValidation = await sendAdminInfo(formData, setAdminData, setTokenId, setConcluded, setAdminConfirmDialog);
+    let adminValidation = await sendAdminInfo(formData);
+    setTokenId(adminValidation.token);
 
     if (adminValidation.concluded === true) {
       navigate('/administrador/home');

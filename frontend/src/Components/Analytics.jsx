@@ -14,6 +14,7 @@ function Analytics() {
 
     useEffect(() => {
         async function updateGraphic() {
+            console.log(tokenId);
             const responseData = await getBestSellingProducts({
                 date_to_analize: date,
             }, tokenId);

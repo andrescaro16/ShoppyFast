@@ -110,20 +110,11 @@ export async function getBestSellingProducts(date, tokenId) {
   }
 }
 
-export async function sendAdminInfo(formData, setTokenId, setAdminConfirmDialog) {
+export async function sendAdminInfo(formData) {
   try {
-    
     const response = await axios.post('http://localhost:3001/api/admin/signin', formData);
-    const adminConfirmDialog = response.data;
-    const token = adminConfirmDialog.token;
-    setTokenId(token);
-    setAdminConfirmDialog(adminConfirmDialog);
-    return {
-      concluded: response.data.concluded,
-      message: response.data.message,
-      token: response.data.token,
-    }
-
+    console.log(response.data);
+    return response.data;
   } catch (error) {
     console.log(error)
     return error.response.status;

@@ -23,17 +23,7 @@ export const StateContext = ({ children }) => {
     const [openQuantity, setOpenQuantity] = useState(false);
     const [cantidadConfirmDialog, setCantidadConfirmDialog] = useState();
     //---------------------------------------------------[Admin]---------------------------------------------------
-    const [adminData, setAdminData] = useState({
-      email: "",
-      password: "",
-    });
-    const [adminConfirmDialog, setAdminConfirmDialog] = useState({
-      concluded: false,
-      message: "",
-      token: ""
-    });
     const [tokenId, setTokenId] = useState("");
-    
 
 
     const agregarProducto = (item, quantity, carrito) => {
@@ -140,8 +130,6 @@ export const StateContext = ({ children }) => {
         setDataInvoice,
         openQuantity,
         setOpenQuantity,
-        adminData,
-        setAdminData,
         tokenId,
         setTokenId,
         cantidadConfirmDialog,
@@ -150,8 +138,6 @@ export const StateContext = ({ children }) => {
         vaciarCarrito,
         removerProducto,
         generateInvoice,
-        adminConfirmDialog,
-        setAdminConfirmDialog
     }}
     >
     {children}
