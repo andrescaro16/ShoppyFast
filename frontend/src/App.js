@@ -2,11 +2,13 @@ import React, { useEffect } from 'react';
 import './Assets/CSS/App.css';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useHistory } from 'react-router-dom';
+import { TbFileAnalytics } from 'react-icons/tb';
 
 //Import components
 import Search from './Components/Search';
 import AllProducts from './Components/AllProducts';
 import ProductInfo from './Components/ProductInfo';
+import CartHeader from './Components/CartHeader';
 import Trolley from './Components/Trolley';
 import Pagos from './Components/Pagos';
 import Transaccion from './Components/Transaccion';
@@ -19,9 +21,8 @@ import AdminHome from './Components/AdminHome';
 
 //Import context
 import { useStateContext } from './Context/StateContext';
-import { TbFileAnalytics } from 'react-icons/tb';
-import CartHeader from './Components/CartHeader';
 
+import PrivateRoutes from './utils/PrivateRoutes';
 
 
 function App() {
@@ -70,9 +71,12 @@ function App() {
           <Route path='/pago/transaccion/confirmacion' element={ <Pagos /> } />
           <Route path='/factura' element={ <Invoice /> } />
           <Route path='/administrador' element={<AdminLogin />} />
-          <Route path='/administrador/home' element={<AdminHome />} />
-          <Route path='/administrador/home/analitica' element={<Analytics/>} /> 
           <Route path='/qr-section' element={< Qr />} />
+
+          <Route element={<PrivateRoutes />}>
+              <Route path='/administrador/home' element={<AdminHome />} />
+              <Route path='/administrador/home/analitica' element={<Analytics/>} /> 
+          </Route>
 
         </Routes>
       </BrowserRouter>
