@@ -1,10 +1,12 @@
 import axios from "axios";
 
+let port = "http://10.161.58.198:3001";
+
 
 export async function getProduct(id) {
     try {
       const response = await axios.get(
-          `http://localhost:3001/api/products/${id}`
+          `${port}/api/products/${id}`
       );
       return response.data;
     } catch (error) {
@@ -15,7 +17,7 @@ export async function getProduct(id) {
 
 export async function getAllProduct() {
     const response = await axios.get(
-        `http://localhost:3001/api/products/`
+        `${port}/api/products/`
     );
     return response.data;
 }
@@ -24,7 +26,7 @@ export async function getAllProduct() {
 export async function calculateTotal(subTotal) {
     try {
       const response = await axios.post(
-        `http://localhost:3001/api/f/calculateTax`,
+        `${port}/api/f/calculateTax`,
         { 'subTotal': subTotal }
       );
       return Number(response.data.total.toFixed());
@@ -37,7 +39,7 @@ export async function calculateTotal(subTotal) {
 export async function bankLogin(user) {
     try {
       const response = await axios.post(
-        `http://localhost:3001/api/bankAccounts/bankAccountSignIn`,
+        `${port}/api/bankAccounts/bankAccountSignIn`,
         user,
       );
       return {
@@ -54,7 +56,7 @@ export async function bankLogin(user) {
 export async function confirmPurchase(userPurchase) {
   try {
     const response = await axios.post(
-      `http://localhost:3001/api/f/confirmPurchase`,
+      `${port}/api/f/confirmPurchase`,
       userPurchase,
     );
     return response.data;
@@ -67,7 +69,7 @@ export async function confirmPurchase(userPurchase) {
 export async function saveInvoice(invoice) {
   try {
     const response = await axios.post(
-      `http://localhost:3001/api/f/saveInvoice`,
+      `${port}/api/f/saveInvoice`,
       invoice,
     );
     return response.data;
@@ -81,7 +83,7 @@ export async function saveInvoice(invoice) {
 export async function sendInvoice(dataInvoice) {
   try {
     const response = await axios.post(
-      `http://localhost:3001/api/f/sendInvoice`,
+      `${port}/api/f/sendInvoice`,
       dataInvoice,
     );
     return response.data;
@@ -95,7 +97,7 @@ export async function sendInvoice(dataInvoice) {
 export async function getBestSellingProducts(date, tokenId) {
   try {
     const response = await axios.post(
-      `http://localhost:3001/api/analytics/getBestSellingProducts`,
+      `${port}/api/analytics/getBestSellingProducts`,
       date,
       {
         headers: {
@@ -112,7 +114,7 @@ export async function getBestSellingProducts(date, tokenId) {
 
 export async function sendAdminInfo(formData) {
   try {
-    const response = await axios.post('http://localhost:3001/api/admin/signin', formData);
+    const response = await axios.post(`${port}/api/admin/signin`, formData);
     console.log(response.data);
     return response.data;
   } catch (error) {

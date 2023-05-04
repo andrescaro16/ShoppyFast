@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from "react-router-dom";
-import { Button } from 'reactstrap';
+import React, { useState } from 'react';
 import '../Assets/CSS/QR.css';
 import Html5QrcodePlugin from './Html5QrcodeScannerPlugin';
 import Quantity from './Quantity';
@@ -8,6 +6,7 @@ import { getProduct } from '../Services/productInfoServices';
 import Trolley from './Trolley';
 import CartHeader from './CartHeader';
 import { toast } from 'react-hot-toast';
+import SentimentVerySatisfiedRoundedIcon from '@mui/icons-material/SentimentVerySatisfiedRounded';
 
 import { useStateContext } from '../Context/StateContext';
 
@@ -29,36 +28,20 @@ const Qr = () => {
 
     const handleAddToCart = async () => {
         const data = await getProduct(decodedText);
-        if (data !== 404) {
-            const existingItem = carrito.find(productCart => productCart.item.id === data[0].id);
-            if(existingItem){
-                const validation = carrito.map(productCart => {
-                    if(productCart.quantity + cantidadConfirmDialog <= data[0].cantidad){
-                        setCarrito(agregarProducto(data[0], cantidadConfirmDialog, carrito));
-                    }else{
-                        toast.error(`No hay ${cantidadConfirmDialog} en stock`);
-                    }
-                    return carrito;
-                })
-            }else{
-                if(cantidadConfirmDialog <= data[0].cantidad){
-                    setCarrito(agregarProducto(data[0], cantidadConfirmDialog, carrito));
-                }else if(data[0].cantidad > 0){
-                    toast.error(`Solo hay ${data[0].cantidad} en stock`);
-                }
-                 else{
-                    toast.error(`No hay ${cantidadConfirmDialog} en stock`);
-                }
-            }
-        }
         setOpenQuantity(false);
+        if (data !== 404) {
+            setCarrito(agregarProducto(data[0], cantidadConfirmDialog, carrito));
+            return carrito; 
+        } else{
+            toast.error(`Escanea un producto válido`);
+        }
     };
 
 
     return (
         <div >
 
-            <div className="Qr-section-title"> Escanea el QR del producto :) </div>
+            <div className="Qr-section-title"> Escanea el QR del producto <SentimentVerySatisfiedRoundedIcon /> </div>
 
             <CartHeader />
 

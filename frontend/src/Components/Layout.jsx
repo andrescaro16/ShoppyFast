@@ -1,7 +1,7 @@
 import React from "react";
-
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import Waves from "./Waves";
 
 
 function Layout({ children }) {
@@ -9,7 +9,8 @@ function Layout({ children }) {
     <div className="layout">
       <header>
         <Navbar />
-      </header> 
+      </header>
+      <Waves/>
       <main className="main-container">
         {children}
       </main>

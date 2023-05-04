@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react';
 import './Assets/CSS/App.css';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { useHistory } from 'react-router-dom';
-import { TbFileAnalytics } from 'react-icons/tb';
 
 //Import components
+import Layout from './Components/Layout';
 import Search from './Components/Search';
 import AllProducts from './Components/AllProducts';
 import ProductInfo from './Components/ProductInfo';
@@ -19,10 +18,11 @@ import Analytics from './Components/Analytics';
 import Qr from './Components/Qr';
 import AdminHome from './Components/AdminHome';
 
+import PrivateRoutes from './utils/PrivateRoutes';
+
 //Import context
 import { useStateContext } from './Context/StateContext';
 
-import PrivateRoutes from './utils/PrivateRoutes';
 
 
 function App() {
@@ -61,24 +61,26 @@ function App() {
   return (
     <div>
       <BrowserRouter>
-        <Routes>
 
-          <Route path='/' element={ <div> <Search /> <br/> <AllProducts /> </div> }/>
-          <Route path='producto/:id' element={ <div> <Search /> <ProductInfo /></div> } />
-          <Route path='/carrito' element={ <section>  <CartHeader />  <Trolley /> </section> } />
-          <Route path='/pago/transaccion' element={ <Transaccion  /> } />
-          <Route path='/formulario' element={<UserForm/>} />
-          <Route path='/pago/transaccion/confirmacion' element={ <Pagos /> } />
-          <Route path='/factura' element={ <Invoice /> } />
-          <Route path='/administrador' element={<AdminLogin />} />
-          <Route path='/qr-section' element={< Qr />} />
+        <Layout>
+          <Routes>
+            <Route path='/' element={ <div> <Search /> <br/> <AllProducts /> </div> }/>
+            <Route path='producto/:id' element={ <div> <Search /> <ProductInfo /></div> } />
+            <Route path='/carrito' element={ <section>  <CartHeader />  <Trolley /> </section> } />
+            <Route path='/pago/transaccion' element={ <Transaccion  /> } />
+            <Route path='/formulario' element={<UserForm/>} />
+            <Route path='/pago/transaccion/confirmacion' element={ <Pagos /> } />
+            <Route path='/factura' element={ <Invoice /> } />
+            <Route path='/qr-section' element={< Qr />} />
+            <Route path='/administrador' element={<AdminLogin />} />
 
-          <Route element={<PrivateRoutes />}>
-              <Route path='/administrador/home' element={<AdminHome />} />
-              <Route path='/administrador/home/analitica' element={<Analytics/>} /> 
-          </Route>
+            <Route element={<PrivateRoutes />}>
+                <Route path='/administrador/home' element={<AdminHome />} />
+                <Route path='/administrador/home/analitica' element={<Analytics/>} /> 
+            </Route>
+          </Routes>
+        </Layout>
 
-        </Routes>
       </BrowserRouter>
     </div>
   );
