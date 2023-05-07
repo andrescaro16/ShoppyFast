@@ -1,15 +1,13 @@
 import * as React from 'react';
+import { Button, Badge, ButtonGroup } from 'reactstrap';
 import { styled } from '@mui/material/styles';
-import Card from '@mui/material/Card';
-import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 import Collapse from '@mui/material/Collapse';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import { red } from '@mui/material/colors';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import AddShoppingCartRoundedIcon from '@mui/icons-material/AddShoppingCartRounded';
 
 import { useStateContext } from "../Context/StateContext";
 
@@ -31,6 +29,7 @@ export default function RecipeReviewCard({ product }) {
     const { carrito, setCarrito, agregarProducto } = useStateContext();
 
     const [expanded, setExpanded] = React.useState(false);
+    const [quantity, setQuantity] = React.useState(1);
 
     const handleExpandClick = () => {
         setExpanded(!expanded);
@@ -39,26 +38,25 @@ export default function RecipeReviewCard({ product }) {
     
   return (
     <div className='product-card'>
-        <Card sx={{ width: 340, border: "1px solid #ddd", borderRadius: 5, boxShadow: "2px 3px 2px rgba(0, 0, 0, 0.18)", "background-color": "#ebebeb" }} >
 
-            <CardMedia
-                component="img"
-                height="300"
-                image={product.imgURL}
-                alt="Paella dish"
-
-            />
+            <img src={product.imgURL} alt="Product Image" />
 
             <div className='card-content-container'>
-                <CardContent style={{maxHeight: "100px"}}>
+                <CardContent style={{maxHeight: "100px", marginBottom: "4px"}}>
                     <h5 className='product-name'>{product.name}</h5>
                     <p className='product-price'>${product.price}</p>
+                    <br/>
                 </CardContent>
 
-                <CardActions disableSpacing>
+                <CardActions disableSpacing className='cart-actions'>
                     <IconButton aria-label="add to cart">
-                        <AddShoppingCartIcon sx={{ color: red[500], fontSize: 38 }} onClick={() => setCarrito(agregarProducto(product, 1, carrito))}/>
+                        <AddShoppingCartRoundedIcon className='material-icons red' sx={{ fontSize: 38 }} onClick={() => setCarrito(agregarProducto(product, quantity, carrito))}/>
                     </IconButton>
+                    <ButtonGroup>
+                        <Button className='button-group left' onClick={() => setQuantity(quantity > 1 ? quantity - 1 : 1)}>-</Button>
+                        <Badge className='button-group center'>{quantity}</Badge>
+                        <Button className='button-group right' onClick={() => setQuantity((quantity + 1) <= product.cantidad ? quantity + 1 : quantity)}>+</Button>
+                    </ButtonGroup>
                     <ExpandMore expand={expanded} onClick={handleExpandClick} aria-expanded={expanded} aria-label="show more">
                         <ExpandMoreIcon />
                     </ExpandMore>
@@ -75,7 +73,6 @@ export default function RecipeReviewCard({ product }) {
                 </CardContent>
             </Collapse>
 
-        </Card>
     </div>
   );
 }

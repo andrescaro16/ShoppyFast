@@ -1,11 +1,238 @@
-/* ---------------------------[main]------------------------------ */
+/* -------------------------------[Globals variables]------------------------------- */
+
+:root{
+  --white: #ffffff;
+  --primary: #009EC9;
+  --secondary: #054DAC;
+  --red: #DB1A1A;
+  --reseda-green: #577559;
+  --hover-primary: #007792;
+  --hover-red: #B71515;
+  --black: #000000;
+  --dark: #232830;
+  --text-input-field: #F7F7F7;
+  --sm: 14px;
+  --md: 16px;
+  --lg: 18px;
+  --lgt: 28px
+}
+
+*{
+  box-sizing: border-box;
+  font-family: 'Lato', sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+
+/* ------------------------------------[Buttons]------------------------------------ */
+
+.primary-button{
+  background-color: var(--primary);
+  border-radius: 8px;
+  border: none;
+  color: var(--white);
+  width: 100%;
+  cursor: pointer;
+  font-size: var(--md);
+  font-weight: bold;
+  height: 50px;
+}
+
+.primary-button:hover{
+  background-color: var(--hover-primary);
+}
+
+.secondary-button{
+  background-color: var(--white);
+  border-radius: 8px;
+  border: 1px solid var(--primary);
+  color: var(--primary);
+  width: 100%;
+  cursor: pointer;
+  font-size: var(--md);
+  font-weight: bold;
+  height: 50px;
+}
+
+.secondary-button:hover{
+  background-color: var(--primary);
+  color: var(--white);
+}
+
+button.button-group {
+  background-color: var(--primary);
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer;
+  font-size: var(--md);
+}
+
+button.button-group:hover {
+  background-color: var(--hover-primary);
+}
+
+button.button-group:active {
+  background-color: var(--hover-primary);
+  --bs-btn-active-bg: var(--primary);
+}
+
+button.button-group.left {
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
+
+button.button-group.right {
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+.button-group.center {
+  background-color: var(--text-input-field)  !important;
+  color: var(--dark);
+  padding: 10px 15px;
+  --bs-badge-border-radius: none;
+  border-top: 1px solid #00a1c6;
+  border-bottom: 1px solid #00a1c6;
+  font-size: var(--md);
+}
+
+
+/* -------------------------------------[Icons]------------------------------------- */
+
+.material-icons.white { color: var(--white); }
+.material-icons.primary { color: var(--primary); }
+.material-icons.secondary { color: var(--secondary); }
+.material-icons.red { color: var(--red); }
+.material-icons.reseda-green { color: var(--reseda-green); }
+
+
+/* --------------------------------------[Waves]------------------------------------- */
+
+.path-0{
+  animation:pathAnim-0 12s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+@keyframes pathAnim-0{
+  0%{
+    d: path("M 0,600 C 0,600 0,150 0,150 C 95.38755980861242,166.92822966507177 190.77511961722485,183.85645933014354 288,193 C 385.22488038277515,202.14354066985646 484.2870813397129,203.50239234449762 581,190 C 677.7129186602871,176.49760765550238 772.0765550239234,148.13397129186603 877,132 C 981.9234449760766,115.86602870813398 1097.4066985645934,111.96172248803829 1193,117 C 1288.5933014354066,122.03827751196171 1364.2966507177034,136.01913875598086 1440,150 C 1440,150 1440,600 1440,600 Z");
+  }
+  25%{
+    d: path("M 0,600 C 0,600 0,150 0,150 C 110.35406698564591,173.21531100478467 220.70813397129183,196.43062200956936 327,203 C 433.29186602870817,209.56937799043064 535.5215311004786,199.4928229665072 617,191 C 698.4784688995214,182.5071770334928 759.2057416267942,175.5980861244019 835,173 C 910.7942583732058,170.4019138755981 1001.6555023923445,172.1148325358852 1105,169 C 1208.3444976076555,165.8851674641148 1324.1722488038276,157.94258373205741 1440,150 C 1440,150 1440,600 1440,600 Z");
+  }
+  50%{
+    d: path("M 0,600 C 0,600 0,150 0,150 C 86.80382775119617,163.30143540669857 173.60765550239233,176.60287081339715 265,162 C 356.39234449760767,147.39712918660285 452.37320574162675,104.88995215311004 561,104 C 669.6267942583733,103.11004784688996 790.8995215311005,143.8373205741627 887,158 C 983.1004784688995,172.1626794258373 1054.0287081339713,159.76076555023923 1142,154 C 1229.9712918660287,148.23923444976077 1334.9856459330144,149.1196172248804 1440,150 C 1440,150 1440,600 1440,600 Z");
+  }
+  75%{
+    d: path("M 0,600 C 0,600 0,150 0,150 C 99.89473684210523,126.66028708133972 199.78947368421046,103.32057416267943 305,100 C 410.21052631578954,96.67942583732057 520.7368421052632,113.37799043062199 618,117 C 715.2631578947368,120.62200956937801 799.2631578947368,111.16746411483254 881,107 C 962.7368421052632,102.83253588516746 1042.2105263157896,103.95215311004785 1135,112 C 1227.7894736842104,120.04784688995215 1333.8947368421052,135.02392344497608 1440,150 C 1440,150 1440,600 1440,600 Z");
+  }
+  100%{
+    d: path("M 0,600 C 0,600 0,150 0,150 C 95.38755980861242,166.92822966507177 190.77511961722485,183.85645933014354 288,193 C 385.22488038277515,202.14354066985646 484.2870813397129,203.50239234449762 581,190 C 677.7129186602871,176.49760765550238 772.0765550239234,148.13397129186603 877,132 C 981.9234449760766,115.86602870813398 1097.4066985645934,111.96172248803829 1193,117 C 1288.5933014354066,122.03827751196171 1364.2966507177034,136.01913875598086 1440,150 C 1440,150 1440,600 1440,600 Z");
+  }
+}
+
+.path-1{
+  animation:pathAnim-1 12s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+@keyframes pathAnim-1{
+  0%{
+    d: path("M 0,600 C 0,600 0,300 0,300 C 87.59808612440187,282.01913875598086 175.19617224880375,264.0382775119617 275,275 C 374.80382775119625,285.9617224880383 486.8133971291867,325.86602870813397 595,324 C 703.1866028708133,322.13397129186603 807.5502392344498,278.4976076555024 896,282 C 984.4497607655502,285.5023923444976 1056.9856459330144,336.14354066985646 1145,347 C 1233.0143540669856,357.85645933014354 1336.5071770334928,328.92822966507174 1440,300 C 1440,300 1440,600 1440,600 Z");
+  }
+  25%{
+    d: path("M 0,600 C 0,600 0,300 0,300 C 76.44019138755979,298.1626794258373 152.88038277511959,296.32535885167465 253,285 C 353.1196172248804,273.67464114832535 476.91866028708125,252.86124401913878 592,256 C 707.0813397129187,259.1387559808612 813.4449760765551,286.2296650717703 901,307 C 988.5550239234449,327.7703349282297 1057.3014354066986,342.22009569377997 1144,340 C 1230.6985645933014,337.77990430622003 1335.3492822966507,318.88995215311 1440,300 C 1440,300 1440,600 1440,600 Z");
+  }
+  50%{
+    d: path("M 0,600 C 0,600 0,300 0,300 C 78.92822966507177,265.2918660287081 157.85645933014354,230.58373205741628 267,247 C 376.14354066985646,263.4162679425837 515.5023923444976,330.95693779904303 614,349 C 712.4976076555024,367.04306220095697 770.133971291866,335.5885167464115 865,315 C 959.866028708134,294.4114832535885 1091.9617224880383,284.68899521531097 1194,284 C 1296.0382775119617,283.31100478468903 1368.0191387559807,291.6555023923445 1440,300 C 1440,300 1440,600 1440,600 Z");
+  }
+  75%{
+    d: path("M 0,600 C 0,600 0,300 0,300 C 110.19138755980862,307.22488038277515 220.38277511961724,314.44976076555025 320,312 C 419.61722488038276,309.55023923444975 508.6602870813397,297.4258373205742 582,284 C 655.3397129186603,270.5741626794258 712.976076555024,255.8468899521531 817,256 C 921.023923444976,256.1531100478469 1071.4354066985647,271.18660287081343 1183,281 C 1294.5645933014353,290.81339712918657 1367.2822966507176,295.4066985645933 1440,300 C 1440,300 1440,600 1440,600 Z");
+  }
+  100%{
+    d: path("M 0,600 C 0,600 0,300 0,300 C 87.59808612440187,282.01913875598086 175.19617224880375,264.0382775119617 275,275 C 374.80382775119625,285.9617224880383 486.8133971291867,325.86602870813397 595,324 C 703.1866028708133,322.13397129186603 807.5502392344498,278.4976076555024 896,282 C 984.4497607655502,285.5023923444976 1056.9856459330144,336.14354066985646 1145,347 C 1233.0143540669856,357.85645933014354 1336.5071770334928,328.92822966507174 1440,300 C 1440,300 1440,600 1440,600 Z");
+  }
+}
+
+.path-2{
+  animation:pathAnim-2 12s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+@keyframes pathAnim-2{
+  0%{
+    d: path("M 0,600 C 0,600 0,450 0,450 C 91.15789473684208,429.5980861244019 182.31578947368416,409.19617224880386 293,418 C 403.68421052631584,426.80382775119614 533.8947368421053,464.8133971291866 620,476 C 706.1052631578947,487.1866028708134 748.1052631578947,471.55023923444975 839,474 C 929.8947368421053,476.44976076555025 1069.6842105263156,496.9856459330143 1178,496 C 1286.3157894736844,495.0143540669857 1363.157894736842,472.50717703349284 1440,450 C 1440,450 1440,600 1440,600 Z");
+  }
+  25%{
+    d: path("M 0,600 C 0,600 0,450 0,450 C 129.88516746411483,430.8995215311005 259.77033492822966,411.79904306220095 341,403 C 422.22966507177034,394.20095693779905 454.8038277511962,395.70334928229664 527,403 C 599.1961722488038,410.29665071770336 711.0143540669857,423.38755980861237 830,431 C 948.9856459330143,438.61244019138763 1075.1387559808613,440.7464114832536 1178,443 C 1280.8612440191387,445.2535885167464 1360.4306220095693,447.6267942583732 1440,450 C 1440,450 1440,600 1440,600 Z");
+  }
+  50%{
+    d: path("M 0,600 C 0,600 0,450 0,450 C 124.88038277511961,471.39712918660285 249.76076555023923,492.7942583732057 332,476 C 414.2392344497608,459.2057416267943 453.8373205741626,404.22009569377985 531,400 C 608.1626794258374,395.77990430622015 722.88995215311,442.3253588516747 826,445 C 929.11004784689,447.6746411483253 1020.6028708133972,406.47846889952154 1121,400 C 1221.3971291866028,393.52153110047846 1330.6985645933014,421.7607655502392 1440,450 C 1440,450 1440,600 1440,600 Z");
+  }
+  75%{
+    d: path("M 0,600 C 0,600 0,450 0,450 C 99.88516746411483,422.75598086124404 199.77033492822966,395.5119617224881 287,408 C 374.22966507177034,420.4880382775119 448.8038277511962,472.7081339712918 535,472 C 621.1961722488038,471.2918660287082 719.0143540669857,417.6555023923446 831,405 C 942.9856459330143,392.3444976076554 1069.138755980861,420.6698564593301 1173,435 C 1276.861244019139,449.3301435406699 1358.4306220095696,449.665071770335 1440,450 C 1440,450 1440,600 1440,600 Z");
+  }
+  100%{
+    d: path("M 0,600 C 0,600 0,450 0,450 C 91.15789473684208,429.5980861244019 182.31578947368416,409.19617224880386 293,418 C 403.68421052631584,426.80382775119614 533.8947368421053,464.8133971291866 620,476 C 706.1052631578947,487.1866028708134 748.1052631578947,471.55023923444975 839,474 C 929.8947368421053,476.44976076555025 1069.6842105263156,496.9856459330143 1178,496 C 1286.3157894736844,495.0143540669857 1363.157894736842,472.50717703349284 1440,450 C 1440,450 1440,600 1440,600 Z");
+  }
+}
+
+.waves{
+  margin-top: 80px;
+}
+
+.waves-container{
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;  
+}
+
+.person-image-waves{
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  top: 130px;
+}
+
+.person-image-waves div:last-child{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.clip-svg {
+  width: 400px;
+  height: 266.95px;
+  margin: 50px;
+  clip-path: url("#blob1");
+}
+
+.waves-title{
+  color: var(--white);
+  font-size: 8vw;
+  font-weight: 900;
+  text-shadow: 5px 2px 20px var(--dark);
+  margin-right: 50px;
+}
+
+
+/* -------------------------------------[main]-------------------------------------- */
+
 .main-container{
   max-width: 1500px; 
   margin: auto;
   width: 100%;
 }
 
-/* ---------------------------[Layout]------------------------------ */
+
+/* ------------------------------------[Layout]------------------------------------- */
 
 .navbar-layout{
   background-color: #00a1c6;
@@ -31,40 +258,208 @@
 }
 
 
-/* -------------------------[User - productCard]------------------------- */
+/* -------------------------------------[Navbar]-------------------------------------- */
+
+.navbar-app{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  height: 80px;
+  border-bottom: 2px solid var(--text-input-field);
+  background-color: var(--white);
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 2;
+}
+
+.navbar-app .navbar-left,
+.navbar-app .navbar-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar-app .link-class{
+  text-decoration: none;
+}
+
+.navbar-app .navbar-left div:first-child{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbar-app .navbar-left ul:nth-child(2){
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbar-app .navbar-left ul{
+  margin: 0;
+  padding-left: 0;
+}
+
+.navbar-app .navbar-left ul li{
+  align-items: center;
+  list-style: none;
+}
+
+.navbar-app .navbar-left ul li:first-child{
+  margin-right: 10px;
+}
+
+.navbar-app .navbar-left ul li p{
+  text-decoration: none;
+  color: var(--dark);
+  padding: 8px;
+  border: 1px solid var(--white);
+  border-radius: 10px;
+  margin: 0;
+}
+
+.navbar-app .navbar-left ul li p:hover{
+  border: 1px solid var(--hover-primary);
+  color: var(--hover-primary);
+}
+
+.navbar-app .navbar-left div > img{
+  height: 55px;
+  margin-right: 10px;
+  margin-left: 30px;
+}
+
+.navbar-app div > p{
+  font-size: var(--lgt);
+  font-weight: bold;
+  margin: 0;
+  margin-right: 50px;
+  color: var(--dark);
+}
+
+.navbar-app .navbar-right figure{
+  display: flex;
+  position: relative;
+  margin-right: 30px;
+  margin-bottom: 0;
+  cursor: pointer;
+  background-color: transparent;
+  transform: scale(1, 1);
+  transition: transform 0.3s ease;
+  color: var(--dark);
+}
+
+.navbar-app .navbar-right figure:hover{
+  transform: scale(1.1,1.1);
+  color: var(--black);
+}
+
+.navbar-app .navbar-right figure div{
+  width: 16px;
+  height: 16px;
+  background-color: var(--primary);
+  border-radius: 50%;
+  font-size: var(--sm);
+  font-weight: bold;
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+/* -------------------------------------[Search]-------------------------------------- */
+
+.containerSearch input[type="text"] {
+  width: 40vw;
+  padding: 10px;
+  margin: 8px;
+  border: 2.5px solid #ddd;
+  border-radius: 15px;
+  font-size: 16px;
+  background-color:rgb(250, 250, 250);
+  outline-color: #00a2c641;
+}
+
+.containerSearch{
+  display: flex;
+  justify-content: center;
+  align-items: end;  
+}
+
+.not-found-text{
+  font-size: var(--lg);
+  font-weight: 700;
+  padding: 10px;
+  width: 60%;
+  margin: 0;
+  border: 2px solid var(--primary);
+  border-radius: 15px;
+  color: var(--primary);
+  display: flex;
+  justify-content: center;
+}
+
+/* ---------------------------------[User - productCard]------------------------------ */
 .products-container{
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 30px;
-  margin-top: 20px;
-  margin-bottom: 80px;
-  width: 100%;
+  align-items: center;
+  gap: 20px;
+  width: auto;
+  margin: 23px;
 }
 
 .product-card{
   cursor: pointer;
   transform: scale(1, 1);
   transition: transform 0.5s ease;
+  width: 280px;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  box-shadow: 2px 3px 2px rgba(0, 0, 0, 0.18);
+  background-color: #fff;
+  overflow: hidden;
 }
 
 .product-card:hover{
   transform: scale(1.03,1.03);
 }
 
+.product-card > img {
+  width: inherit;
+  height: 280px;
+  border-radius: 20px;
+  object-fit: cover;
+}
+
 .product-name{
   font-weight: 500;
+  font-size: var(--lg);
+  margin-bottom: 0;
 }
 
 .product-price{
   font-weight: 800;
-  margin-top: 6px;
   color: black;
 }
 
 .card-content-container {
-  height: 170px;
-  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 180px;
+  overflow: visible;
+  position: relative;
+}
+
+.cart-actions {
+  position: absolute;
+  bottom: 0;
 }
 
 
@@ -86,7 +481,7 @@
 }
 
 
-/* -------------------------[User - Cart]------------------------- */
+/* ----------------------------[User - Cart]---------------------------- */
 .container_table {
   display: flex;
   justify-content: center;
@@ -146,4 +541,146 @@ b{
 .tabla_carro{
   text-align: center;
   width: 85% !important;
+}
+
+
+/* ---------------------------------------[Mobile]------------------------------------ */
+
+@media (max-width: 1366px){
+  /* ------------------------------[Waves]------------------------------- */
+  .person-image-waves{
+    top: 100px;
+  }
+  .waves-title{
+    font-size: 7vw;
+  }
+}
+
+@media (max-width: 1135px){
+  /* ------------------------------[Waves]------------------------------- */
+  .person-image-waves{
+    top: 90px;
+  }
+  .clip-svg {
+    width: 300px;
+    height: 200.2125px;
+    margin: 40px;
+  }
+  .waves-title{
+    font-size: 6vw;
+    margin-right: 40px;
+  }
+}
+
+@media (max-width: 900px){
+  /* -----------------------------[Waves]------------------------------- */
+  .person-image-waves{
+    top: 80px;
+  }
+  .clip-svg {
+    width: 250px;
+    height: 166.84px;
+  }
+  .waves-title{
+    font-size: 6vw;
+  }
+  /* ----------------------------[Search]------------------------------- */
+  .containerSearch input[type="text"] {
+    width: 50vw;
+  }
+}
+
+@media (max-width: 740px){
+  /* ------------------------------[Waves]------------------------------- */
+  .person-image-waves{
+    top: 60px;
+  }
+  .clip-svg {
+    width: 250px;
+    height: 166.84px;
+    margin: 30px;
+  }
+  .waves-title{
+    font-size: 6vw;
+    margin-right: 30px;
+  }
+}
+
+@media (max-width: 640px){
+  /* ---------------------------[Navbar]------------------------------ */
+  .navbar-app{
+    height: 60px;
+  }
+  .navbar-app .navbar-left ul li:first-child{
+    margin-right: 0px;
+  }
+  .navbar-app .navbar-left div > img{
+    height: 40px;
+    margin-right: 8px;
+    margin-left: 10px;
+  }
+  .navbar-app div > p{
+    font-size: var(--lg);
+    margin-right: 10px;
+  }
+  .navbar-app .navbar-right figure{
+    margin-right: 10px;
+  }
+  /* -----------------------------[Waves]-------------------------------- */
+  .waves{
+    margin-top: 60px;
+  }
+  .person-image-waves{
+    top: 40px;
+  }
+  .clip-svg {
+    width: 200px;
+    height: 132.8px;
+  }
+  .waves-title{
+    font-size: 6vw;
+  }
+  /* ----------------------------[Search]------------------------------- */
+  .containerSearch input[type="text"] {
+    width: 70vw;
+  }
+  .search-section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .btn-group {
+    justify-content: center;
+  }
+  .not-found-text{
+    font-size: var(--md);
+    width: 80%;
+  }
+  /* ------------------------[User - productCard]------------------------ */
+  .products-container{
+    gap: 10px;
+    margin: 20px;
+  }
+  .product-card{
+    width:220px;
+  }
+  .product-card > img {
+    height: 220px;
+  }
+}
+
+@media (max-width: 550px){
+  /* ------------------------------[Waves]------------------------------- */
+  .person-image-waves{
+    top: 45px;
+  }
+  .clip-svg {
+    width: 150px;
+    height: 99.6px;
+    margin: 25px;
+  }
+  .waves-title{
+    font-size: 5vw;
+    margin-right: 25px;
+  }
 }

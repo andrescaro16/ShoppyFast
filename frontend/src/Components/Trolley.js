@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
-import { Link } from "react-router-dom";
 import { Table, Button, Row, Col, Badge, Alert, ButtonGroup } from 'reactstrap';
-import { BsFillCartFill, BsFillCartXFill, BsTrash } from "react-icons/bs";
+import { BsTrash } from "react-icons/bs";
 
 import { useStateContext } from '../Context/StateContext';
 

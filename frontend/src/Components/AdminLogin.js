@@ -3,15 +3,35 @@ import "../Assets/CSS/AdminLogin.css";
 import logo from "../Assets/Images/ShoppyfastLogo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
-import { NavLink } from "react-router-dom";
+import { useStateContext } from "../Context/StateContext";
+import { sendAdminInfo } from "../Services/productInfoServices";
+import { useNavigate } from "react-router-dom";
 
 const AdminLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (e) => {
+  const { setTokenId } = useStateContext();
+
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(`Email: ${email} | Password: ${password}`);
+    const formData = {
+      email: email,
+      password: password
+    };
+
+    let adminValidation = await sendAdminInfo(formData);
+    setTokenId(adminValidation.token);
+
+    if (adminValidation.concluded === true) {
+      navigate('/administrador/home');
+    } else {
+      const errorMessage = document.getElementById('error-message');
+      errorMessage.innerText = 'La cuenta del administrador no existe'; // Asignar contenido del mensaje de error
+      errorMessage.style.display = 'block'; // Mostrar el mensaje de error en pantalla
+    }
   };
 
   return (
@@ -51,15 +71,11 @@ const AdminLogin = () => {
             Iniciar sesión
           </button>
         </form>
-       
-         <div className="register-link">
-        ¿No tienes una cuenta?  
-        <NavLink to="/administrador/registro" exact><a href="#">Regístrate ahora</a></NavLink>
-         </div>
+        <div id="error-message" style={{ display: 'none', color: 'red', marginTop: '10px' }}>
+          La cuenta del administrador no ha sido concluida
+        </div>
       </div>
-      
     </div>
-    
   );
 };
 

@@ -44,5 +44,6 @@ input[type="password"] {
 .btn-block {
   display: block;
   width: 50%;
-  margin: auto;
+  margin-left: 55px;
+  margin-right: 0px;
 }

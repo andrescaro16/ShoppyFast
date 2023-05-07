@@ -1,22 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './Assets/CSS/index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Layout from './Components/Layout';
 import { Toaster } from "react-hot-toast"
 
 import { StateContext } from './Context/StateContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <StateContext>
-    <Layout>
-      <Toaster />
-      <App />
-    </Layout>
-  </StateContext>
+    <StateContext>
+        <Toaster />
+        <App />
+    </StateContext>
 );
 
 // If you want to start measuring performance in your app, pass a function

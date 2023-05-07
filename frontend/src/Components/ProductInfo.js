@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { getProduct } from '../Services/productInfoServices';
-import { Spinner, UncontrolledAlert, Button } from 'reactstrap';
+import { Spinner, UncontrolledAlert } from 'reactstrap';
 import { FaCat } from "react-icons/fa";
 import { TbError404 } from "react-icons/tb";
 import { useParams } from 'react-router-dom';
-import '../dbTemp/products'
 import '../Assets/CSS/Global.css'
 import RecipeReviewCard from  './ProductCard';
 
-import { useStateContext } from "../Context/StateContext";
 
 
 const ProductInfo = () => {
