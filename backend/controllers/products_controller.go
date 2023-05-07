@@ -57,7 +57,7 @@ func GetProductById(c *fiber.Ctx, db *mongo.Database) error {
 	return c.JSON(products)
 }
 
-func UpdateProductById(c *fiber.Ctx, db *mongo.Database, filter primitive.M, update primitive.M) error {
+func UpdateProductByIdHelper(c *fiber.Ctx, db *mongo.Database, filter primitive.M, update primitive.M) error {
 	// Obtener una referencia a la colección de productos
 	collection := db.Collection("products")
 
@@ -94,13 +94,55 @@ func ReduceQuantityStockById(c *fiber.Ctx, db *mongo.Database, id int, quantity 
 
 	newProductQuantity := product.Cantidad - quantity
 	update := bson.M{"$set": bson.M{"cantidad": newProductQuantity}}
-	err_updating_product := UpdateProductById(c, db, filter, update)
+	err_updating_product := UpdateProductByIdHelper(c, db, filter, update)
 	if err_updating_product != nil {
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": err_updating_product, "concluded": false})
 	}
 
 	return c.Status(200).JSON(fiber.Map{"message": "Product reduced stock complete", "concluded": true})
 
+}
+
+func UpdateProductById(c *fiber.Ctx, db *mongo.Database) error {
+	//Obterner el ID del producto desde los parámetros de la solicitud
+	id, err := strconv.Atoi(c.Params("productId"))
+	if err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": err.Error(), "concluded": false})
+	}
+
+	//Busca el producto por su ID
+	filter := bson.M{"id": id}
+
+	var product models.Product
+
+	if err := c.BodyParser(&product); err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": err.Error(), "concluded": false})
+	}
+
+	update := bson.M{"$set": product}
+
+	return UpdateProductByIdHelper(c, db, filter, update)
+
+}
+
+func AddNewProduct(c *fiber.Ctx, db *mongo.Database) error {
+	// Obtener una referencia a la colección de productos
+	collection := db.Collection("products")
+
+	// Decodificar el body de la solicitud en un Product
+	var product models.Product
+	if err := c.BodyParser(&product); err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": err.Error(), "concluded": false})
+	}
+
+	// Insertar el producto en la base de datos
+	result, err := collection.InsertOne(context.Background(), product)
+	if err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": err.Error(), "concluded": false})
+	}
+
+	// Retornar el ID del producto recién insertado
+	return c.Status(201).JSON(fiber.Map{"message": "Product created successfully", "concluded": true, "productId": result.InsertedID})
 }
 
 func GetProductAll(c *fiber.Ctx, db *mongo.Database) error {
