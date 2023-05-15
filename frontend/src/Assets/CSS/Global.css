@@ -25,7 +25,21 @@
 body {
   margin: 0;
   padding: 0;
+  min-height: 100vh;
+  background: linear-gradient(45deg, #ffffff 0%, #e8f9ff 20%, #dcf9ff 40%, #e2faff 60%);
+  background-size: 200% 200%;
+  animation: animate 5s linear infinite alternate;
 }
+
+@keyframes animate{
+  from {
+    background-position: 0 0;
+  }
+  to{
+    background-position: 100% 100%;
+  }
+}
+
 
 
 /* ------------------------------------[Buttons]------------------------------------ */

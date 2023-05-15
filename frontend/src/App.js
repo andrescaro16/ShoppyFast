@@ -17,11 +17,15 @@ import AdminLogin from './Components/AdminLogin';
 import Analytics from './Components/Analytics';
 import Qr from './Components/Qr';
 import AdminHome from './Components/AdminHome';
+import Cupon from './Components/Cupon';
+import ParticleBackground from './Components/ParticleBackground';
 
 import PrivateRoutes from './utils/PrivateRoutes';
 
 //Import context
 import { useStateContext } from './Context/StateContext';
+
+
 
 
 
@@ -59,9 +63,10 @@ function App() {
   },[carrito]);
 
   return (
+  
     <div>
+      <ParticleBackground/>
       <BrowserRouter>
-
         <Layout>
           <Routes>
             <Route path='/' element={ <div> <Search /> <br/> <AllProducts /> </div> }/>
@@ -77,6 +82,7 @@ function App() {
             <Route element={<PrivateRoutes />}>
                 <Route path='/administrador/home' element={<AdminHome />} />
                 <Route path='/administrador/home/analitica' element={<Analytics/>} /> 
+                <Route path='/administrador/home/cupon' element={<Cupon/>} /> 
             </Route>
           </Routes>
         </Layout>

@@ -15,8 +15,14 @@ const AdminHome = () => {
     navigate("/administrador/home/analitica");
   };
 
+  const handleCuponClick = () => {
+    navigate("/administrador/home/cupon");
+  };
+
   return (
+    
     <div className="admin-home-container">
+
       <h1 className="admin-home-title">Bienvenido al Panel de Administración</h1>
       <div className="admin-home-buttons">
         <button className="admin-home-button" onClick={handleInventarioClick}>
@@ -24,9 +30,14 @@ const AdminHome = () => {
         </button>
         <button className="admin-home-button" onClick={handleReportesClick}>
           Reportes
+        
+        </button>
+        <button className="admin-home-button" onClick={handleCuponClick}>
+          Crear cupon
         </button>
       </div>
     </div>
+
   );
 };
 
