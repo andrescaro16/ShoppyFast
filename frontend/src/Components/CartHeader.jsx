@@ -3,11 +3,18 @@ import { Link } from "react-router-dom";
 import { Button, ButtonGroup } from 'reactstrap';
 import { BsFillCartFill, BsFillCartXFill } from "react-icons/bs";
 import { useStateContext } from "../Context/StateContext";
+import { useNavigate } from "react-router-dom";
 
 
 function CartHeader() {
 
     const { carrito, setCarrito, subTotal, vaciarCarrito } = useStateContext();
+    const navigate = useNavigate();
+
+    const handleCuponClick = () => {
+        navigate("/cupon");
+      };
+
 
   return (
     <div>
@@ -31,7 +38,7 @@ function CartHeader() {
 
             <ButtonGroup>
                 <div>
-                    <Button className="primary-button" color="primary" >Cupón de descuento</Button>
+                    <Button className="primary-button" color="primary" onClick={handleCuponClick}>Cupón de descuento</Button>
                 </div>
 
                 <Link to="/pago/transaccion" >
