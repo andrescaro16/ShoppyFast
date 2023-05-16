@@ -16,7 +16,7 @@ function CartHeader() {
 
         <div className='encabezado_inventario'>
             <Link to="/">
-                <Button color="danger">Volver</Button>
+                <Button className="primary-button" color="danger">Volver</Button>
             </Link>
         </div>
 
@@ -31,17 +31,17 @@ function CartHeader() {
 
             <ButtonGroup>
                 <div>
-                    <Button color="primary" >Cupón de descuento</Button>
+                    <Button className="primary-button" color="primary" >Cupón de descuento</Button>
                 </div>
 
                 <Link to="/pago/transaccion" >
-                    <Button color="primary">Realizar pago</Button>
+                    <Button className="primary-button" color="primary">Realizar pago</Button>
                 </Link>
             </ButtonGroup>
         </div>
 
         <div className='encabezado_inventario' >
-            <Button color="danger" size="sm" onClick={() => setCarrito(vaciarCarrito(carrito))}> <BsFillCartXFill /> Vaciar Carrito</Button>
+            <Button className="primary-button" color="danger" size="sm" onClick={() => setCarrito(vaciarCarrito(carrito))}> <BsFillCartXFill /> Vaciar Carrito</Button>
         </div>
     </div>
   )

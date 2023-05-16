@@ -26,7 +26,7 @@ body {
   margin: 0;
   padding: 0;
   min-height: 100vh;
-  background: linear-gradient(45deg, #ffffff 0%, #e8f9ff 20%, #dcf9ff 40%, #e2faff 60%);
+  background: linear-gradient(45deg, #ffffff 0%, #f0fbff 20%, #e8fbff 40%, #e6fbff 60%);
   background-size: 200% 200%;
   animation: animate 5s linear infinite alternate;
 }
@@ -44,21 +44,35 @@ body {
 
 /* ------------------------------------[Buttons]------------------------------------ */
 
-.primary-button{
+.primary-button {
+  padding: 10px 20px;
   background-color: var(--primary);
-  border-radius: 8px;
+  color:  var(--white);
   border: none;
-  color: var(--white);
-  width: 100%;
-  cursor: pointer;
+  border-radius: 10px;
   font-size: var(--md);
-  font-weight: bold;
-  height: 50px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  margin-left:20px;
 }
 
-.primary-button:hover{
-  background-color: var(--hover-primary);
+.primary-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.3);
+  transform: skewX(-20deg);
+  transition: left 0.4s;
 }
+
+.primary-button:hover::before{
+  left:100%;
+}
+
 
 .secondary-button{
   background-color: var(--white);
@@ -110,8 +124,8 @@ button.button-group.right {
   color: var(--dark);
   padding: 10px 15px;
   --bs-badge-border-radius: none;
-  border-top: 1px solid #00a1c6;
-  border-bottom: 1px solid #00a1c6;
+  border-top: 1px solid #000000;
+  border-bottom: 1px solid #000000;
   font-size: var(--md);
 }
 
@@ -443,6 +457,7 @@ button.button-group.right {
 
 .product-card:hover{
   transform: scale(1.03,1.03);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .product-card > img {

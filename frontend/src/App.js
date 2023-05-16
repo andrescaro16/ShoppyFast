@@ -18,12 +18,13 @@ import Analytics from './Components/Analytics';
 import Qr from './Components/Qr';
 import AdminHome from './Components/AdminHome';
 import Cupon from './Components/Cupon';
-import ParticleBackground from './Components/ParticleBackground';
+import Background from './Components/Background';
 
 import PrivateRoutes from './utils/PrivateRoutes';
 
 //Import context
 import { useStateContext } from './Context/StateContext';
+import Particles from 'react-particles';
 
 
 
@@ -65,7 +66,7 @@ function App() {
   return (
   
     <div>
-      <ParticleBackground/>
+      <Background/>
       <BrowserRouter>
         <Layout>
           <Routes>
@@ -86,7 +87,6 @@ function App() {
             </Route>
           </Routes>
         </Layout>
-
       </BrowserRouter>
     </div>
   );

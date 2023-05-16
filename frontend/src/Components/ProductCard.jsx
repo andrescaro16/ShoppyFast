@@ -53,9 +53,9 @@ export default function RecipeReviewCard({ product }) {
                         <AddShoppingCartRoundedIcon className='material-icons red' sx={{ fontSize: 38 }} onClick={() => setCarrito(agregarProducto(product, quantity, carrito))}/>
                     </IconButton>
                     <ButtonGroup>
-                        <Button className='button-group left' onClick={() => setQuantity(quantity > 1 ? quantity - 1 : 1)}>-</Button>
-                        <Badge className='button-group center'>{quantity}</Badge>
-                        <Button className='button-group right' onClick={() => setQuantity((quantity + 1) <= product.cantidad ? quantity + 1 : quantity)}>+</Button>
+                        <Button className="primary-button" color="primary" onClick={() => setQuantity(quantity > 1 ? quantity - 1 : 1)}>-</Button>
+                        <Badge className='button-group center' color="primary">{quantity}</Badge>
+                        <Button  className="primary-button" color="primary" onClick={() => setQuantity((quantity + 1) <= product.cantidad ? quantity + 1 : quantity)}>+</Button>
                     </ButtonGroup>
                     <ExpandMore expand={expanded} onClick={handleExpandClick} aria-expanded={expanded} aria-label="show more">
                         <ExpandMoreIcon />
