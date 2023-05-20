@@ -64,6 +64,9 @@ func main() {
 	admin := api.Group("/admin")
 	routes.LoadAdminRoutes(admin, db)
 
+	coupons := api.Group("/coupons")
+	routes.LoadCouponRoutes(coupons, db)
+
 	log.Println("Server on port 3001")
 	app.Listen(":" + port)
 	log.Println("Server on port 3001")
