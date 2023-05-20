@@ -65,7 +65,7 @@ const UserForm = () => {
           required={emailChecked}
         />
       </div>
-      <button type="submit" class="sacarFactura" disabled={!formIncomplete}>
+      <button className="primary-button" type="submit" disabled={!formIncomplete}>
          Sacar factura
       </button>
     </form>

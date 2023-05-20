@@ -76,7 +76,7 @@ function Invoice() {
                 </Container>
             </section>
             <Link to="/" style={{ display: "flex", marginTop: '40px', marginBottom: '40px', width: "auto", justifyContent: "center", textDecoration: "none" }}>
-                    <Button color="danger" style={{ textDecoration: 'none' }} > Regresar al home </Button>
+                    <Button className="primary-button" color="danger" style={{ textDecoration: 'none' }} > Regresar al home </Button>
             </Link>
         </div>
     )

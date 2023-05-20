@@ -60,13 +60,13 @@ const Trolley = () => {
                                         <Row key={elemento.item.id}>
                                             <ButtonGroup>
                                                 <Col>
-                                                    <Button color="danger" size="sm" onClick={() => setCarrito(agregarProducto(elemento.item, -1, carrito))}>-</Button>
+                                                    <Button className="primary-button" color="danger" size="sm" onClick={() => setCarrito(agregarProducto(elemento.item, -1, carrito))}>-</Button>
                                                 </Col>
                                                 <Col>
                                                     <Badge>{elemento.quantity}</Badge>
                                                 </Col>
                                                 <Col>
-                                                    <Button color="success" size="sm" onClick={() => setCarrito(agregarProducto(elemento.item, 1, carrito))}>+</Button>
+                                                    <Button className="primary-button" color="success" size="sm" onClick={() => setCarrito(agregarProducto(elemento.item, 1, carrito))}>+</Button>
                                                 </Col>
                                             </ButtonGroup>
                                         </Row>
@@ -82,7 +82,7 @@ const Trolley = () => {
                                         <span>{(elemento.item.price * elemento.quantity)}</span>
                                     </td>
                                     <td>
-                                    <Button color="danger" size="sm" onClick={() => setCarrito(removerProducto(elemento.item.id, carrito))}>
+                                    <Button className="primary-button" color="danger" size="sm" onClick={() => setCarrito(removerProducto(elemento.item.id, carrito))}>
                                         <BsTrash />
                                     </Button>
                                     </td>

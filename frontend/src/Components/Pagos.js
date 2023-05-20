@@ -190,14 +190,14 @@ const Pagos = () => {
 
                             {(userValidation.validPurchase) ? 
                                 (<>
-                                <button id="confirmar-pago" type="submit" class="btn btn-primary" style={{ backgroundColor: "#00a1c6", border: 0, margin: "30px"}} onClick={confirmation}>
+                                <button className="primary-button" id="confirmar-pago" type="submit" class="primary-button" style={{ border: 0, margin: "30px"}} onClick={confirmation}>
                                     Confirmar pago
                                 </button>
                                 </>)
                                 :
                                 (<>
                                 <Link to={"/carrito"}>
-                                    <button type="submit" class="btn btn-primary" style={{ backgroundColor: "#00a1c6", border: 0, margin: "40px"}}>
+                                    <button className="primary-button" type="submit" class="btn btn-primary" style={{border: 0, margin: "40px"}}>
                                         Regresar al carrito
                                     </button>
                                 </Link>
