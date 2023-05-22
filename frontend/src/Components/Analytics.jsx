@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getBestSellingProducts } from "../Services/productInfoServices";
+import { getBestSellingProducts, getLessSellingProducts } from "../Services/productInfoServices";
 
 import { useStateContext } from "../Context/StateContext";
 
@@ -9,30 +9,41 @@ function Analytics() {
     const { tokenId } = useStateContext();
     const [date, setDate] = useState(new Date("2022-04-07T13:30:00Z").toISOString());
     const [getBestSelling, setGetBestSelling] = useState("");
-    const [responseData, setResponseData] = useState("");
-    
+    const [responseBest, setResponseBest] = useState("");
+    const [getLessSelling, setGetLessSelling] = useState("");
+    const [responseLess, setResponseLess] = useState("");
 
     useEffect(() => {
-        async function updateGraphic() {
-            console.log(tokenId);
-            const responseData = await getBestSellingProducts({
+        async function updateGraphics() {
+            //getBestSellingProducts
+            const responseBest = await getBestSellingProducts({
                 date_to_analize: date,
             }, tokenId);
-            const tempContainer = document.createElement('div');
-            tempContainer.innerHTML = responseData
-            const containerElement = (tempContainer.querySelector('.container')).innerHTML;            
-            setGetBestSelling(containerElement);
-            setResponseData(responseData)
+            const tempBest = document.createElement('div');
+            tempBest.innerHTML = responseBest
+            const containerElementBest = (tempBest.querySelector('.container')).innerHTML;            
+            setGetBestSelling(containerElementBest);
+            setResponseBest(responseBest)
+
+            //getLessSellingProducts
+            const responseLess = await getLessSellingProducts({
+                date_to_analize: date,
+            }, tokenId);
+            console.log(responseLess.chart);
+            const tempLess = document.createElement('div');
+            tempLess.innerHTML = responseLess.chart
+            const containerElementLess = (tempLess.querySelector('.container')).innerHTML;            
+            setGetLessSelling(containerElementLess);
+            setResponseLess(responseLess.chart);
         };
-        updateGraphic();
+        updateGraphics();
       }, [ date ]);
 
 
     useEffect(() => {
         const div = document.createElement('div');
-        div.innerHTML = responseData;
+        div.innerHTML = responseBest;
         const scripts = div.querySelectorAll('script');
-        console.log(getBestSelling)
         if(scripts.length !== 0){
             const scriptContent = scripts[1].innerHTML;
             eval(scriptContent);
@@ -40,26 +51,40 @@ function Analytics() {
     }, [getBestSelling]);
 
 
+    useEffect(() => {
+        const div = document.createElement('div');
+        div.innerHTML = responseLess;
+        const scripts = div.querySelectorAll('script');
+        if(scripts.length !== 0){
+            const scriptContent = scripts[1].innerHTML;
+            eval(scriptContent);
+        }
+    }, [getLessSelling]);
+
+
     return (
-        <div className="analytics-container analytics-scroll analytics-chart">
-            <br />
-            <br />
-            <section style={{ display: "grid", justifyContent: "center" }}>
-                <div>
-                    <label for="date">Selecciona una fecha:</label>
-                    <input type="date" id="date" value={date} onChange={(event) => {
-                                                                const selectedDate = new Date(event.target.value);
-                                                                const utcDate = selectedDate.toISOString();
-                                                                setDate(utcDate);
-                                                            }}>
-                    </input>
-                </div>
+        <div>
+            <div>
+                <label for="date">Selecciona una fecha:</label>
+                <input type="date" id="date" value={date} onChange={(event) => {
+                                                            const selectedDate = new Date(event.target.value);
+                                                            const utcDate = selectedDate.toISOString();
+                                                            setDate(utcDate);
+                                                        }}>
+                </input>
+            </div>
+            <div className="analytics-container analytics-scroll">
                 <br />
                 <br />
-                <div>
-                    <div dangerouslySetInnerHTML={{ __html: getBestSelling }} />
-                </div>
-            </section>
+                <section style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+                    <br />
+                    <br />
+                    <div>
+                        <div dangerouslySetInnerHTML={{ __html: getBestSelling }} />
+                        <div dangerouslySetInnerHTML={{ __html: getLessSelling }} />
+                    </div>
+                </section>
+            </div>
         </div>
     );
 }

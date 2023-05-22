@@ -20,7 +20,6 @@ import AdminHome from './Components/AdminHome';
 import Cupon from './Components/Cupon';
 import Background from './Components/Background';
 import UserCupon from './Components/UserCupon';
-import Particles from 'react-particles';
 
 import PrivateRoutes from './utils/PrivateRoutes';
 
