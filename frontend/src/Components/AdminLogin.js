@@ -67,9 +67,11 @@ const AdminLogin = () => {
               required
             />
           </div>
-          <button type="submit" className="btn btn-primary btn-block">
-            Iniciar sesión
-          </button>
+          <div style={{ textAlign: 'center' }}>
+            <button type="submit" className="primary-button">
+             Iniciar sesión
+            </button>
+          </div>
         </form>
         <div id="error-message" style={{ display: 'none', color: 'red', marginTop: '10px' }}>
           La cuenta del administrador no ha sido concluida

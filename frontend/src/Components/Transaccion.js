@@ -67,11 +67,10 @@ const Transaccion = () => {
 
                         <p id="message-invalid" style={{textAlign:"center", color:"red", marginTop: "40px", display: "none"}}>Nombre de usuario y/o<br/>contraseña incorrectos</p>
                         
-                        <button type="submit" class="btn btn-primary" disabled={!isLoginFormValid}>
+                        <button type="submit" className="primary-button" disabled={!isLoginFormValid}>
                             Ingresar
                         </button>
                        
-
                     </form>
                 </div>
             </div>

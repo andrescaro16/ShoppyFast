@@ -17,11 +17,18 @@ import AdminLogin from './Components/AdminLogin';
 import Analytics from './Components/Analytics';
 import Qr from './Components/Qr';
 import AdminHome from './Components/AdminHome';
+import Cupon from './Components/Cupon';
+import Background from './Components/Background';
+import UserCupon from './Components/UserCupon';
+import Particles from 'react-particles';
 
 import PrivateRoutes from './utils/PrivateRoutes';
 
 //Import context
 import { useStateContext } from './Context/StateContext';
+
+
+
 
 
 
@@ -59,9 +66,10 @@ function App() {
   },[carrito]);
 
   return (
+  
     <div>
+      <Background/>
       <BrowserRouter>
-
         <Layout>
           <Routes>
             <Route path='/' element={ <div> <Search /> <br/> <AllProducts /> </div> }/>
@@ -73,14 +81,15 @@ function App() {
             <Route path='/factura' element={ <Invoice /> } />
             <Route path='/qr-section' element={< Qr />} />
             <Route path='/administrador' element={<AdminLogin />} />
+            <Route path='/cupon' element={<UserCupon/>} />
 
             <Route element={<PrivateRoutes />}>
                 <Route path='/administrador/home' element={<AdminHome />} />
                 <Route path='/administrador/home/analitica' element={<Analytics/>} /> 
+                <Route path='/administrador/home/cupon' element={<Cupon/>} /> 
             </Route>
           </Routes>
         </Layout>
-
       </BrowserRouter>
     </div>
   );
