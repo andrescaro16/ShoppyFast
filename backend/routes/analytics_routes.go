@@ -11,4 +11,8 @@ func LoadAnalyticsRoutes(app fiber.Router, db *mongo.Database) {
 	app.Post("/getBestSellingProducts", middlewares.VerifyToken(db), func(c *fiber.Ctx) error {
 		return controllers.GetBestSellingProductChart(c, db)
 	})
+
+	app.Post("/getLessSellingProducts", middlewares.VerifyToken(db), func(c *fiber.Ctx) error {
+		return controllers.GetLessSalingProductReport(c, db)
+	})
 }
