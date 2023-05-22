@@ -33,8 +33,8 @@ function AllProducts(){
     return(
         <React.Fragment>
             <div className='products-container'>
-                {productsList.length > 0 ? productsList.map(product =>(
-                    <RecipeReviewCard product={product} />
+                {productsList.length > 0 ? productsList.map((product, i) =>(
+                    <RecipeReviewCard key={i} product={product} />
                 )) : <p className="not-found-text">Producto no encontrado</p>}
             </div>
         </React.Fragment>
