@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getBestSellingProducts, getLessSellingProducts } from "../Services/productInfoServices";
 
-
 import { useStateContext } from "../Context/StateContext";
 
 
@@ -74,6 +73,14 @@ function Analytics() {
 
     return (
         <div>
+             <button className="primary-button" onClick={handleDevolverClick}  style={{
+                position: "fixed",
+                top: 120,
+                left: 60,
+                backgroundColor: "#DB1A1A"
+                }}>
+                Atras
+             </button>
             <div>
                 <label for="date">Selecciona una fecha:</label>
                 <input type="date" id="date" value={date} onChange={(event) => {
