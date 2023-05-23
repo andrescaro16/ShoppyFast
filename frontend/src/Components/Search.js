@@ -53,7 +53,7 @@ const Search = () => {
             <div className="containerSearch">
                 <form onSubmit={handleSubmit}>
                     <FormGroup className="search-section">
-                        <input type="text" id="code" name="search" list="products" placeholder="Escribe el nombre del producto..." autocomplete="off" required onChange={handleInputChange}/>
+                        <input type="text" id="code" name="search" list="products" placeholder="Escribe el nombre del producto..." autoComplete="off" required onChange={handleInputChange}/>
                         <datalist id="products">
                             {(<>{filteredProducts.map((name, index) => (<option key={index} value={name}></option>))}</>)}
                         </datalist>

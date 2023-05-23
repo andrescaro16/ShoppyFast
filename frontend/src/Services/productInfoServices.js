@@ -1,7 +1,6 @@
 import axios from "axios";
 
-let port = "http://localhost:3001";
-
+let port = "http://192.168.1.11:3001";
 
 export async function getProduct(id) {
     try {
@@ -112,9 +111,48 @@ export async function getBestSellingProducts(date, tokenId) {
   }
 }
 
+
+export async function getLessSellingProducts(date, tokenId) {
+  try {
+    const response = await axios.post(
+      `${port}/api/analytics/getLessSellingProducts`,
+      date,
+      {
+        headers: {
+          "x-access-token": tokenId
+        }
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.log(error)
+    return error.response.status;
+  }
+}
+
+
 export async function sendAdminInfo(formData) {
   try {
     const response = await axios.post(`${port}/api/admin/signin`, formData);
+    return response.data;
+  } catch (error) {
+    console.log(error)
+    return error.response.status;
+  }
+}
+
+export async function sendCupon(formCupon, tokenId) {
+  try {
+    console.log(formCupon);
+    const response = await axios.post(
+      `${port}/api/coupons/createCoupon`,
+      formCupon,
+      {
+        headers: {
+          "x-access-token": tokenId
+        }
+      }
+    );
     console.log(response.data);
     return response.data;
   } catch (error) {
@@ -122,3 +160,4 @@ export async function sendAdminInfo(formData) {
     return error.response.status;
   }
 }
+

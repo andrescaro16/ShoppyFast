@@ -20,7 +20,6 @@ const Qr = () => {
 
     const onNewScanResult = (decodedText, decodedResult) => {
         setOpenQuantity(true);
-        console.log("App [result]", decodedResult);
         setDecodedResults(prev => [...prev, decodedResult]);
         setDecodedText(decodedText);
     };
