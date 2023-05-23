@@ -2,7 +2,6 @@ import axios from "axios";
 
 let port = "http://192.168.1.11:3001";
 
-
 export async function getProduct(id) {
     try {
       const response = await axios.get(
@@ -112,10 +111,29 @@ export async function getBestSellingProducts(date, tokenId) {
   }
 }
 
+
+export async function getLessSellingProducts(date, tokenId) {
+  try {
+    const response = await axios.post(
+      `${port}/api/analytics/getLessSellingProducts`,
+      date,
+      {
+        headers: {
+          "x-access-token": tokenId
+        }
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.log(error)
+    return error.response.status;
+  }
+}
+
+
 export async function sendAdminInfo(formData) {
   try {
     const response = await axios.post(`${port}/api/admin/signin`, formData);
-    console.log(response.data);
     return response.data;
   } catch (error) {
     console.log(error)
