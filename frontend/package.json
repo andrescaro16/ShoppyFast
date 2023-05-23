@@ -32,6 +32,7 @@
     "react-tsparticles": "^2.9.3",
     "reactstrap": "^9.1.5",
     "styled-components": "^5.3.9",
+    "sweetalert": "^2.1.2",
     "ts": "^0.2.2",
     "tsparticles": "^2.9.3",
     "web-vitals": "^2.1.4",

@@ -25,7 +25,8 @@ export const StateContext = ({ children }) => {
 	const [searchTerm, setSearchTerm] = useState("");
 	//---------------------------------------------------[Admin]---------------------------------------------------
 	const [tokenId, setTokenId] = useState("");
-
+	const [codigoCupon, setCodigoCupon] = useState("");
+	const [porcentajeDescuento, setPorcentajeDescuento] = useState();
 
 	const agregarProducto = (item, quantity, carrito) => {
 		const existingItem = carrito.find(productCart => productCart.item.id === item.id);
@@ -149,6 +150,10 @@ export const StateContext = ({ children }) => {
 			vaciarCarrito,
 			removerProducto,
 			generateInvoice,
+			codigoCupon,
+			setCodigoCupon,
+			porcentajeDescuento,
+			setPorcentajeDescuento
     	}}
     	>
     	{children}

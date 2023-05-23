@@ -1,6 +1,6 @@
 import axios from "axios";
 
-let port = "http://10.161.59.167:3001";
+let port = "http://192.168.1.11:3001";
 
 
 export async function getProduct(id) {
@@ -122,3 +122,24 @@ export async function sendAdminInfo(formData) {
     return error.response.status;
   }
 }
+
+export async function sendCupon(formCupon, tokenId) {
+  try {
+    console.log(formCupon);
+    const response = await axios.post(
+      `${port}/api/coupons/createCoupon`,
+      formCupon,
+      {
+        headers: {
+          "x-access-token": tokenId
+        }
+      }
+    );
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    console.log(error)
+    return error.response.status;
+  }
+}
+

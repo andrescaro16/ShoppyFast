@@ -1,16 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { getBestSellingProducts } from "../Services/productInfoServices";
+import { useNavigate } from "react-router-dom";
 
 import { useStateContext } from "../Context/StateContext";
 
 
 function Analytics() {
 
+    const navigate = useNavigate();
+
     const { tokenId } = useStateContext();
     const [date, setDate] = useState(new Date("2022-04-07T13:30:00Z").toISOString());
     const [getBestSelling, setGetBestSelling] = useState("");
     const [responseData, setResponseData] = useState("");
     
+    const handleDevolverClick = () => {
+        navigate("/administrador/home");
+      };
 
     useEffect(() => {
         async function updateGraphic() {
@@ -41,7 +47,16 @@ function Analytics() {
 
 
     return (
+        
         <div className="analytics-container analytics-scroll analytics-chart">
+            <button className="primary-button" onClick={handleDevolverClick}  style={{
+          position: "fixed",
+          top: 120,
+          left: 60,
+          backgroundColor: "#DB1A1A"
+        }}>
+        Atras
+      </button>
             <br />
             <br />
             <section style={{ display: "grid", justifyContent: "center" }}>

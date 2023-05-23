@@ -11,7 +11,7 @@ const AdminLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const { setTokenId } = useStateContext();
+  const { setTokenId,tokenId } = useStateContext();
 
   const navigate = useNavigate();
 
@@ -23,14 +23,16 @@ const AdminLogin = () => {
     };
 
     let adminValidation = await sendAdminInfo(formData);
-    setTokenId(adminValidation.token);
+    const token = adminValidation.token;
+    localStorage.setItem("adminToken", token);
+    setTokenId(token);
 
     if (adminValidation.concluded === true) {
       navigate('/administrador/home');
     } else {
       const errorMessage = document.getElementById('error-message');
-      errorMessage.innerText = 'La cuenta del administrador no existe'; // Asignar contenido del mensaje de error
-      errorMessage.style.display = 'block'; // Mostrar el mensaje de error en pantalla
+      errorMessage.innerText = 'La cuenta del administrador no existe'; 
+      errorMessage.style.display = 'block'; 
     }
   };
 

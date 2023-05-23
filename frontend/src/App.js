@@ -20,7 +20,6 @@ import AdminHome from './Components/AdminHome';
 import Cupon from './Components/Cupon';
 import Background from './Components/Background';
 import UserCupon from './Components/UserCupon';
-import Particles from 'react-particles';
 
 import PrivateRoutes from './utils/PrivateRoutes';
 
@@ -35,8 +34,15 @@ import { useStateContext } from './Context/StateContext';
 function App() {
   
   const { carrito, setItemCantidad, userAccount, setUserPurchase } = useStateContext()
+  const { setTokenId } = useStateContext();
 
-
+  useEffect(() => {
+    const adminToken = localStorage.getItem("adminToken");
+    if (adminToken) {
+      setTokenId(adminToken);
+    }
+  }, []);
+  
   // We update userPurchase to send to backend confirmation of purchase with data of which user, cost of purchase
   // and products purchased (to reduce wallet balance and product stock).
   useEffect(() => {
