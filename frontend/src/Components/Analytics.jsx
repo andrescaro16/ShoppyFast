@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react";
-<<<<<<< HEAD
-import { getBestSellingProducts } from "../Services/productInfoServices";
+
 import { useNavigate } from "react-router-dom";
-=======
 import { getBestSellingProducts, getLessSellingProducts } from "../Services/productInfoServices";
->>>>>>> 1c80c610309b32e628c28e50c8cf55bca730b165
 
 import { useStateContext } from "../Context/StateContext";
 
