@@ -27,6 +27,17 @@ export const StateContext = ({ children }) => {
 	const [tokenId, setTokenId] = useState("");
 	const [codigoCupon, setCodigoCupon] = useState("");
 	const [porcentajeDescuento, setPorcentajeDescuento] = useState();
+	const [ProductInfo, setProductInfo] = useState({                 
+		id: 0,
+		name: "",
+		marca: "",
+		description: "",
+		price: 0,
+		imgURL: "",
+		cantidad: 0,
+		deleted: false,
+		category: "",
+	});
 
 
 	
@@ -155,7 +166,9 @@ export const StateContext = ({ children }) => {
 			codigoCupon,
 			setCodigoCupon,
 			porcentajeDescuento,
-			setPorcentajeDescuento
+			setPorcentajeDescuento,
+			ProductInfo,
+			setProductInfo
     	}}
     	>
     	{children}

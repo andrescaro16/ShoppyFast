@@ -6,7 +6,7 @@ const AdminHome = () => {
   const navigate = useNavigate();
 
   const handleInventarioClick = () => {
-    navigate("/administrador/home/inventario");
+    navigate("/administrador/home/Inventory");
   };
 
   const handleReportesClick = () => {
