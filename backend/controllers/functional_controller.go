@@ -55,6 +55,26 @@ func ConfirmPurchase(c *fiber.Ctx, db *mongo.Database) error {
 
 }
 
+func SendEmail(recipient string, bodyStr string, subject string) error {
+
+	transporter := gomail.NewMessage()
+	transporter.SetHeader("From", os.Getenv("GMAIL_USER"))
+	transporter.SetHeader("To", recipient)
+	transporter.SetHeader("Subject", subject)
+	transporter.SetBody("text/html", bodyStr)
+
+	//Establece la configuracion del servidor SMTP
+	SMTP_info := gomail.NewDialer("smtp.gmail.com", 587, os.Getenv("GMAIL_USER"), os.Getenv("GMAIL_PASSWORD"))
+
+	// Envia el correo electrónico
+	if err_sending_email := SMTP_info.DialAndSend(transporter); err_sending_email != nil {
+		return err_sending_email
+	}
+
+	return nil
+
+}
+
 func SendInvoice(c *fiber.Ctx) error {
 
 	var bodyRequestData = struct {
@@ -78,21 +98,24 @@ func SendInvoice(c *fiber.Ctx) error {
 	htmlPriceTotal := fmt.Sprintf("<p><b>Sub-total</b> : %d </p><p><b>Total</b> : %d </p></div>", bodyRequestData.SubTotal, bodyRequestData.Total)
 	htmlString := htmlNameUser + htmlProducts + htmlPriceTotal
 
-	transporter := gomail.NewMessage()
-	transporter.SetHeader("From", os.Getenv("GMAIL_USER"))
-	transporter.SetHeader("To", bodyRequestData.UserEmail)
-	transporter.SetHeader("Subject", "Factura de compra")
-	transporter.SetBody("text/html", htmlString)
-
-	//Establece la configuracion del servidor SMTP
-	SMTP_info := gomail.NewDialer("smtp.gmail.com", 587, os.Getenv("GMAIL_USER"), os.Getenv("GMAIL_PASSWORD"))
-
-	// Envia el correo electrónico
-	if err_sending_email := SMTP_info.DialAndSend(transporter); err_sending_email != nil {
-		return err_sending_email
+	if err := SendEmail(bodyRequestData.UserEmail, htmlString, "Factura de compra"); err != nil {
+		return err
 	}
 
 	return c.Status(200).JSON(fiber.Map{"message": "Email was send successfully"})
+
+}
+
+func SendInventoryAlertToAdministrator(c *fiber.Ctx, product models.Product, quantity int) error {
+
+	if quantity < 5 {
+		subject := "Alerta de inventario"
+		bodyStr := fmt.Sprintf("<div><p>Recuerda agregar nuevo stock en tu tienda.</p><b> Producto : %s </b><p> Id : %d </p><p> Cantidad disponible : %d </p></div>", product.Name, product.ID, quantity)
+		if err := SendEmail(os.Getenv("STOCK_ADMIN"), bodyStr, subject); err != nil {
+			return err
+		}
+	}
+	return nil
 
 }
 

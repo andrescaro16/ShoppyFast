@@ -5,27 +5,21 @@ import { loadFull } from "tsparticles";
 function Background(){
 
     const particlesInit = useCallback(async (engine) => {
-        console.log(engine);
         await loadFull(engine);
     },[]);
   
-    const particlesLoaded = useCallback(async (container) => {
-        await console.log(container);
-    },[]);
-
     return (
     <Particles 
     id="tsparticles"
     init={particlesInit}
-    loaded={particlesLoaded}
     options={
         {
             "particles": {
               "number": {
-                "value": 20,
+                "value": 30,
                 "density": {
                   "enable": true,
-                  "value_area": 800
+                  "value_area": 400
                 }
               },
               "color": {

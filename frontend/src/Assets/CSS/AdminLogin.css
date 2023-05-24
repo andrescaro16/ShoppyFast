@@ -15,14 +15,13 @@
 .logo-container img {
   margin-bottom: 25px;
 }
-
+/* 
 .form-group {
   display: flex;
   flex-direction: column;
   margin-bottom: 20px;
   width: 300px;
-  
-}
+} */
 
 label {
   font-weight: bold;

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-let port = "http://192.168.1.11:3001";
+let port = "http://10.161.59.167:3001";
 
 export async function getProduct(id) {
     try {

@@ -39,6 +39,8 @@ export const StateContext = ({ children }) => {
 		category: "",
 	});
 
+
+	
 	const agregarProducto = (item, quantity, carrito) => {
 		const existingItem = carrito.find(productCart => productCart.item.id === item.id);
 		if (existingItem) {
