@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "../Assets/CSS/AdminLogin.css";
 import logo from "../Assets/Images/ShoppyfastLogo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
@@ -50,6 +49,7 @@ const AdminLogin = () => {
             <input
               type="email"
               id="email"
+              className="admin-login-input email-admin-login-input"
               placeholder="Ingresa tu correo electrónico"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -63,6 +63,7 @@ const AdminLogin = () => {
             <input
               type="password"
               id="password"
+              className="admin-login-input"
               placeholder="Ingresa tu contraseña"
               value={password}
               onChange={(e) => setPassword(e.target.value)}

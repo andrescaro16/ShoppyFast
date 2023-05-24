@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import './Assets/CSS/App.css';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 //Import components
@@ -28,9 +27,6 @@ import { useStateContext } from './Context/StateContext';
 
 
 
-
-
-
 function App() {
   
   const { carrito, setItemCantidad, userAccount, setUserPurchase } = useStateContext()
@@ -42,7 +38,7 @@ function App() {
       setTokenId(adminToken);
     }
   }, []);
-  
+
   // We update userPurchase to send to backend confirmation of purchase with data of which user, cost of purchase
   // and products purchased (to reduce wallet balance and product stock).
   useEffect(() => {

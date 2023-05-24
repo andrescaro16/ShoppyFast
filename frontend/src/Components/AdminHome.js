@@ -1,9 +1,6 @@
-import "../Assets/CSS/AdminHome.css";
-
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import "../Assets/CSS/AdminHome.css";
-import Background from "./Background";
+
 
 const AdminHome = () => {
   const navigate = useNavigate();
