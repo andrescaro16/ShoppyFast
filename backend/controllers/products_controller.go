@@ -99,6 +99,10 @@ func ReduceQuantityStockById(c *fiber.Ctx, db *mongo.Database, id int, quantity 
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": err_updating_product, "concluded": false})
 	}
 
+	if err := SendInventoryAlertToAdministrator(c, product, newProductQuantity); err != nil {
+		return err
+	}
+
 	return c.Status(200).JSON(fiber.Map{"message": "Product reduced stock complete", "concluded": true})
 
 }
