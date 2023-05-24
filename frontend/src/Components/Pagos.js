@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import "../Assets/CSS/Pagos.css";
 import { ListGroup, ListGroupItem, Col, Row, CardHeader, Card } from 'reactstrap'
 import {  confirmPurchase, calculateTotal, sendInvoice, saveInvoice } from '../Services/productInfoServices';
 import { Link } from 'react-router-dom';
@@ -28,7 +27,7 @@ const Pagos = () => {
 
 
     const confirmation = async (event) => {
-        event.preventDefault(); // previene que se refresque la página
+        event.preventDefault();
 
         try {
             const resultadoTransaccion = await confirmPurchase(userPurchase);

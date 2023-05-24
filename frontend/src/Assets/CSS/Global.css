@@ -44,6 +44,10 @@ body {
 
 /* ------------------------------------[Buttons]------------------------------------ */
 
+button{
+  justify-content: center;
+}
+
 .primary-button {
   padding: 10px 20px;
   background-color: var(--primary);
@@ -72,7 +76,6 @@ body {
 .primary-button:hover::before{
   left:100%;
 }
-
 
 .secondary-button{
   background-color: var(--white);
@@ -270,7 +273,7 @@ button.button-group.right {
 .footer-container{
   color: #005669;
   text-align: center;
-  margin-top: 500px;
+  margin-top: 200px;
   padding: 30px 10px;
   font-weight: 700;
   display: flex;
@@ -300,7 +303,7 @@ button.button-group.right {
   position: fixed;
   width: 100%;
   top: 0;
-  z-index: 2;
+  z-index: 10;
 }
 
 .navbar-app .navbar-left,
@@ -401,6 +404,24 @@ button.button-group.right {
 }
 
 
+/* -------------------------[Admin - Analytics]------------------------- */
+
+.analytics-container {
+  max-width: 1000px;
+  min-width: 370px;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 25px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.300);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: fit-content;
+  background-color: #ffffff;
+}
+
+
 /* -------------------------------------[Search]-------------------------------------- */
 
 .containerSearch input[type="text"] {
@@ -433,7 +454,9 @@ button.button-group.right {
   justify-content: center;
 }
 
+
 /* ---------------------------------[User - productCard]------------------------------ */
+
 .products-container{
   display: flex;
   flex-wrap: wrap;
@@ -493,24 +516,8 @@ button.button-group.right {
 }
 
 
-/* -------------------------[Admin - Analytics]------------------------- */
-.analytics-container {
-  max-width: 1000px;
-  min-width: 370px;
-  margin: 0 auto;
-  padding: 20px;
-  border-radius: 25px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.300);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: fit-content;
-  background-color: #ffffff;
-}
-
-
 /* ----------------------------[User - Cart]---------------------------- */
+
 .container_table {
   display: flex;
   justify-content: center;
@@ -557,10 +564,125 @@ b{
 }
 
 
+/* ----------------------------------[User - Invoices]-------------------------------- */
+
+.form-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  padding-top: 50px;
+  height: 100vh;
+}
+
+.form-container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+
+/* --------------------------------------[UserForm]----------------------------------- */
+
+.form-containerUserForm {
+  width: 350px;
+  height: 450px;
+  margin: 32px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #ccc;
+  position: relative;
+  z-index: 9;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #333;
+}
+
+input[type="text"],
+input[type="email"] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+  color: #333;
+}
+
+input[type="email"]:disabled {
+  background-color: #f8f8f8;
+  color: #999;
+  border: none;
+  padding: 8px;
+}
+
+input[type="email"]:enabled {
+  background-color: #fff;
+  color: #333;
+  border: 1px solid #ccc;
+  padding: 8px;
+}
+
+input[type="email"] {
+  transition: background-color 0.3s ease;
+}
+
+label[for="email"] {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #161010;
+}
+
+#email{
+  margin-bottom: 16px;
+}
+
+.checkbox-group{
+  display: flex;
+}
+
+input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+.sacarFactura {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.3s ease;
+}
+
+
 /* ---------------------------------------[Mobile]------------------------------------ */
 
 @media (max-width: 1366px){
-  /* ------------------------------[Waves]------------------------------- */
+  /* -----------------------------[Waves]------------------------------- */
   .person-image-waves{
     top: 100px;
   }
@@ -570,7 +692,7 @@ b{
 }
 
 @media (max-width: 1135px){
-  /* ------------------------------[Waves]------------------------------- */
+  /* -----------------------------[Waves]------------------------------- */
   .person-image-waves{
     top: 90px;
   }
@@ -597,14 +719,19 @@ b{
   .waves-title{
     font-size: 6vw;
   }
-  /* ----------------------------[Search]------------------------------- */
+  /* -----------------------------[Search]------------------------------ */
   .containerSearch input[type="text"] {
     width: 50vw;
+  }
+  /* ------------------------[User - Invoices]-------------------------- */
+  .form-container {
+    width: -webkit-fill-available;
+    margin: 16px;
   }
 }
 
 @media (max-width: 740px){
-  /* ------------------------------[Waves]------------------------------- */
+  /* -----------------------------[Waves]------------------------------- */
   .person-image-waves{
     top: 60px;
   }
@@ -620,7 +747,7 @@ b{
 }
 
 @media (max-width: 640px){
-  /* ---------------------------[Navbar]------------------------------ */
+  /* -----------------------------[Navbar]------------------------------ */
   .navbar-app{
     height: 60px;
   }
@@ -653,7 +780,7 @@ b{
   .waves-title{
     font-size: 6vw;
   }
-  /* ----------------------------[Search]------------------------------- */
+  /* -----------------------------[Search]------------------------------- */
   .containerSearch input[type="text"] {
     width: 70vw;
   }
@@ -693,6 +820,11 @@ b{
   .table>:not(caption)>*>* {
     padding-left: 4px !important;
     padding-right: 4px  !important;
+  }
+  /*-----------------------------[UserForm]-------------------------------*/
+  .form-containerUserForm {
+    width: -webkit-fill-available;
+    margin: 0 16px;
   }
 }
 

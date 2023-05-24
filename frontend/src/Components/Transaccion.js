@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "../Assets/CSS/Transaccion.css";
 import { useNavigate } from 'react-router';
 import { bankLogin } from '../Services/productInfoServices';
 import { useStateContext } from "../Context/StateContext";
