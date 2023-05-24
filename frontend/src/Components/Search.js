@@ -58,9 +58,9 @@ const Search = () => {
                             {(<>{filteredProducts.map((name, index) => (<option key={index} value={name}></option>))}</>)}
                         </datalist>
                         <ButtonGroup>
-                            <button className="primary-button" type="submit"> <BsSearch />  Buscar </button>
+                            <button className="primary-button homepage-button" type="submit"> <BsSearch />  Buscar </button>
                             <Link to="/qr-section">
-                                <button className="primary-button" style={{borderTopRightRadius: '15px', borderBottomRightRadius: '15px'}}> <BsQrCodeScan />  Escanear</button>
+                                <button className="primary-button homepage-button" style={{borderTopRightRadius: '15px', borderBottomRightRadius: '15px'}}> <BsQrCodeScan />  Escanear</button>
                             </Link>
                         </ButtonGroup>
                     </FormGroup>

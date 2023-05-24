@@ -14,8 +14,8 @@ function Invoice() {
     return (
         <div>
             <section style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: 'auto' }}>
-                <Container style={{ marginTop: '60px', width: 'auto', marginTop: '60px' }}>
-                    <Card style={{ width: '40rem' }} >
+                <Container id="invoice-card-container">
+                    <Card id="invoice-card">
                         <CardHeader><h3  style={{textAlign: "center"}}><strong> Shoppy Fast Factura </strong></h3></CardHeader>
                         <CardHeader><h6  style={{textAlign: "center"}}><strong> Cliente </strong></h6></CardHeader>
                         <ListGroup>

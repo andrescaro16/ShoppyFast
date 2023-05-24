@@ -24,18 +24,17 @@ const Trolley = () => {
                         <thead>
                             <tr>
                                 <th>
-                                    Imagen del producto
+                                    Imagen
                                 </th>
                                 <th>
-                                    Nombre Producto
+                                    Nombre
                                 </th>
                                 <th>
+                                    Cantidad
+                                </th>
 
-                                    <span> Cantidad </span> <span>de</span> <span>Productos </span>
-                                </th>
-
                                 <th>
-                                    Precio por producto
+                                    Precio
                                 </th>
 
                                 <th>
@@ -58,7 +57,7 @@ const Trolley = () => {
                                                     <Button className="primary-button" color="danger" size="sm" onClick={() => setCarrito(agregarProducto(elemento.item, -1, carrito))}>-</Button>
                                                 </Col>
                                                 <Col>
-                                                    <Badge>{elemento.quantity}</Badge>
+                                                    <Badge id='cart-quantity-badge'>{elemento.quantity}</Badge>
                                                 </Col>
                                                 <Col>
                                                     <Button className="primary-button" color="success" size="sm" onClick={() => setCarrito(agregarProducto(elemento.item, 1, carrito))}>+</Button>

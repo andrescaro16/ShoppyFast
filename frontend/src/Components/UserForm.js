@@ -27,7 +27,6 @@ const UserForm = () => {
       });
       navigate("/pago/transaccion/confirmacion");
       setFormIncomplete(false);
-      console.log('Navigating to /pago/transaccion/confirmacion');
     } else {
       setFormIncomplete(true);
     }

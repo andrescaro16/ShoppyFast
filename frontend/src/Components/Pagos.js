@@ -52,8 +52,6 @@ const Pagos = () => {
 
                 if(invoice.user_email){ 
                     const resultadoEmail = await sendInvoice(invoice);
-
-                    console.log(resultadoEmail.message);
                     if(resultadoEmail.message === "Email was send successfully"){
                         toast.success(`Factura enviada a ${invoice.user_email}`);
                     }

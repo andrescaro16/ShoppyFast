@@ -77,7 +77,6 @@ button{
   cursor: pointer;
   position: relative;
   overflow: hidden;
-  margin-left:20px;
 }
 
 .primary-button::before {
@@ -149,6 +148,11 @@ button.button-group.right {
   border-top: 1px solid #000000;
   border-bottom: 1px solid #000000;
   font-size: var(--md);
+}
+
+.homepage-button{
+  margin-left: 4px;
+  margin-right: 4px;
 }
 
 
@@ -587,6 +591,10 @@ b{
   margin:10px;
 }
 
+#cart-quantity-badge{
+  margin-left: 1px;
+  margin-right: 1px;
+}
 
 /* ----------------------------------[User - Invoices]-------------------------------- */
 
@@ -604,6 +612,19 @@ b{
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   text-align: center;
+}
+
+#invoice-card {
+  width: 700px;
+  margin: 0 16px;
+}
+
+#invoice-card-container {
+  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 
@@ -753,6 +774,10 @@ input[type="checkbox"] {
   .form-container {
     width: -webkit-fill-available;
     margin: 16px;
+  }
+  #invoice-card {
+    width: -webkit-fill-available;
+    margin: 0 16px;
   }
 }
 
