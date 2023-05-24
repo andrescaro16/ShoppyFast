@@ -161,3 +161,53 @@ export async function sendCupon(formCupon, tokenId) {
   }
 }
 
+export async function sendProductInfo(tokenId, ProductInfo) {
+  const id = parseInt(ProductInfo.id);
+  const price = parseInt(ProductInfo.price);
+  const cantidad = parseInt(ProductInfo.cantidad);
+
+  if (isNaN(id) || isNaN(price) || isNaN(cantidad)) {
+    console.log('Los campos id, price y cantidad deben ser números enteros válidos.');
+    return;
+  }
+
+  ProductInfo.id = id;
+  ProductInfo.price = price;
+  ProductInfo.cantidad = cantidad;
+
+  try {
+    const response = await axios.put(
+      `${port}/api/products/${ProductInfo.id}`,
+      ProductInfo,
+      {
+        headers: {
+          "x-access-token": tokenId
+        }
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.log(error)
+    return error.response.status;
+  }
+}
+
+export async function sendNewProduct(tokenId, ProductData) {
+  try {
+    const response = await axios.post(
+      `${port}/api/products/AddNewProduct`,
+      ProductData,
+      {
+        headers: {
+          "x-access-token": tokenId
+        }
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.log(error)
+    return error.response;
+  }
+}
+
+

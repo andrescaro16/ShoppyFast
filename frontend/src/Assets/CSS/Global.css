@@ -698,6 +698,13 @@ b{
   }
 }
 
+/* ------------------------[Admin - productCard]------------------------ */
+
+.product-card.expanded {
+  max-Height: "100%";
+  margin-bottom: "16px";
+}
+
 @media (max-width: 550px){
   /* ------------------------------[Waves]------------------------------- */
   .person-image-waves{
@@ -713,3 +720,4 @@ b{
     margin-right: 25px;
   }
 }
+

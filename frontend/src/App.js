@@ -20,11 +20,13 @@ import AdminHome from './Components/AdminHome';
 import Cupon from './Components/Cupon';
 import Background from './Components/Background';
 import UserCupon from './Components/UserCupon';
+import Inventory from './Components/Inventory'
 
 import PrivateRoutes from './utils/PrivateRoutes';
 
 //Import context
 import { useStateContext } from './Context/StateContext';
+import CreateProduct from './Components/CreateProduct';
 
 
 
@@ -93,6 +95,8 @@ function App() {
                 <Route path='/administrador/home' element={<AdminHome />} />
                 <Route path='/administrador/home/analitica' element={<Analytics/>} /> 
                 <Route path='/administrador/home/cupon' element={<Cupon/>} /> 
+                <Route path='/administrador/home/inventory' element={<Inventory />} />
+                <Route path='/administrador/home/inventory/createProduct' element={<CreateProduct />} />
             </Route>
           </Routes>
         </Layout>
