@@ -28,6 +28,8 @@ export const StateContext = ({ children }) => {
 	const [codigoCupon, setCodigoCupon] = useState("");
 	const [porcentajeDescuento, setPorcentajeDescuento] = useState();
 
+
+	
 	const agregarProducto = (item, quantity, carrito) => {
 		const existingItem = carrito.find(productCart => productCart.item.id === item.id);
 		if (existingItem) {

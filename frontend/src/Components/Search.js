@@ -9,7 +9,7 @@ import { useStateContext } from "../Context/StateContext";
 
 const Search = () => {
 
-    const { searchTerm, setSearchTerm } = useStateContext();
+    const { setSearchTerm } = useStateContext();
     const [products, setProducts] = useState({})
     const [nameProducts, setNameProducts] = useState([]);
     const [filteredProducts, setFilteredProducts] = useState([]);

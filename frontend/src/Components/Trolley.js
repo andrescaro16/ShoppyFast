@@ -20,7 +20,7 @@ const Trolley = () => {
         <>
             <React.Fragment>
                 <div className='container_table'>
-                    <Table className='tabla_carro'>
+                    <Table>
                         <thead>
                             <tr>
                                 <th>

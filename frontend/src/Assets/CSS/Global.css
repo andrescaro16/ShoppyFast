@@ -31,6 +31,12 @@ body {
   animation: animate 5s linear infinite alternate;
 }
 
+input,
+h1, h2, h3, h4, h5, h6 {
+  position: relative;
+  z-index: 3;
+}
+
 @keyframes animate{
   from {
     background-position: 0 0;
@@ -40,6 +46,19 @@ body {
   }
 }
 
+
+/*------------------------------[Tables - Cart and QR]-------------------------------*/
+
+table {
+  border-collapse: collapse;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  width: 85% !important;
+  background-color: #e4fbff;
+  position: relative;
+  z-index: 3;
+}
 
 
 /* ------------------------------------[Buttons]------------------------------------ */
@@ -215,6 +234,9 @@ button.button-group.right {
 
 .waves{
   margin-top: 80px;
+  position: relative;
+  z-index: 3;
+  background-color: #e4fbff;
 }
 
 .waves-container{
@@ -222,7 +244,7 @@ button.button-group.right {
   width: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;  
+  align-items: center;
 }
 
 .person-image-waves{
@@ -230,6 +252,7 @@ button.button-group.right {
   display: flex;
   justify-content: center;
   top: 130px;
+  z-index: 4;
 }
 
 .person-image-waves div:last-child{
@@ -281,6 +304,8 @@ button.button-group.right {
   align-items: center;
   gap: 10px;
   justify-content: center;
+  position: relative;
+  z-index: 3;
 }
 
 .footer-container .icons{
@@ -419,6 +444,8 @@ button.button-group.right {
   align-items: center;
   height: fit-content;
   background-color: #ffffff;
+  position: relative;
+  z-index: 3;
 }
 
 
@@ -438,7 +465,9 @@ button.button-group.right {
 .containerSearch{
   display: flex;
   justify-content: center;
-  align-items: end;  
+  align-items: end;
+  position: relative;
+  z-index: 3;
 }
 
 .not-found-text{
@@ -558,11 +587,6 @@ b{
   margin:10px;
 }
 
-.tabla_carro{
-  text-align: center;
-  width: 85% !important;
-}
-
 
 /* ----------------------------------[User - Invoices]-------------------------------- */
 
@@ -616,6 +640,8 @@ label {
   margin-bottom: 5px;
   font-weight: bold;
   color: #333;
+  position: relative;
+  z-index: 3;
 }
 
 input[type="text"],

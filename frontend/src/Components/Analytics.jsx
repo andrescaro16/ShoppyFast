@@ -13,7 +13,6 @@ function Analytics() {
     const { tokenId } = useStateContext();
     const [date, setDate] = useState(new Date("2022-04-07T13:30:00Z").toISOString());
     const [getBestSelling, setGetBestSelling] = useState("");
-    const [responseData, setResponseData] = useState("");
     const [responseBest, setResponseBest] = useState("");
     const [getLessSelling, setGetLessSelling] = useState("");
     const [responseLess, setResponseLess] = useState("");
