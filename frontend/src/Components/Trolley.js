@@ -33,16 +33,11 @@ const Trolley = () => {
 
                                     <span> Cantidad </span> <span>de</span> <span>Productos </span>
                                 </th>
-                                <th>
 
-                                    <span> Cantidad </span> <span>disponible de</span> <span>Producto</span>
-                                </th>
                                 <th>
                                     Precio por producto
                                 </th>
-                                <th>
-                                    Precio total producto
-                                </th>
+
                                 <th>
 
                                 </th>
@@ -72,15 +67,11 @@ const Trolley = () => {
                                         </Row>
 
                                     </td>
-                                    <td>
-                                    <span>{(elemento.item.cantidad)}</span>
-                                    </td>
+
                                     <td>
                                         <span>{(elemento.item.price)}</span>
                                     </td>
-                                    <td>
-                                        <span>{(elemento.item.price * elemento.quantity)}</span>
-                                    </td>
+
                                     <td>
                                     <Button className="primary-button" color="danger" size="sm" onClick={() => setCarrito(removerProducto(elemento.item.id, carrito))}>
                                         <BsTrash />

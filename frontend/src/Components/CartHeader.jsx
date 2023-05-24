@@ -13,45 +13,45 @@ function CartHeader() {
 
     const handleCuponClick = () => {
         navigate("/cupon");
-      };
+    };
 
 
-  return (
-    <div>
+    return (
+        <div>
+            <br />
 
-        <br />
-
-        <div className='encabezado_inventario'>
-            <Link to="/">
-                <Button className="primary-button" color="danger">Volver</Button>
-            </Link>
-        </div>
-
-        <br />
-
-        <div className='encabezado_inventario' >
-
-            <div className="encabezado-precio">
-                <BsFillCartFill />
-                <span><b>Precio Total</b>{subTotal}</span>
+            <div className='encabezado_inventario'>
+                <Link to="/">
+                    <Button className="primary-button" color="danger">Volver</Button>
+                </Link>
             </div>
 
-            <ButtonGroup>
-                <div>
-                    <Button className="primary-button" color="primary" onClick={handleCuponClick}>Cupón de descuento</Button>
+            <br />
+
+            <div className='encabezado_inventario' >
+
+                <div className="encabezado-precio">
+                    <BsFillCartFill />
+                    <span><b>Precio Total</b>{subTotal}</span>
                 </div>
 
-                <Link to="/pago/transaccion" >
-                    <Button className="primary-button" color="primary">Realizar pago</Button>
-                </Link>
-            </ButtonGroup>
-        </div>
+            </div>
 
-        <div className='encabezado_inventario' >
-            <Button className="primary-button" color="danger" size="sm" onClick={() => setCarrito(vaciarCarrito(carrito))}> <BsFillCartXFill /> Vaciar Carrito</Button>
+            <ButtonGroup className='encabezado_inventario'>
+                    <div>
+                        <Button className="primary-button" color="primary" onClick={handleCuponClick}>Cupón de descuento</Button>
+                    </div>
+
+                    <Link to="/pago/transaccion" >
+                        <Button className="primary-button" color="primary">Realizar pago</Button>
+                    </Link>
+            </ButtonGroup>
+
+            <div className='encabezado_inventario' >
+                <Button className="primary-button" color="danger" size="sm" onClick={() => setCarrito(vaciarCarrito(carrito))}> <BsFillCartXFill /> Vaciar Carrito</Button>
+            </div>
         </div>
-    </div>
-  )
+    )
 }
 
 export default CartHeader;

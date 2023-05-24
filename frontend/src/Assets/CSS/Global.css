@@ -530,33 +530,17 @@ button.button-group.right {
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
+  padding: 8px;
 }
 
 .encabezado_inventario button {
-  margin: 10px 40px;
+  padding: 8px 16px;
+  font-size: 14px;
+  margin-left: 40px;
 }
 
 .encabezado_inventario div:nth-child(2) {
-  margin: 10px 80px;
-}
-
-
-@media (min-width: 768px) {
-  .encabezado_inventario div:nth-child(2) {
-      margin-left: 266px;
-  }
-}
-
-@media (max-width: 768px) {
-  .encabezado_inventario button {
-      padding: 8px 16px;
-      font-size: 14px;
-      margin-left: 40px;
-  }
-
-  .encabezado_inventario div:nth-child(2) {
-      margin-left: 40px;
-  }
+  margin-left: 40px;
 }
 
 .encabezado-precio {
@@ -695,6 +679,20 @@ b{
   }
   .product-card > img {
     height: 220px;
+  }
+  /*----------------------------[User - Cart]-----------------------------*/
+  .encabezado_inventario button:first-child{
+    margin-bottom: 4px;
+  }
+  .container_table{
+    font-size: small;
+  }
+  .tabla_carro .primary-button{
+    margin-left: 0px;
+  }
+  .table>:not(caption)>*>* {
+    padding-left: 4px !important;
+    padding-right: 4px  !important;
   }
 }
 
