@@ -9,6 +9,8 @@ export const StateContext = ({ children }) => {
     //----------------------------------------------------[User]---------------------------------------------------
 	const [total, setTotal] = useState(0);
 	const [subTotal, setSubTotal] = useState(0);
+	const [subTotalDescuento, setSubTotalDescuento] = useState(0);
+	const [AplyCupon, setAplyCupon] = useState(0);
 	const [carrito, setCarrito] = useState([]);
 	const [itemCantidad, setItemCantidad] = useState(0);
 	const [userValidation, setUserValidation] = useState({});   // validUser, validPurchase, availableBalance
@@ -168,7 +170,11 @@ export const StateContext = ({ children }) => {
 			porcentajeDescuento,
 			setPorcentajeDescuento,
 			ProductInfo,
-			setProductInfo
+			setProductInfo,
+			AplyCupon,
+			setAplyCupon,
+			subTotalDescuento,
+			setSubTotalDescuento
     	}}
     	>
     	{children}

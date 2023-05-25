@@ -19,7 +19,7 @@ const Trolley = () => {
             setSubTotal(carrito.reduce((obj, cur) => (obj + (cur.item.price) * cur.quantity), 0))
         }
         calculo();
-    }, [carrito]);
+    }, [carrito,subTotal]);
 
     return (
         <>

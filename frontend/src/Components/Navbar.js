@@ -26,7 +26,7 @@ function Navbar() {
 						</Link>
 					</li>
 					<li>
-						<Link to="/administrador/home" className='link-class'>
+						<Link to="/administrador" className='link-class'>
 							<p>Administrador</p>
 						</Link>
 					</li>
