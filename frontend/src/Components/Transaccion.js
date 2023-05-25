@@ -1,19 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router';
 import { bankLogin } from '../Services/productInfoServices';
 import { useStateContext } from "../Context/StateContext";
-
+import { useLocation } from "react-router-dom";
 
 const Transaccion = () => {
-
+    
     const { total, setUserAccount, setUserValidation } = useStateContext();
-
+    
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-
+    
     const isLoginFormValid = username.trim() !== "" && password.trim() !== "";
-
+    
     let navigate = useNavigate();
+    let location = useLocation();
+    
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [location.pathname]);
 
 
     const handleLoginFormSubmit = async (event) => {

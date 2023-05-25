@@ -1,5 +1,5 @@
 .Qr {
-    text-align: center;
+    text-align: center  !important;
 }
 
 .Qr-section {
@@ -9,7 +9,7 @@
     justify-content: center;
 }
 
-.Qr-section-title {
+.Qr-section-title h1{
     font-size: calc(10px + 2vmin);
     margin: 10px;
     text-align: center;

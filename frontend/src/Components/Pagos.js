@@ -4,16 +4,23 @@ import {  confirmPurchase, calculateTotal, sendInvoice, saveInvoice } from '../S
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router';
 import { toast } from 'react-hot-toast';
-
+import { useLocation } from "react-router-dom";
 import { useStateContext } from "../Context/StateContext";
 
 
 const Pagos = () => {
-
-    const { carrito, setCarrito, subTotal, setTotal, total, userValidation, userPurchase, generateInvoice } = useStateContext();
-
     
+    const { carrito, setCarrito, subTotal, setTotal, total, userValidation, userPurchase, generateInvoice } = useStateContext();
+    
+    let location = useLocation();
     let navigate = useNavigate();
+    
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [location.pathname]);
+    
+    
     useEffect(() => {
         const getTotalIva = async () => {
             setTotal(await calculateTotal(subTotal));

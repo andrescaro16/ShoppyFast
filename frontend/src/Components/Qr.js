@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import '../Assets/CSS/QR.css';
 import Html5QrcodePlugin from './Html5QrcodeScannerPlugin';
 import Quantity from './Quantity';
 import { getProduct } from '../Services/productInfoServices';
@@ -12,11 +11,10 @@ import { useStateContext } from '../Context/StateContext';
 
 
 const Qr = () => {
-
+    
     const { carrito, setCarrito, agregarProducto, setOpenQuantity, cantidadConfirmDialog } = useStateContext();
     const [decodedResults, setDecodedResults] = useState([]);
     const [decodedText, setDecodedText] = useState("");
-
 
     const onNewScanResult = (decodedText, decodedResult) => {
         setOpenQuantity(true);
@@ -40,7 +38,9 @@ const Qr = () => {
     return (
         <div >
 
-            <div className="Qr-section-title"> Escanea el QR del producto <SentimentVerySatisfiedRoundedIcon /> </div>
+            <div className="Qr-section-title"> 
+                <h1>Escanea el QR del producto<SentimentVerySatisfiedRoundedIcon /></h1>
+            </div>
 
             <CartHeader />
 

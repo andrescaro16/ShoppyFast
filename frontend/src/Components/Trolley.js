@@ -1,14 +1,19 @@
 import React, { useEffect } from 'react';
 import { Table, Button, Row, Col, Badge, Alert, ButtonGroup } from 'reactstrap';
 import { BsTrash } from "react-icons/bs";
-
+import { useLocation } from "react-router-dom";
 import { useStateContext } from '../Context/StateContext';
 
 
 const Trolley = () => {
-
+    
     const { agregarProducto, carrito, setCarrito, setSubTotal, removerProducto } = useStateContext();
-
+    let location = useLocation();
+    
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [location.pathname]);
+    
     useEffect(() => {
         const calculo = () => {
             setSubTotal(carrito.reduce((obj, cur) => (obj + (cur.item.price) * cur.quantity), 0))

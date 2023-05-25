@@ -1,15 +1,23 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useStateContext } from "../Context/StateContext";
 
 
+
 const UserForm = () => {
+  
+  let location = useLocation();
+  
   const [emailChecked, setEmailChecked] = useState(false);
   const [emailDisabled, setEmailDisabled] = useState(true);
   const [formIncomplete, setFormIncomplete] = useState(true); 
-
+  
   const navigate = useNavigate();
   const { setUserData } = useStateContext();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
 
   const handleEmailOptionChange = (event) => {
     setEmailChecked(event.target.checked);

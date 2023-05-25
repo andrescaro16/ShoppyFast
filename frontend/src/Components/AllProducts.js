@@ -1,16 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { getAllProduct } from "../Services/productInfoServices";
 import RecipeReviewCard from  './ProductCard';
+import { useLocation } from "react-router-dom";
 
 import { useStateContext } from "../Context/StateContext";
 
 
 function AllProducts(){
-
+    
     const { searchTerm } = useStateContext();
     const [productsList, setProductsList] = useState([]);
+    let location = useLocation();
+    
 
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [location.pathname]);
   
+    
     useEffect(() => {
         const conseguirDatos = async () => {
             const data = await getAllProduct();

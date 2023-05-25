@@ -1,15 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Button, Card, CardFooter, CardHeader, ListGroup, ListGroupItem, Col, Row, Container } from "reactstrap";
-import { Link } from "react-router-dom";
-
+import { Link, useLocation } from "react-router-dom";
 import { useStateContext } from "../Context/StateContext";
 
 
 function Invoice() {
-
-
+    
+    
     const { subTotal, total, dataInvoice } = useStateContext();
-
+    let location = useLocation();
+    
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [location.pathname]);
 
     return (
         <div>
