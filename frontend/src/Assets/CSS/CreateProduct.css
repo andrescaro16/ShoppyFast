@@ -13,7 +13,7 @@
     align-items: flex-start; /* Alinear los items al inicio verticalmente */
   }
   
-  .column {
+  .column-create-product {
     display: flex;
     flex-direction: column;
     justify-content: center;

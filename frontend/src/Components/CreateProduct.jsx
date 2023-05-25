@@ -1,20 +1,16 @@
-import React, { useState, useContext } from 'react';
+import React from 'react';
 import { useNavigate } from "react-router-dom";
 import { RiAddCircleLine } from 'react-icons/ri';
 import swal from 'sweetalert';
 import { useStateContext } from "../Context/StateContext";
 import { sendNewProduct } from '../Services/productInfoServices';
-import { FaSave, FaBarcode, FaTags, FaBoxes, FaImage, FaHeading, FaInfoCircle, FaDollarSign, FaStream } from 'react-icons/fa';
-import "../Assets/CSS/CreateProduct.css"
+import { FaBarcode, FaTags, FaBoxes, FaImage, FaHeading, FaInfoCircle, FaDollarSign, FaStream } from 'react-icons/fa';
 
 
 const CreateProduct = () => {
   
   const {ProductInfo, setProductInfo} = useStateContext();
   const { tokenId, setTokenId } = useStateContext();
-
-
-  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -154,7 +150,7 @@ const CreateProduct = () => {
         </div>
 
         <div className="form-row">
-          <div className="column">
+          <div className="column-create-product">
             <div className="form-group">
               <label className="labelCreateProduct" htmlFor="codigo">
                 <FaBarcode />
@@ -204,7 +200,7 @@ const CreateProduct = () => {
               />
             </div>
           </div>
-          <div className="column">
+          <div className="column-create-product">
             <div className="form-group">
               <label className="labelCreateProduct" htmlFor="nombre">
                 <FaHeading />
