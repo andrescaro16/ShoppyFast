@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import logo from "../Assets/Images/ShoppyfastLogo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
 import { useStateContext } from "../Context/StateContext";
 import { sendAdminInfo } from "../Services/productInfoServices";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const AdminLogin = () => {
   const [email, setEmail] = useState("");
@@ -13,6 +13,11 @@ const AdminLogin = () => {
   const { setTokenId,tokenId } = useStateContext();
 
   const navigate = useNavigate();
+  let location = useLocation();
+    
+  useEffect(() => {
+      window.scrollTo(0, 0);
+  }, [location.pathname]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

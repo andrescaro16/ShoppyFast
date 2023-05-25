@@ -435,10 +435,14 @@ button.button-group.right {
 
 /* --------------------------------[Admin - Analytics]-------------------------------- */
 
+#analytics-elements-container{
+  width: 100%;
+}
+
 .analytics-container {
-  max-width: 1000px;
+  width: -webkit-fill-available;
+  margin: 60px 32px;
   min-width: 370px;
-  margin: 0 auto;
   padding: 20px;
   border-radius: 25px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.300);
@@ -450,6 +454,78 @@ button.button-group.right {
   background-color: #ffffff;
   position: relative;
   z-index: 3;
+}
+
+#date-analytics {
+  margin: 20px;
+  margin-bottom: 52px;
+}
+
+#graphics-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+#report-container {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  grid-gap: 0px;
+}
+
+.unsold-products-title {
+  position: absolute;
+  top: 20px;
+  left: -20px;
+}
+
+.unsold-products-title b{
+  margin: 0px;
+}
+
+.days {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  margin-top: 90px;
+}
+
+.days button {
+  margin: 5px;
+  padding: 8px 16px;
+  border: none;
+  background-color: transparent;
+  color: #333;
+  font-size: 16px;
+  cursor: pointer;
+  outline: none;
+}
+
+.days button.selected {
+  font-weight: bold;
+}
+
+.table-analytics {
+  margin-bottom: 20px;
+}
+
+.table-analytics h2 {
+  margin-bottom: 10px;
+}
+
+.product {
+  border: 1px solid #ccc;
+  padding: 8px;
+}
+
+.id, .name, .category {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.gray-text {
+  color: #666;
 }
 
 
