@@ -74,7 +74,7 @@ export default function RecipeReviewCard({ product }) {
       });
   return;
     }
-    else if (!productInfo.stock || productInfo.stock.length === 0){
+    else if (!productInfo.cantidad || productInfo.cantidad.length === 0){
       swal({
         title: "error",
         text: "el campo existencia es obligatorio",
@@ -97,6 +97,7 @@ export default function RecipeReviewCard({ product }) {
       console.log(error);
     }
   };
+  console.log(productInfo.stock);
 
   return (
     <div className={`product-card ${expanded ? "expanded" : ""}`}>
@@ -181,14 +182,14 @@ export default function RecipeReviewCard({ product }) {
                 onChange={(e) => setProductInfo({ ...productInfo, price: e.target.value })}
               />
               <TextField
-                label="Existencia"
-                value={productInfo.stock}
+                label="Cantidad"
+                value={productInfo.cantidad}
                 style={{ marginBottom: "25px",  width: "100%" }}
                 InputLabelProps={{
                   shrink: true,
                   style: { fontSize: 20 , color: "#333", fontWeight: "bold"},
                 }}
-                onChange={(e) => setProductInfo({ ...productInfo, stock: e.target.value })}
+                onChange={(e) => setProductInfo({ ...productInfo, cantidad: e.target.value })}
               />
               <TextField
                 label="URL de imagen"
