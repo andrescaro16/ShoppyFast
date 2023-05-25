@@ -7,14 +7,14 @@ import { useStateContext } from '../Context/StateContext';
 
 const Trolley = () => {
 
-    const { agregarProducto, carrito, setCarrito, setSubTotal, removerProducto } = useStateContext();
+    const { agregarProducto, carrito, setCarrito, subTotal, setSubTotal, removerProducto } = useStateContext();
 
     useEffect(() => {
         const calculo = () => {
             setSubTotal(carrito.reduce((obj, cur) => (obj + (cur.item.price) * cur.quantity), 0))
         }
         calculo();
-    }, [carrito]);
+    }, [carrito,subTotal]);
 
     return (
         <>

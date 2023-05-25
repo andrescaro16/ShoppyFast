@@ -141,6 +141,7 @@ export async function sendAdminInfo(formData) {
   }
 }
 
+//--------------------------------------------[cupones]----------------------------------------
 export async function sendCupon(formCupon, tokenId) {
   try {
     console.log(formCupon);
@@ -160,6 +161,28 @@ export async function sendCupon(formCupon, tokenId) {
     return error.response.status;
   }
 }
+
+export async function sendAplyCupon(formCupon) {
+  try {
+    console.log(formCupon);
+    const response = await axios.post(
+      `${port}/api/coupons/applyDiscount`,
+      JSON.stringify(formCupon),
+      {
+        headers: {
+          "Content-Type": "application/json"
+        }
+      }
+    );
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    console.log(error)
+    return error.response.status;
+  }
+}
+
+//--------------------------------------------[Productos]----------------------------------------
 
 export async function sendProductInfo(tokenId, ProductInfo) {
   const id = parseInt(ProductInfo.id);
@@ -209,5 +232,3 @@ export async function sendNewProduct(tokenId, ProductData) {
     return error.response;
   }
 }
-
-
